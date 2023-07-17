@@ -1,0 +1,11 @@
+name: Build Cobalt
+description: Builds Cobalt targets
+runs:
+  using: "composite"
+  steps:
+    - name: Build
+      run: |
+        set -x
+        env
+        # TODO: build simple project
+      shell: bash

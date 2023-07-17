@@ -1,0 +1,11 @@
+name: On Host Test
+description: Runs on-host tests.
+inputs:
+  os:
+    description: "Host OS"
+    required: true
+runs:
+  steps:
+    - name: Test
+      shell: bash
+      run: echo "Test"

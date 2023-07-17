@@ -1,0 +1,110 @@
+# Reusable Cobalt CI workflow.
+
+name: main
+
+on:
+  workflow_call:
+    inputs:
+      platform:
+        description: 'Test platform.'
+        required: true
+        type: string
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.event_name }}-${{ inputs.platform }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.sha }}'
+  cancel-in-progress: true
+
+jobs:
+  initialize:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_PR_REPO_URL: ${{ github.event.pull_request.base.repo.url }}
+      GITHUB_EVENT_NUMBER: ${{ github.event.number }}
+    # All triggers except draft PRs, unless PR is labeled with runtest
+    if: |
+      github.event_name != 'pull_request' ||
+      (
+        github.event.pull_request.draft == false ||
+        (
+          github.event.action == 'labeled' &&
+          github.event.label.name == 'runtest'
+        )
+      )
+    steps:
+      - id: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - id: set-platforms
+        run: echo "platforms=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ inputs.platform }}.json | jq -c '.platforms')" >> $GITHUB_ENV
+      - id: set-includes
+        run: echo "includes=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ inputs.platform }}.json | jq -c '.includes')" >> $GITHUB_ENV
+      - id: set-on-device-test
+        run: echo "on_device_test=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ inputs.platform }}.json | jq -rc '.on_device_test')" >> $GITHUB_ENV
+      - id: set-on-host-test
+        run: echo "on_host_test=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ inputs.platform }}.json | jq -rc '.on_host_test')" >> $GITHUB_ENV
+      - id: set-on-host-test-shards
+        run: echo "on_host_test_shards=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ inputs.platform }}.json | jq -c '.on_host_test_shards')" >> $GITHUB_ENV
+      - id: set-on-host-test-bootloader
+        run: echo "bootloader=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ inputs.platform }}.json | jq -rc '.bootloader')" >> $GITHUB_ENV
+      - id: set-docker-service
+        run: |
+          echo "docker_service=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ inputs.platform }}.json | jq -r '.docker_service')" >> $GITHUB_ENV
+          echo $platforms
+    outputs:
+      platforms: ${{ env.platforms }}
+      includes: ${{ env.includes }}
+      on_device_test: ${{ env.on_device_test }}
+      on_host_test: ${{ env.on_host_test }}
+      on_host_test_shards: ${{ env.on_host_test_shards }}
+      bootloader: ${{ env.bootloader }}
+      docker_service: ${{ env.docker_service }}
+
+  # Runs builds.
+  build:
+    needs: [initialize]
+    permissions: {}
+    runs-on: [self-hosted, linux, X64]
+    name: ${{matrix.name}}_${{matrix.config}}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
+        include: ${{ fromJson(needs.initialize.outputs.includes) }}
+        config: [devel, debug, qa, gold]
+    steps:
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      #   with:
+      #     fetch-depth: 0
+      - name: Build
+        run: echo Build
+
+  # Runs on-host integration and unit tests.
+  on-host-test:
+    needs: [initialize, build]
+    permissions: {}
+    if: needs.initialize.outputs.on_host_test == 'true'
+    runs-on: [self-hosted, linux, X64]
+    name: ${{matrix.name}}_${{matrix.shard}}_test
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
+        shard: ${{ fromJson(needs.initialize.outputs.on_host_test_shards) }}
+        config: [devel]
+        include: ${{ fromJson(needs.initialize.outputs.includes) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Run Tests
+        uses: ./.github/actions/on_host_test
+        with:
+          os: linux
+
+

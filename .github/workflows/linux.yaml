@@ -1,0 +1,35 @@
+name: linux
+
+on:
+  pull_request:
+    types: [ready_for_review, opened, reopened, synchronize, labeled]
+    branches:
+      - main
+      - feature/*
+  push:
+    branches:
+      - main
+      - feature/*
+
+jobs:
+  linux-x64:
+    uses: ./.github/workflows/main.yaml
+    permissions:
+      packages: write
+      pull-requests: write
+    with:
+      platform: linux
+  linux-clang-3-9:
+    uses: ./.github/workflows/main.yaml
+    permissions:
+      packages: write
+      pull-requests: write
+    with:
+      platform: linux-clang-3-9
+  linux-gcc-6-3:
+    uses: ./.github/workflows/main.yaml
+    permissions:
+      packages: write
+      pull-requests: write
+    with:
+      platform: linux-gcc-6-3
