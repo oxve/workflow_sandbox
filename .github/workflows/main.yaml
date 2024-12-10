@@ -90,40 +90,11 @@ jobs:
       test_on_host: ${{ env.test_on_host }}
       test_on_device: ${{ env.test_on_device }}
 
-  # Builds, tags, and pushes Cobalt docker build images to ghr.
-  docker-build-image:
-    needs: [initialize]
-    runs-on: [self-hosted, chrobalt-linux-runner]
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    # Handle GitHub registry used for everything other than pull requests off forked repos.
-    - name: Login to GitHub Docker Registry
-      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a # v2.1.0
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build docker image
-      id: build-docker-image
-      uses: ./.github/actions/docker
-      with:
-        docker_service: ${{ needs.initialize.outputs.docker_service }}
-    - name: Set Docker Tag Output
-      id: set-docker-tag-output
-      shell: bash
-      run: |
-        set -u
-        echo $DOCKER_TAG
-        echo "docker_tag=$DOCKER_TAG" | head -n 1  >> $GITHUB_ENV
-    outputs:
-      docker_tag: ${{ env.docker_tag }}
-
   # Runs builds.
   build:
-    needs: [initialize, docker-build-image]
+    needs: [initialize]
     permissions: {}
-    runs-on: [self-hosted, chrobalt-linux-runner]
+    runs-on: ubuntu-latest
     name: ${{ matrix.name }}_${{ matrix.config }}
     strategy:
       fail-fast: false
@@ -131,18 +102,12 @@ jobs:
         platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
         include: ${{ fromJson(needs.initialize.outputs.includes) }}
         config: [devel, debug, qa, gold]
-    container: ${{ needs.docker-build-image.outputs.docker_tag }}
     env:
       TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
       DEPOT_TOOLS_UPDATE: 0
       DEPOT_TOOLS_REPORT_BUILD: 0
       DEPOT_TOOLS_COLLECT_METRICS: 0
       DEPOT_TOOLS_METRICS: 0
-      SCCACHE: 1
-      SCCACHE_GCS_BUCKET: cobalt-actions-sccache-linux
-      SCCACHE_GCS_SERVICE_ACCOUNT: ${{ vars.SCCACHE_GCS_SERVICE_ACCOUNT }}
-      SCCACHE_GCS_RW_MODE: READ_WRITE
-      SCCACHE_IDLE_TIMEOUT: 0 # prevent sccache server from shutting down after long idle.
       # We want temp folder to be on tmpfs which makes workloads faster.
       # However, dind container ends up having / folder mounted on overlay
       # filesystem, whereas /__w which contains Cobalt source code is on tmpfs.
@@ -166,11 +131,10 @@ jobs:
         uses: ./src/.github/actions/upload_test_artifacts
 
   test:
-    needs: [initialize, docker-build-image, build]
+    needs: [initialize, build]
     if: needs.initialize.outputs.test_on_host == 'true' || needs.initialize.outputs.test_on_device == 'true'
     permissions: {}
-    # TODO(b/372303096): Should have dedicated runner?
-    runs-on: [self-hosted, chrobalt-linux-runner]
+    runs-on: ubuntu-latest
     name: ${{ matrix.name }}_tests
     strategy:
       fail-fast: false
@@ -178,7 +142,6 @@ jobs:
         platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
         include: ${{ fromJson(needs.initialize.outputs.includes) }}
         config: [devel]
-    container: ${{ needs.docker-build-image.outputs.docker_tag }}
     env:
       TMPDIR: /__w/_temp
       TEST_RESULTS_DIR: ${{ matrix.name }}_test_results
@@ -201,9 +164,7 @@ jobs:
           always() &&
           (
             steps.on-host-tests.outcome == 'success' ||
-            steps.on-host-tests.outcome == 'failure' ||
-            steps.on-device-tests.outcome == 'success' ||
-            steps.on-device-tests.outcome == 'failure'
+            steps.on-host-tests.outcome == 'failure'
           )
         uses: ./src/.github/actions/process_test_results
         with:
