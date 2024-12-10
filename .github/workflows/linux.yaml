@@ -20,9 +20,6 @@ on:
         type: boolean
         default: false
 
-secrets:
-  my_api_key: ${{ secrets.MY_SECRET_SECRET }}
-
 jobs:
   linux:
     uses: ./.github/workflows/main.yaml
@@ -32,3 +29,5 @@ jobs:
     with:
       platform: linux
       nightly: ${{ github.event.inputs.nightly }}
+    secrets:
+      my_api_key: ${{ secrets.MY_SECRET_SECRET }}
