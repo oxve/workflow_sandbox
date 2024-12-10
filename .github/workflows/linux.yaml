@@ -20,17 +20,10 @@ on:
         type: boolean
         default: false
 
+secrets:
+  my_api_key: ${{ secrets.MY_SECRET_SECRET }}
+
 jobs:
-  # This is default Chromium build config
-  chromium_linux-x64:
-    uses: ./.github/workflows/main.yaml
-    permissions:
-      packages: write
-      pull-requests: write
-    with:
-      platform: chromium_linux
-      nightly: ${{ github.event.inputs.nightly }}
-  # This is default Cobalt build config
   linux:
     uses: ./.github/workflows/main.yaml
     permissions:

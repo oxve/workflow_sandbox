@@ -14,6 +14,9 @@ on:
         required: true
         type: string
         default: 'false'
+    secrets:
+      datadog_api_key:
+        required: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name }}-${{ inputs.platform }} @ ${{ github.event.label.name || github.event.pull_request.number || github.sha }} @ ${{ github.event.label.name && github.event.pull_request.number || github.event.action }}
@@ -108,21 +111,13 @@ jobs:
       DEPOT_TOOLS_REPORT_BUILD: 0
       DEPOT_TOOLS_COLLECT_METRICS: 0
       DEPOT_TOOLS_METRICS: 0
-      # We want temp folder to be on tmpfs which makes workloads faster.
-      # However, dind container ends up having / folder mounted on overlay
-      # filesystem, whereas /__w which contains Cobalt source code is on tmpfs.
-      TMPDIR: /__w/_temp
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        # TODO(bug?): android debug builds are broken.
-        if: ${{ ! (startsWith(matrix.platform, 'android') && matrix.config == 'debug') }}
         with:
           path: src
       - name: Build Cobalt
         uses: ./src/.github/actions/build
-        # TODO(bug?): android debug builds are broken.
-        if: ${{ ! (startsWith(matrix.platform, 'android') && matrix.config == 'debug') }}
         with:
           targets: ${{ needs.initialize.outputs.targets }}
           test_artifacts_key: ${{ env.TEST_ARTIFACTS_KEY }}
@@ -143,7 +138,6 @@ jobs:
         include: ${{ fromJson(needs.initialize.outputs.includes) }}
         config: [devel]
     env:
-      TMPDIR: /__w/_temp
       TEST_RESULTS_DIR: ${{ matrix.name }}_test_results
       TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
     steps:
