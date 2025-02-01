@@ -162,6 +162,8 @@ jobs:
         config: [devel]
         test_targets: ${{ fromJson(needs.test.outputs.test_targets) }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Print logs
         run: |
           cat ${{ matrix.test_targets }}
