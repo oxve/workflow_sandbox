@@ -168,5 +168,5 @@ jobs:
     steps:
       - name: Print logs
         run: |
-          echo hej
+          cat ${{ matrix.name }}
         shell: bash
