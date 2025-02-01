@@ -143,15 +143,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set Output
-        id: set-output
-        if: always()
-        run: |
-          set -x
-          echo "test_targets=$(ls test_logs/*log.txt | jq -R . | jq -sc .)" >> $GITHUB_OUTPUT
-        shell: bash
+      - name: Process Test Results
+        id: process-test-results
+        uses: ./src/.github/actions/process_test_results
     outputs:
-      test_targets: ${{ steps.set-output.outputs.test_targets }}
+      test_targets: ${{ steps.process-test-results.outputs.test_targets }}
 
   on-device-test-logs:
     needs: [initialize, test]
