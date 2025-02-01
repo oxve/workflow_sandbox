@@ -143,8 +143,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          path: src
       - name: Set Output
         id: set-output
         if: always()
