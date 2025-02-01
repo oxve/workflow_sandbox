@@ -1,0 +1,144 @@
+>>ScopedMainEntryLogger
+[==========] Running 49 tests from 8 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from StructTraitsDeathTest
+[ RUN      ] StructTraitsDeathTest.ImageInfoOverflowSizeWithStructTrait
+
+[WARNING] ../../third_party/googletest/src/googletest/src/gtest-death-test.cc:1108:: Death tests use fork(), which is unsafe particularly in a threaded context. For this test, Google Test detected 32 threads. See https://github.com/google/googletest/blob/master/docs/advanced.md#death-tests-and-threads for more explanation and suggested solutions, especially if this is the last message you see before your test times out.
+[ CRASHED      ]
+[       OK ] StructTraitsDeathTest.ImageInfoOverflowSizeWithStructTrait (951 ms)
+[----------] 1 test from StructTraitsDeathTest (957 ms total)
+
+[----------] 8 tests from Convolver
+[ RUN      ] Convolver.Impulse
+[       OK ] Convolver.Impulse (164 ms)
+[ RUN      ] Convolver.Halve
+[       OK ] Convolver.Halve (1 ms)
+[ RUN      ] Convolver.AddFilter
+[       OK ] Convolver.AddFilter (1 ms)
+[ RUN      ] Convolver.VerifySIMDEdgeCases
+[       OK ] Convolver.VerifySIMDEdgeCases (111 ms)
+[ RUN      ] Convolver.VerifySIMDPrecision
+[       OK ] Convolver.VerifySIMDPrecision (4676 ms)
+[ RUN      ] Convolver.SeparableSingleConvolution
+[       OK ] Convolver.SeparableSingleConvolution (185 ms)
+[ RUN      ] Convolver.SeparableSingleConvolutionEdges
+[       OK ] Convolver.SeparableSingleConvolutionEdges (166 ms)
+[ RUN      ] Convolver.SetUpGaussianConvolutionFilter
+[       OK ] Convolver.SetUpGaussianConvolutionFilter (1 ms)
+[----------] 8 tests from Convolver (5325 ms total)
+
+[----------] 7 tests from ImageOperations
+[ RUN      ] ImageOperations.Halve
+[       OK ] ImageOperations.Halve (1 ms)
+[ RUN      ] ImageOperations.HalveSubset
+[       OK ] ImageOperations.HalveSubset (1 ms)
+[ RUN      ] ImageOperations.InvalidParams
+[       OK ] ImageOperations.InvalidParams (1 ms)
+[ RUN      ] ImageOperations.ResampleToSameHamming1
+[       OK ] ImageOperations.ResampleToSameHamming1 (1 ms)
+[ RUN      ] ImageOperations.ResampleToSameLanczos3
+[       OK ] ImageOperations.ResampleToSameLanczos3 (1 ms)
+[ RUN      ] ImageOperations.ResizeShouldAverageColors
+[       OK ] ImageOperations.ResizeShouldAverageColors (49 ms)
+[ RUN      ] ImageOperations.ScaleUp
+[       OK ] ImageOperations.ScaleUp (1 ms)
+[----------] 7 tests from ImageOperations (73 ms total)
+
+[----------] 4 tests from RecursiveGaussian
+[ RUN      ] RecursiveGaussian.SmoothingMethodComparison
+[       OK ] RecursiveGaussian.SmoothingMethodComparison (41 ms)
+[ RUN      ] RecursiveGaussian.SmoothingImpulse
+[       OK ] RecursiveGaussian.SmoothingImpulse (19 ms)
+[ RUN      ] RecursiveGaussian.FirstDerivative
+[       OK ] RecursiveGaussian.FirstDerivative (219 ms)
+[ RUN      ] RecursiveGaussian.SecondDerivative
+[       OK ] RecursiveGaussian.SecondDerivative (70 ms)
+[----------] 4 tests from RecursiveGaussian (359 ms total)
+
+[----------] 2 tests from SkiaUtils
+[ RUN      ] SkiaUtils.PrimariesD65
+[       OK ] SkiaUtils.PrimariesD65 (1 ms)
+[ RUN      ] SkiaUtils.PrimariesD50
+[       OK ] SkiaUtils.PrimariesD50 (1 ms)
+[----------] 2 tests from SkiaUtils (5 ms total)
+
+[----------] 1 test from SkiaMemoryDumpProviderTest
+[ RUN      ] SkiaMemoryDumpProviderTest.OnMemoryDump
+[       OK ] SkiaMemoryDumpProviderTest.OnMemoryDump (2 ms)
+[----------] 1 test from SkiaMemoryDumpProviderTest (4 ms total)
+
+[----------] 5 tests from SkiaUtilsBase
+[ RUN      ] SkiaUtilsBase.ConvertNullToN32
+[       OK ] SkiaUtilsBase.ConvertNullToN32 (1 ms)
+[ RUN      ] SkiaUtilsBase.ConvertValidToN32
+[       OK ] SkiaUtilsBase.ConvertValidToN32 (1 ms)
+[ RUN      ] SkiaUtilsBase.ConvertWeirdStrideToN32
+[       OK ] SkiaUtilsBase.ConvertWeirdStrideToN32 (1 ms)
+[ RUN      ] SkiaUtilsBase.ConvertWeirdFormatToN32
+[       OK ] SkiaUtilsBase.ConvertWeirdFormatToN32 (1 ms)
+[ RUN      ] SkiaUtilsBase.ConvertSkColorToHexString
+[       OK ] SkiaUtilsBase.ConvertSkColorToHexString (1 ms)
+[----------] 5 tests from SkiaUtilsBase (14 ms total)
+
+[----------] 21 tests from StructTraitsTest
+[ RUN      ] StructTraitsTest.ImageInfo
+[       OK ] StructTraitsTest.ImageInfo (1 ms)
+[ RUN      ] StructTraitsTest.ImageInfoOverflowSizeWithoutStructTrait
+[       OK ] StructTraitsTest.ImageInfoOverflowSizeWithoutStructTrait (1 ms)
+[ RUN      ] StructTraitsTest.ImageInfoCustomColorSpace
+[       OK ] StructTraitsTest.ImageInfoCustomColorSpace (1 ms)
+[ RUN      ] StructTraitsTest.TileMode
+[       OK ] StructTraitsTest.TileMode (1 ms)
+[ RUN      ] StructTraitsTest.Bitmap
+[       OK ] StructTraitsTest.Bitmap (1 ms)
+[ RUN      ] StructTraitsTest.BitmapNull
+[       OK ] StructTraitsTest.BitmapNull (1 ms)
+[ RUN      ] StructTraitsTest.InlineBitmapSerializeToString
+[       OK ] StructTraitsTest.InlineBitmapSerializeToString (1 ms)
+[ RUN      ] StructTraitsTest.VerifyMojomConstruction
+[       OK ] StructTraitsTest.VerifyMojomConstruction (1 ms)
+[ RUN      ] StructTraitsTest.BitmapTooWideToSerialize
+[       OK ] StructTraitsTest.BitmapTooWideToSerialize (15 ms)
+[ RUN      ] StructTraitsTest.BitmapTooTallToSerialize
+[       OK ] StructTraitsTest.BitmapTooTallToSerialize (15 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidRowBytes_BitmapN32
+
+[WARNING] ../../third_party/googletest/src/googletest/src/gtest-death-test.cc:1108:: Death tests use fork(), which is unsafe particularly in a threaded context. For this test, Google Test detected 27 threads. See https://github.com/google/googletest/blob/master/docs/advanced.md#death-tests-and-threads for more explanation and suggested solutions, especially if this is the last message you see before your test times out.
+[       OK ] StructTraitsTest.BitmapSerializeInvalidRowBytes_BitmapN32 (56 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidRowBytes_BitmapWithArbitraryBpp
+
+[WARNING] ../../third_party/googletest/src/googletest/src/gtest-death-test.cc:1108:: Death tests use fork(), which is unsafe particularly in a threaded context. For this test, Google Test detected 27 threads. See https://github.com/google/googletest/blob/master/docs/advanced.md#death-tests-and-threads for more explanation and suggested solutions, especially if this is the last message you see before your test times out.
+[       OK ] StructTraitsTest.BitmapSerializeInvalidRowBytes_BitmapWithArbitraryBpp (56 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidRowBytes_BitmapMappedFromTrustedProcess
+
+[WARNING] ../../third_party/googletest/src/googletest/src/gtest-death-test.cc:1108:: Death tests use fork(), which is unsafe particularly in a threaded context. For this test, Google Test detected 27 threads. See https://github.com/google/googletest/blob/master/docs/advanced.md#death-tests-and-threads for more explanation and suggested solutions, especially if this is the last message you see before your test times out.
+[       OK ] StructTraitsTest.BitmapSerializeInvalidRowBytes_BitmapMappedFromTrustedProcess (56 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidRowBytes_InlineBitmap
+
+[WARNING] ../../third_party/googletest/src/googletest/src/gtest-death-test.cc:1108:: Death tests use fork(), which is unsafe particularly in a threaded context. For this test, Google Test detected 27 threads. See https://github.com/google/googletest/blob/master/docs/advanced.md#death-tests-and-threads for more explanation and suggested solutions, especially if this is the last message you see before your test times out.
+[       OK ] StructTraitsTest.BitmapSerializeInvalidRowBytes_InlineBitmap (56 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidColorType_BitmapN32
+
+[WARNING] ../../third_party/googletest/src/googletest/src/gtest-death-test.cc:1108:: Death tests use fork(), which is unsafe particularly in a threaded context. For this test, Google Test detected 27 threads. See https://github.com/google/googletest/blob/master/docs/advanced.md#death-tests-and-threads for more explanation and suggested solutions, especially if this is the last message you see before your test times out.
+[       OK ] StructTraitsTest.BitmapSerializeInvalidColorType_BitmapN32 (58 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidColorType_BitmapWithArbitraryBpp
+[       OK ] StructTraitsTest.BitmapSerializeInvalidColorType_BitmapWithArbitraryBpp (1 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidColorType_BitmapMappedFromTrustedProcess
+[       OK ] StructTraitsTest.BitmapSerializeInvalidColorType_BitmapMappedFromTrustedProcess (1 ms)
+[ RUN      ] StructTraitsTest.BitmapSerializeInvalidColorType_InlineBitmap
+
+[WARNING] ../../third_party/googletest/src/googletest/src/gtest-death-test.cc:1108:: Death tests use fork(), which is unsafe particularly in a threaded context. For this test, Google Test detected 27 threads. See https://github.com/google/googletest/blob/master/docs/advanced.md#death-tests-and-threads for more explanation and suggested solutions, especially if this is the last message you see before your test times out.
+[       OK ] StructTraitsTest.BitmapSerializeInvalidColorType_InlineBitmap (56 ms)
+[ RUN      ] StructTraitsTest.BitmapDeserializeIgnoresRowBytes
+[       OK ] StructTraitsTest.BitmapDeserializeIgnoresRowBytes (1 ms)
+[ RUN      ] StructTraitsTest.InlineBitmapDeserializeTooFewBytes
+[       OK ] StructTraitsTest.InlineBitmapDeserializeTooFewBytes (1 ms)
+[ RUN      ] StructTraitsTest.InlineBitmapDeserializeTooManyBytes
+[       OK ] StructTraitsTest.InlineBitmapDeserializeTooManyBytes (1 ms)
+[----------] 21 tests from StructTraitsTest (426 ms total)
+
+[----------] Global test environment tear-down
+[==========] 49 tests from 8 test suites ran. (7172 ms total)
+[  PASSED  ] 49 tests.
+<<ScopedMainEntryLogger

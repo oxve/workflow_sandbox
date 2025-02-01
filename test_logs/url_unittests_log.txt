@@ -1,0 +1,344 @@
+>>ScopedMainEntryLogger
+[==========] Running 146 tests from 14 test suites.
+[----------] Global test environment set-up.
+[----------] 39 tests from GURLTest
+[ RUN      ] GURLTest.Types
+[       OK ] GURLTest.Types (1 ms)
+[ RUN      ] GURLTest.Components
+[       OK ] GURLTest.Components (1 ms)
+[ RUN      ] GURLTest.Empty
+[       OK ] GURLTest.Empty (1 ms)
+[ RUN      ] GURLTest.Copy
+[       OK ] GURLTest.Copy (1 ms)
+[ RUN      ] GURLTest.Assign
+[       OK ] GURLTest.Assign (1 ms)
+[ RUN      ] GURLTest.SelfAssign
+[       OK ] GURLTest.SelfAssign (1 ms)
+[ RUN      ] GURLTest.CopyFileSystem
+[       OK ] GURLTest.CopyFileSystem (1 ms)
+[ RUN      ] GURLTest.IsValid
+[       OK ] GURLTest.IsValid (1 ms)
+[ RUN      ] GURLTest.ExtraSlashesBeforeAuthority
+[       OK ] GURLTest.ExtraSlashesBeforeAuthority (1 ms)
+[ RUN      ] GURLTest.ComponentGettersWorkEvenForInvalidURL
+[       OK ] GURLTest.ComponentGettersWorkEvenForInvalidURL (1 ms)
+[ RUN      ] GURLTest.Resolve
+[       OK ] GURLTest.Resolve (1 ms)
+[ RUN      ] GURLTest.GetOrigin
+[       OK ] GURLTest.GetOrigin (1 ms)
+[ RUN      ] GURLTest.GetAsReferrer
+[       OK ] GURLTest.GetAsReferrer (2 ms)
+[ RUN      ] GURLTest.GetWithEmptyPath
+[       OK ] GURLTest.GetWithEmptyPath (1 ms)
+[ RUN      ] GURLTest.GetWithoutFilename
+[       OK ] GURLTest.GetWithoutFilename (1 ms)
+[ RUN      ] GURLTest.GetWithoutRef
+[       OK ] GURLTest.GetWithoutRef (1 ms)
+[ RUN      ] GURLTest.Replacements
+[       OK ] GURLTest.Replacements (1 ms)
+[ RUN      ] GURLTest.ClearFragmentOnDataUrl
+[       OK ] GURLTest.ClearFragmentOnDataUrl (1 ms)
+[ RUN      ] GURLTest.PathForRequest
+[       OK ] GURLTest.PathForRequest (1 ms)
+[ RUN      ] GURLTest.EffectiveIntPort
+[       OK ] GURLTest.EffectiveIntPort (1 ms)
+[ RUN      ] GURLTest.IPAddress
+[       OK ] GURLTest.IPAddress (1 ms)
+[ RUN      ] GURLTest.HostNoBrackets
+[       OK ] GURLTest.HostNoBrackets (1 ms)
+[ RUN      ] GURLTest.DomainIs
+[       OK ] GURLTest.DomainIs (1 ms)
+[ RUN      ] GURLTest.DomainIsTerminatingDotBehavior
+[       OK ] GURLTest.DomainIsTerminatingDotBehavior (1 ms)
+[ RUN      ] GURLTest.DomainIsWithFilesystemScheme
+[       OK ] GURLTest.DomainIsWithFilesystemScheme (1 ms)
+[ RUN      ] GURLTest.Newlines
+[       OK ] GURLTest.Newlines (1 ms)
+[ RUN      ] GURLTest.IsStandard
+[       OK ] GURLTest.IsStandard (1 ms)
+[ RUN      ] GURLTest.SchemeIsHTTPOrHTTPS
+[       OK ] GURLTest.SchemeIsHTTPOrHTTPS (1 ms)
+[ RUN      ] GURLTest.SchemeIsWSOrWSS
+[       OK ] GURLTest.SchemeIsWSOrWSS (1 ms)
+[ RUN      ] GURLTest.SchemeIsCryptographic
+[       OK ] GURLTest.SchemeIsCryptographic (1 ms)
+[ RUN      ] GURLTest.SchemeIsCryptographicStatic
+[       OK ] GURLTest.SchemeIsCryptographicStatic (1 ms)
+[ RUN      ] GURLTest.SchemeIsBlob
+[       OK ] GURLTest.SchemeIsBlob (1 ms)
+[ RUN      ] GURLTest.SchemeIsLocal
+[       OK ] GURLTest.SchemeIsLocal (1 ms)
+[ RUN      ] GURLTest.ContentForNonStandardURLs
+[       OK ] GURLTest.ContentForNonStandardURLs (1 ms)
+[ RUN      ] GURLTest.PathForNonStandardURLs
+[       OK ] GURLTest.PathForNonStandardURLs (1 ms)
+[ RUN      ] GURLTest.EqualsIgnoringRef
+[       OK ] GURLTest.EqualsIgnoringRef (2 ms)
+[ RUN      ] GURLTest.DebugAlias
+[       OK ] GURLTest.DebugAlias (1 ms)
+[ RUN      ] GURLTest.InvalidHost
+[       OK ] GURLTest.InvalidHost (1 ms)
+[ RUN      ] GURLTest.PortZero
+[       OK ] GURLTest.PortZero (1 ms)
+[----------] 39 tests from GURLTest (62 ms total)
+
+[----------] 2 tests from GURL/AbstractUrlTest/0, where TypeParam = <type>
+[ RUN      ] GURL/AbstractUrlTest/0.IsAboutBlankTest
+[       OK ] GURL/AbstractUrlTest/0.IsAboutBlankTest (1 ms)
+[ RUN      ] GURL/AbstractUrlTest/0.IsAboutSrcdocTest
+[       OK ] GURL/AbstractUrlTest/0.IsAboutSrcdocTest (1 ms)
+[----------] 2 tests from GURL/AbstractUrlTest/0 (3 ms total)
+
+[----------] 16 tests from OriginTest
+[ RUN      ] OriginTest.OpaqueOriginComparison
+[       OK ] OriginTest.OpaqueOriginComparison (2 ms)
+[ RUN      ] OriginTest.ConstructFromTuple
+[       OK ] OriginTest.ConstructFromTuple (1 ms)
+[ RUN      ] OriginTest.Serialization
+[       OK ] OriginTest.Serialization (2 ms)
+[ RUN      ] OriginTest.Comparison
+[       OK ] OriginTest.Comparison (2 ms)
+[ RUN      ] OriginTest.UnsafelyCreate
+[       OK ] OriginTest.UnsafelyCreate (2 ms)
+[ RUN      ] OriginTest.UnsafelyCreateUniqueOnInvalidInput
+[       OK ] OriginTest.UnsafelyCreateUniqueOnInvalidInput (2 ms)
+[ RUN      ] OriginTest.UnsafelyCreateUniqueViaEmbeddedNulls
+[       OK ] OriginTest.UnsafelyCreateUniqueViaEmbeddedNulls (1 ms)
+[ RUN      ] OriginTest.DomainIs
+[       OK ] OriginTest.DomainIs (1 ms)
+[ RUN      ] OriginTest.DebugAlias
+[       OK ] OriginTest.DebugAlias (1 ms)
+[ RUN      ] OriginTest.CanBeDerivedFrom
+[       OK ] OriginTest.CanBeDerivedFrom (3 ms)
+[ RUN      ] OriginTest.GetDebugString
+[       OK ] OriginTest.GetDebugString (1 ms)
+[ RUN      ] OriginTest.Deserialize
+[       OK ] OriginTest.Deserialize (1 ms)
+[ RUN      ] OriginTest.DeserializeInvalid
+[       OK ] OriginTest.DeserializeInvalid (1 ms)
+[ RUN      ] OriginTest.SerializeTBDNonce
+[       OK ] OriginTest.SerializeTBDNonce (1 ms)
+[ RUN      ] OriginTest.DeserializeValidNonce
+[       OK ] OriginTest.DeserializeValidNonce (1 ms)
+[ RUN      ] OriginTest.IsSameOriginWith
+[       OK ] OriginTest.IsSameOriginWith (1 ms)
+[----------] 16 tests from OriginTest (33 ms total)
+
+[----------] 6 tests from UrlOrigin/AbstractOriginTest/0, where TypeParam = <type>
+[ RUN      ] UrlOrigin/AbstractOriginTest/0.NonStandardSchemeWithAndroidWebViewHack
+[       OK ] UrlOrigin/AbstractOriginTest/0.NonStandardSchemeWithAndroidWebViewHack (1 ms)
+[ RUN      ] UrlOrigin/AbstractOriginTest/0.OpaqueOriginsFromValidUrls
+[       OK ] UrlOrigin/AbstractOriginTest/0.OpaqueOriginsFromValidUrls (2 ms)
+[ RUN      ] UrlOrigin/AbstractOriginTest/0.OpaqueOriginsFromInvalidUrls
+[       OK ] UrlOrigin/AbstractOriginTest/0.OpaqueOriginsFromInvalidUrls (4 ms)
+[ RUN      ] UrlOrigin/AbstractOriginTest/0.TupleOrigins
+[       OK ] UrlOrigin/AbstractOriginTest/0.TupleOrigins (9 ms)
+[ RUN      ] UrlOrigin/AbstractOriginTest/0.CustomSchemes_OpaqueOrigins
+[       OK ] UrlOrigin/AbstractOriginTest/0.CustomSchemes_OpaqueOrigins (2 ms)
+[ RUN      ] UrlOrigin/AbstractOriginTest/0.CustomSchemes_TupleOrigins
+[       OK ] UrlOrigin/AbstractOriginTest/0.CustomSchemes_TupleOrigins (4 ms)
+[----------] 6 tests from UrlOrigin/AbstractOriginTest/0 (26 ms total)
+
+[----------] 8 tests from SchemeHostPortTest
+[ RUN      ] SchemeHostPortTest.Invalid
+[       OK ] SchemeHostPortTest.Invalid (1 ms)
+[ RUN      ] SchemeHostPortTest.ExplicitConstruction
+[       OK ] SchemeHostPortTest.ExplicitConstruction (1 ms)
+[ RUN      ] SchemeHostPortTest.InvalidConstruction
+[       OK ] SchemeHostPortTest.InvalidConstruction (1 ms)
+[ RUN      ] SchemeHostPortTest.InvalidConstructionWithEmbeddedNulls
+[       OK ] SchemeHostPortTest.InvalidConstructionWithEmbeddedNulls (1 ms)
+[ RUN      ] SchemeHostPortTest.GURLConstruction
+[       OK ] SchemeHostPortTest.GURLConstruction (1 ms)
+[ RUN      ] SchemeHostPortTest.Serialization
+[       OK ] SchemeHostPortTest.Serialization (1 ms)
+[ RUN      ] SchemeHostPortTest.Comparison
+[       OK ] SchemeHostPortTest.Comparison (1 ms)
+[ RUN      ] SchemeHostPortTest.EmptyHostGurlConversion
+[       OK ] SchemeHostPortTest.EmptyHostGurlConversion (1 ms)
+[----------] 8 tests from SchemeHostPortTest (11 ms total)
+
+[----------] 2 tests from URLCanonIcuTest
+[ RUN      ] URLCanonIcuTest.ICUCharsetConverter
+[       OK ] URLCanonIcuTest.ICUCharsetConverter (1 ms)
+[ RUN      ] URLCanonIcuTest.QueryWithConverter
+[       OK ] URLCanonIcuTest.QueryWithConverter (1 ms)
+[----------] 2 tests from URLCanonIcuTest (3 ms total)
+
+[----------] 31 tests from URLCanonTest
+[ RUN      ] URLCanonTest.DoAppendUTF8
+[       OK ] URLCanonTest.DoAppendUTF8 (1 ms)
+[ RUN      ] URLCanonTest.DoAppendUTF8Invalid
+
+[WARNING] ../../url/url_canon_unittest.cc:137:: Death tests are not supported on this platform.
+Statement '{ AppendUTF8Value(0x110000, &output); output.Complete(); }' cannot be verified.
+[       OK ] URLCanonTest.DoAppendUTF8Invalid (1 ms)
+[ RUN      ] URLCanonTest.UTF
+[       OK ] URLCanonTest.UTF (1 ms)
+[ RUN      ] URLCanonTest.Scheme
+[       OK ] URLCanonTest.Scheme (1 ms)
+[ RUN      ] URLCanonTest.IPv4
+[       OK ] URLCanonTest.IPv4 (1 ms)
+[ RUN      ] URLCanonTest.IPEmpty
+[       OK ] URLCanonTest.IPEmpty (1 ms)
+[ RUN      ] URLCanonTest.CanonicalizeHostSubstring
+[       OK ] URLCanonTest.CanonicalizeHostSubstring (1 ms)
+[ RUN      ] URLCanonTest.UserInfo
+[       OK ] URLCanonTest.UserInfo (1 ms)
+[ RUN      ] URLCanonTest.Port
+[       OK ] URLCanonTest.Port (1 ms)
+[ RUN      ] URLCanonTest.Path
+[       OK ] URLCanonTest.Path (2 ms)
+[ RUN      ] URLCanonTest.PartialPath
+[       OK ] URLCanonTest.PartialPath (2 ms)
+[ RUN      ] URLCanonTest.Query
+[       OK ] URLCanonTest.Query (1 ms)
+[ RUN      ] URLCanonTest.Ref
+[       OK ] URLCanonTest.Ref (1 ms)
+[ RUN      ] URLCanonTest.CanonicalizeStandardURL
+[       OK ] URLCanonTest.CanonicalizeStandardURL (1 ms)
+[ RUN      ] URLCanonTest.ReplaceStandardURL
+[       OK ] URLCanonTest.ReplaceStandardURL (1 ms)
+[ RUN      ] URLCanonTest.ReplaceFileURL
+[       OK ] URLCanonTest.ReplaceFileURL (1 ms)
+[ RUN      ] URLCanonTest.ReplaceFileSystemURL
+[       OK ] URLCanonTest.ReplaceFileSystemURL (1 ms)
+[ RUN      ] URLCanonTest.ReplacePathURL
+[       OK ] URLCanonTest.ReplacePathURL (1 ms)
+[ RUN      ] URLCanonTest.ReplaceMailtoURL
+[       OK ] URLCanonTest.ReplaceMailtoURL (1 ms)
+[ RUN      ] URLCanonTest.CanonicalizeFileURL
+[       OK ] URLCanonTest.CanonicalizeFileURL (1 ms)
+[ RUN      ] URLCanonTest.CanonicalizeFileSystemURL
+[       OK ] URLCanonTest.CanonicalizeFileSystemURL (1 ms)
+[ RUN      ] URLCanonTest.CanonicalizePathURL
+[       OK ] URLCanonTest.CanonicalizePathURL (1 ms)
+[ RUN      ] URLCanonTest.CanonicalizePathURLPath
+[       OK ] URLCanonTest.CanonicalizePathURLPath (1 ms)
+[ RUN      ] URLCanonTest.CanonicalizeMailtoURL
+[       OK ] URLCanonTest.CanonicalizeMailtoURL (1 ms)
+[ RUN      ] URLCanonTest._itoa_s
+[       OK ] URLCanonTest._itoa_s (1 ms)
+[ RUN      ] URLCanonTest._itow_s
+[       OK ] URLCanonTest._itow_s (1 ms)
+[ RUN      ] URLCanonTest.ResolveRelativeURL
+[       OK ] URLCanonTest.ResolveRelativeURL (1 ms)
+[ RUN      ] URLCanonTest.ReplacementOverflow
+[       OK ] URLCanonTest.ReplacementOverflow (1 ms)
+[ RUN      ] URLCanonTest.DefaultPortForScheme
+[       OK ] URLCanonTest.DefaultPortForScheme (1 ms)
+[ RUN      ] URLCanonTest.FindWindowsDriveLetter
+[       OK ] URLCanonTest.FindWindowsDriveLetter (1 ms)
+[ RUN      ] URLCanonTest.IDNToASCII
+[       OK ] URLCanonTest.IDNToASCII (1 ms)
+[----------] 31 tests from URLCanonTest (47 ms total)
+
+[----------] 9 tests from URLParser
+[ RUN      ] URLParser.Length
+[       OK ] URLParser.Length (1 ms)
+[ RUN      ] URLParser.CountCharactersBefore
+[       OK ] URLParser.CountCharactersBefore (1 ms)
+[ RUN      ] URLParser.Standard
+[       OK ] URLParser.Standard (1 ms)
+[ RUN      ] URLParser.PathURL
+[       OK ] URLParser.PathURL (1 ms)
+[ RUN      ] URLParser.ParseFileURL
+[       OK ] URLParser.ParseFileURL (1 ms)
+[ RUN      ] URLParser.ExtractFileName
+[       OK ] URLParser.ExtractFileName (1 ms)
+[ RUN      ] URLParser.ExtractQueryKeyValue
+[       OK ] URLParser.ExtractQueryKeyValue (1 ms)
+[ RUN      ] URLParser.MailtoUrl
+[       OK ] URLParser.MailtoUrl (1 ms)
+[ RUN      ] URLParser.FileSystemURL
+[       OK ] URLParser.FileSystemURL (1 ms)
+[----------] 9 tests from URLParser (13 ms total)
+
+[----------] 18 tests from URLUtilTest
+[ RUN      ] URLUtilTest.FindAndCompareScheme
+[       OK ] URLUtilTest.FindAndCompareScheme (1 ms)
+[ RUN      ] URLUtilTest.IsStandard
+[       OK ] URLUtilTest.IsStandard (1 ms)
+[ RUN      ] URLUtilTest.IsReferrerScheme
+[       OK ] URLUtilTest.IsReferrerScheme (1 ms)
+[ RUN      ] URLUtilTest.AddReferrerScheme
+[       OK ] URLUtilTest.AddReferrerScheme (1 ms)
+[ RUN      ] URLUtilTest.ShutdownCleansUpSchemes
+[       OK ] URLUtilTest.ShutdownCleansUpSchemes (1 ms)
+[ RUN      ] URLUtilTest.GetStandardSchemeType
+[       OK ] URLUtilTest.GetStandardSchemeType (1 ms)
+[ RUN      ] URLUtilTest.GetStandardSchemes
+[       OK ] URLUtilTest.GetStandardSchemes (1 ms)
+[ RUN      ] URLUtilTest.ReplaceComponents
+[       OK ] URLUtilTest.ReplaceComponents (1 ms)
+[ RUN      ] URLUtilTest.ReplaceScheme
+[       OK ] URLUtilTest.ReplaceScheme (1 ms)
+[ RUN      ] URLUtilTest.DecodeURLEscapeSequences
+[       OK ] URLUtilTest.DecodeURLEscapeSequences (1 ms)
+[ RUN      ] URLUtilTest.TestEncodeURIComponent
+[       OK ] URLUtilTest.TestEncodeURIComponent (1 ms)
+[ RUN      ] URLUtilTest.TestResolveRelativeWithNonStandardBase
+[       OK ] URLUtilTest.TestResolveRelativeWithNonStandardBase (1 ms)
+[ RUN      ] URLUtilTest.TestNoRefComponent
+[       OK ] URLUtilTest.TestNoRefComponent (1 ms)
+[ RUN      ] URLUtilTest.PotentiallyDanglingMarkup
+[       OK ] URLUtilTest.PotentiallyDanglingMarkup (1 ms)
+[ RUN      ] URLUtilTest.PotentiallyDanglingMarkupAfterReplacement
+[       OK ] URLUtilTest.PotentiallyDanglingMarkupAfterReplacement (1 ms)
+[ RUN      ] URLUtilTest.PotentiallyDanglingMarkupAfterSchemeOnlyReplacement
+[       OK ] URLUtilTest.PotentiallyDanglingMarkupAfterSchemeOnlyReplacement (1 ms)
+[ RUN      ] URLUtilTest.TestDomainIs
+[       OK ] URLUtilTest.TestDomainIs (1 ms)
+[ RUN      ] URLUtilTest.TestCanonicalizeIdempotencyWithLeadingControlCharacters
+[       OK ] URLUtilTest.TestCanonicalizeIdempotencyWithLeadingControlCharacters (2 ms)
+[----------] 18 tests from URLUtilTest (27 ms total)
+
+[----------] 1 test from SchemeHostPortMojomTraitsTest
+[ RUN      ] SchemeHostPortMojomTraitsTest.RoundTrip
+[       OK ] SchemeHostPortMojomTraitsTest.RoundTrip (1 ms)
+[----------] 1 test from SchemeHostPortMojomTraitsTest (1 ms total)
+
+[----------] 5 tests from MojoGURLStructTraitsTest
+[ RUN      ] MojoGURLStructTraitsTest.Basic
+[       OK ] MojoGURLStructTraitsTest.Basic (3 ms)
+[ RUN      ] MojoGURLStructTraitsTest.ExcessivelyLongUrl
+[       OK ] MojoGURLStructTraitsTest.ExcessivelyLongUrl (91 ms)
+[ RUN      ] MojoGURLStructTraitsTest.WindowsDriveInPathReplacement
+[       OK ] MojoGURLStructTraitsTest.WindowsDriveInPathReplacement (3 ms)
+[ RUN      ] MojoGURLStructTraitsTest.OriginSerialization
+[       OK ] MojoGURLStructTraitsTest.OriginSerialization (5 ms)
+[ RUN      ] MojoGURLStructTraitsTest.TestMaxURLChars
+[       OK ] MojoGURLStructTraitsTest.TestMaxURLChars (3 ms)
+[----------] 5 tests from MojoGURLStructTraitsTest (108 ms total)
+
+[----------] 5 tests from IPCMessageTest
+[ RUN      ] IPCMessageTest.SerializeGurl_Basic
+[       OK ] IPCMessageTest.SerializeGurl_Basic (1 ms)
+[ RUN      ] IPCMessageTest.SerializeGurl_ExcessivelyLong
+[       OK ] IPCMessageTest.SerializeGurl_ExcessivelyLong (86 ms)
+[ RUN      ] IPCMessageTest.SerializeGurl_InvalidUrl
+[       OK ] IPCMessageTest.SerializeGurl_InvalidUrl (1 ms)
+[ RUN      ] IPCMessageTest.SerializeGurl_CorruptPayload
+[       OK ] IPCMessageTest.SerializeGurl_CorruptPayload (1 ms)
+[ RUN      ] IPCMessageTest.SerializeGurl_WindowsDriveInPathReplacement
+[       OK ] IPCMessageTest.SerializeGurl_WindowsDriveInPathReplacement (1 ms)
+[----------] 5 tests from IPCMessageTest (93 ms total)
+
+[----------] 2 tests from All/URLCanonHostTest
+[ RUN      ] All/URLCanonHostTest.Host/0
+[       OK ] All/URLCanonHostTest.Host/0 (3 ms)
+[ RUN      ] All/URLCanonHostTest.Host/1
+[       OK ] All/URLCanonHostTest.Host/1 (3 ms)
+[----------] 2 tests from All/URLCanonHostTest (7 ms total)
+
+[----------] 2 tests from All/URLCanonIPv6Test
+[ RUN      ] All/URLCanonIPv6Test.IPv6/0
+[       OK ] All/URLCanonIPv6Test.IPv6/0 (1 ms)
+[ RUN      ] All/URLCanonIPv6Test.IPv6/1
+[       OK ] All/URLCanonIPv6Test.IPv6/1 (1 ms)
+[----------] 2 tests from All/URLCanonIPv6Test (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 146 tests from 14 test suites ran. (452 ms total)
+[  PASSED  ] 146 tests.
+<<ScopedMainEntryLogger

@@ -145,20 +145,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: src
-
-      - name: Set Up Cloud SDK
-        uses: isarkis/setup-gcloud@40dce7857b354839efac498d3632050f568090b6 # v1.1.1
-
-      - name: Set GCS Project Name
-        env:
-          GCS_RESULTS_PATH: gs://cobalt-unittest-storage/results/arm/13082735221/
-        run: |
-          echo "PROJECT_NAME=$(gcloud config get-value project)" >> $GITHUB_ENV
-          test_output="${GITHUB_WORKSPACE}/results"
-          mkdir -p "${test_output}"
-          gsutil cp -r "${GCS_RESULTS_PATH}/" "${test_output}"
-        shell: bash
-
       - name: Set Output
         id: set-output
         if: always()

@@ -1,0 +1,194 @@
+>>ScopedMainEntryLogger
+[==========] Running 78 tests from 9 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from MidiMessageUtilTest
+[ RUN      ] MidiMessageUtilTest.GetMessageLength
+[       OK ] MidiMessageUtilTest.GetMessageLength (1 ms)
+[ RUN      ] MidiMessageUtilTest.IsValidWebMIDIData
+[       OK ] MidiMessageUtilTest.IsValidWebMIDIData (1 ms)
+[----------] 2 tests from MidiMessageUtilTest (4 ms total)
+
+[----------] 5 tests from MidiManagerTest
+[ RUN      ] MidiManagerTest.StartAndEndSession
+[       OK ] MidiManagerTest.StartAndEndSession (4 ms)
+[ RUN      ] MidiManagerTest.StartAndEndSessionWithError
+[       OK ] MidiManagerTest.StartAndEndSessionWithError (5 ms)
+[ RUN      ] MidiManagerTest.StartMultipleSessions
+[       OK ] MidiManagerTest.StartMultipleSessions (4 ms)
+[ RUN      ] MidiManagerTest.TooManyPendingSessions
+[       OK ] MidiManagerTest.TooManyPendingSessions (6 ms)
+[ RUN      ] MidiManagerTest.AbortSession
+[       OK ] MidiManagerTest.AbortSession (6 ms)
+[----------] 5 tests from MidiManagerTest (28 ms total)
+
+[----------] 1 test from PlatformMidiManagerTest
+[ DISABLED ] PlatformMidiManagerTest.DISABLED_CreatePlatformMidiManager
+[ RUN      ] PlatformMidiManagerTest.InstanceIdOverflow
+[       OK ] PlatformMidiManagerTest.InstanceIdOverflow (7 ms)
+[----------] 1 test from PlatformMidiManagerTest (7 ms total)
+
+[----------] 8 tests from MidiManagerUsbTest
+[ RUN      ] MidiManagerUsbTest.Initialize
+[       OK ] MidiManagerUsbTest.Initialize (2 ms)
+[ RUN      ] MidiManagerUsbTest.InitializeMultipleDevices
+[       OK ] MidiManagerUsbTest.InitializeMultipleDevices (2 ms)
+[ RUN      ] MidiManagerUsbTest.InitializeFail
+[       OK ] MidiManagerUsbTest.InitializeFail (3 ms)
+[ RUN      ] MidiManagerUsbTest.InitializeFailBecauseOfInvalidDescriptors
+[       OK ] MidiManagerUsbTest.InitializeFailBecauseOfInvalidDescriptors (2 ms)
+[ RUN      ] MidiManagerUsbTest.Send
+[       OK ] MidiManagerUsbTest.Send (2 ms)
+[ RUN      ] MidiManagerUsbTest.SendFromCompromizedRenderer
+[       OK ] MidiManagerUsbTest.SendFromCompromizedRenderer (2 ms)
+[ RUN      ] MidiManagerUsbTest.Receive
+[       OK ] MidiManagerUsbTest.Receive (2 ms)
+[ RUN      ] MidiManagerUsbTest.AttachDevice
+[       OK ] MidiManagerUsbTest.AttachDevice (2 ms)
+[----------] 8 tests from MidiManagerUsbTest (21 ms total)
+
+[----------] 16 tests from MidiMessageQueueTest
+[ RUN      ] MidiMessageQueueTest.EmptyData
+[       OK ] MidiMessageQueueTest.EmptyData (3 ms)
+[ RUN      ] MidiMessageQueueTest.RunningStatusDisabled
+[       OK ] MidiMessageQueueTest.RunningStatusDisabled (1 ms)
+[ RUN      ] MidiMessageQueueTest.RunningStatusEnabled
+[       OK ] MidiMessageQueueTest.RunningStatusEnabled (1 ms)
+[ RUN      ] MidiMessageQueueTest.RunningStatusEnabledWithRealTimeEvent
+[       OK ] MidiMessageQueueTest.RunningStatusEnabledWithRealTimeEvent (1 ms)
+[ RUN      ] MidiMessageQueueTest.RunningStatusEnabledWithSystemCommonMessage
+[       OK ] MidiMessageQueueTest.RunningStatusEnabledWithSystemCommonMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.Issue540016
+[       OK ] MidiMessageQueueTest.Issue540016 (1 ms)
+[ RUN      ] MidiMessageQueueTest.ReconstructNonSysExMessage
+[       OK ] MidiMessageQueueTest.ReconstructNonSysExMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.ReconstructBrokenNonSysExMessage
+[       OK ] MidiMessageQueueTest.ReconstructBrokenNonSysExMessage (2 ms)
+[ RUN      ] MidiMessageQueueTest.ReconstructSysExMessage
+[       OK ] MidiMessageQueueTest.ReconstructSysExMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.ReconstructBrokenSysExMessage
+[       OK ] MidiMessageQueueTest.ReconstructBrokenSysExMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.OneByteMessage
+[       OK ] MidiMessageQueueTest.OneByteMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.OneByteMessageInjectedInNonSysExMessage
+[       OK ] MidiMessageQueueTest.OneByteMessageInjectedInNonSysExMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.OneByteMessageInjectedInSysExMessage
+[       OK ] MidiMessageQueueTest.OneByteMessageInjectedInSysExMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.ReservedMessage
+[       OK ] MidiMessageQueueTest.ReservedMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.ReservedMessageInjectedInNonSysExMessage
+[       OK ] MidiMessageQueueTest.ReservedMessageInjectedInNonSysExMessage (1 ms)
+[ RUN      ] MidiMessageQueueTest.ReservedMessageInjectedInSysExMessage
+[       OK ] MidiMessageQueueTest.ReservedMessageInjectedInSysExMessage (1 ms)
+[----------] 16 tests from MidiMessageQueueTest (29 ms total)
+
+[----------] 7 tests from MidiTaskServiceTest
+[ RUN      ] MidiTaskServiceTest.RunUnauthorizedBoundTask
+[       OK ] MidiTaskServiceTest.RunUnauthorizedBoundTask (1 ms)
+[ RUN      ] MidiTaskServiceTest.BindTwice
+[       OK ] MidiTaskServiceTest.BindTwice (1 ms)
+[ RUN      ] MidiTaskServiceTest.RunStaticTask
+[       OK ] MidiTaskServiceTest.RunStaticTask (5 ms)
+[ RUN      ] MidiTaskServiceTest.RunBoundTasks
+[       OK ] MidiTaskServiceTest.RunBoundTasks (3 ms)
+[ RUN      ] MidiTaskServiceTest.RunBlockingTask
+[       OK ] MidiTaskServiceTest.RunBlockingTask (3 ms)
+[ RUN      ] MidiTaskServiceTest.RunBoundDelayedTask
+[       OK ] MidiTaskServiceTest.RunBoundDelayedTask (103 ms)
+[ RUN      ] MidiTaskServiceTest.RunBoundTaskOnDefaultRunner
+[       OK ] MidiTaskServiceTest.RunBoundTaskOnDefaultRunner (1 ms)
+[----------] 7 tests from MidiTaskServiceTest (122 ms total)
+
+[----------] 8 tests from UsbMidiDescriptorParserTest
+[ RUN      ] UsbMidiDescriptorParserTest.ParseEmpty
+[       OK ] UsbMidiDescriptorParserTest.ParseEmpty (1 ms)
+[ RUN      ] UsbMidiDescriptorParserTest.InvalidSize
+[       OK ] UsbMidiDescriptorParserTest.InvalidSize (1 ms)
+[ RUN      ] UsbMidiDescriptorParserTest.NonExistingJackIsAssociated
+[       OK ] UsbMidiDescriptorParserTest.NonExistingJackIsAssociated (1 ms)
+[ RUN      ] UsbMidiDescriptorParserTest.JacksShouldBeIgnoredWhenParserIsNotParsingMidiInterface
+[       OK ] UsbMidiDescriptorParserTest.JacksShouldBeIgnoredWhenParserIsNotParsingMidiInterface (1 ms)
+[ RUN      ] UsbMidiDescriptorParserTest.Parse
+[       OK ] UsbMidiDescriptorParserTest.Parse (1 ms)
+[ RUN      ] UsbMidiDescriptorParserTest.ParseDeviceInfoEmpty
+[       OK ] UsbMidiDescriptorParserTest.ParseDeviceInfoEmpty (1 ms)
+[ RUN      ] UsbMidiDescriptorParserTest.ParseDeviceInfo
+[       OK ] UsbMidiDescriptorParserTest.ParseDeviceInfo (1 ms)
+[ RUN      ] UsbMidiDescriptorParserTest.BcdVersionToString
+[       OK ] UsbMidiDescriptorParserTest.BcdVersionToString (1 ms)
+[----------] 8 tests from UsbMidiDescriptorParserTest (9 ms total)
+
+[----------] 7 tests from UsbMidiInputStreamTest
+[ RUN      ] UsbMidiInputStreamTest.UnknownMessage
+[       OK ] UsbMidiInputStreamTest.UnknownMessage (1 ms)
+[ RUN      ] UsbMidiInputStreamTest.SystemCommonMessage
+[       OK ] UsbMidiInputStreamTest.SystemCommonMessage (1 ms)
+[ RUN      ] UsbMidiInputStreamTest.SystemExclusiveMessage
+[       OK ] UsbMidiInputStreamTest.SystemExclusiveMessage (1 ms)
+[ RUN      ] UsbMidiInputStreamTest.ChannelMessage
+[       OK ] UsbMidiInputStreamTest.ChannelMessage (1 ms)
+[ RUN      ] UsbMidiInputStreamTest.SingleByteMessage
+[       OK ] UsbMidiInputStreamTest.SingleByteMessage (1 ms)
+[ RUN      ] UsbMidiInputStreamTest.DispatchForMultipleCables
+[       OK ] UsbMidiInputStreamTest.DispatchForMultipleCables (1 ms)
+[ RUN      ] UsbMidiInputStreamTest.DispatchForDevice2
+[       OK ] UsbMidiInputStreamTest.DispatchForDevice2 (1 ms)
+[----------] 7 tests from UsbMidiInputStreamTest (9 ms total)
+
+[----------] 24 tests from UsbMidiOutputStreamTest
+[ RUN      ] UsbMidiOutputStreamTest.SendEmpty
+[       OK ] UsbMidiOutputStreamTest.SendEmpty (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendNoteOn
+[       OK ] UsbMidiOutputStreamTest.SendNoteOn (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendNoteOnPending
+[       OK ] UsbMidiOutputStreamTest.SendNoteOnPending (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendNoteOnBurst
+[       OK ] UsbMidiOutputStreamTest.SendNoteOnBurst (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendNoteOff
+[       OK ] UsbMidiOutputStreamTest.SendNoteOff (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendPolyphonicKeyPress
+[       OK ] UsbMidiOutputStreamTest.SendPolyphonicKeyPress (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendControlChange
+[       OK ] UsbMidiOutputStreamTest.SendControlChange (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendProgramChange
+[       OK ] UsbMidiOutputStreamTest.SendProgramChange (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendChannelPressure
+[       OK ] UsbMidiOutputStreamTest.SendChannelPressure (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendPitchWheelChange
+[       OK ] UsbMidiOutputStreamTest.SendPitchWheelChange (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendTwoByteSysEx
+[       OK ] UsbMidiOutputStreamTest.SendTwoByteSysEx (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendThreeByteSysEx
+[       OK ] UsbMidiOutputStreamTest.SendThreeByteSysEx (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendFourByteSysEx
+[       OK ] UsbMidiOutputStreamTest.SendFourByteSysEx (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendFiveByteSysEx
+[       OK ] UsbMidiOutputStreamTest.SendFiveByteSysEx (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendSixByteSysEx
+[       OK ] UsbMidiOutputStreamTest.SendSixByteSysEx (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendPendingSysEx
+[       OK ] UsbMidiOutputStreamTest.SendPendingSysEx (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendNoteOnAfterSysEx
+[       OK ] UsbMidiOutputStreamTest.SendNoteOnAfterSysEx (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendTimeCodeQuarterFrame
+[       OK ] UsbMidiOutputStreamTest.SendTimeCodeQuarterFrame (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendSongPositionPointer
+[       OK ] UsbMidiOutputStreamTest.SendSongPositionPointer (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendSongSelect
+[       OK ] UsbMidiOutputStreamTest.SendSongSelect (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.TuneRequest
+[       OK ] UsbMidiOutputStreamTest.TuneRequest (2 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendSongPositionPointerPending
+[       OK ] UsbMidiOutputStreamTest.SendSongPositionPointerPending (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendRealTimeMessages
+[       OK ] UsbMidiOutputStreamTest.SendRealTimeMessages (1 ms)
+[ RUN      ] UsbMidiOutputStreamTest.SendRealTimeInSysExMessage
+[       OK ] UsbMidiOutputStreamTest.SendRealTimeInSysExMessage (1 ms)
+[----------] 24 tests from UsbMidiOutputStreamTest (34 ms total)
+
+[----------] Global test environment tear-down
+[==========] 78 tests from 9 test suites ran. (277 ms total)
+[  PASSED  ] 78 tests.
+
+  YOU HAVE 1 DISABLED TEST
+
+<<ScopedMainEntryLogger

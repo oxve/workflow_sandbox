@@ -1,0 +1,1122 @@
+>>ScopedMainEntryLogger
+Note: Google Test filter = -SQLRecoveryTest.Bug387868
+[==========] Running 411 tests from 15 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from SQLInvalidDatabaseFlagsDeathTest
+[ RUN      ] SQLInvalidDatabaseFlagsDeathTest.ExclusiveDatabaseLock
+
+[WARNING] ../../sql/database_unittest.cc:1984:: Death tests are not supported on this platform.
+Statement '{ std::ignore = db.Open(db_path); }' cannot be verified.
+[       OK ] SQLInvalidDatabaseFlagsDeathTest.ExclusiveDatabaseLock (3 ms)
+[----------] 1 test from SQLInvalidDatabaseFlagsDeathTest (3 ms total)
+
+[----------] 1 test from SQLEmptyPathDatabaseTest
+[ RUN      ] SQLEmptyPathDatabaseTest.EmptyPathTest
+[       OK ] SQLEmptyPathDatabaseTest.EmptyPathTest (3 ms)
+[----------] 1 test from SQLEmptyPathDatabaseTest (4 ms total)
+
+[----------] 11 tests from SQLMetaTableTest
+[ RUN      ] SQLMetaTableTest.DoesTableExist
+[       OK ] SQLMetaTableTest.DoesTableExist (473 ms)
+[ RUN      ] SQLMetaTableTest.DeleteTableForTesting
+[       OK ] SQLMetaTableTest.DeleteTableForTesting (797 ms)
+[ RUN      ] SQLMetaTableTest.RazeIfIncompatiblePreservesDatabasesWithoutMetadata
+[       OK ] SQLMetaTableTest.RazeIfIncompatiblePreservesDatabasesWithoutMetadata (36 ms)
+[ RUN      ] SQLMetaTableTest.RazeIfIncompatibleRazesIncompatiblyOldTables
+[       OK ] SQLMetaTableTest.RazeIfIncompatibleRazesIncompatiblyOldTables (1274 ms)
+[ RUN      ] SQLMetaTableTest.RazeIfIncompatibleRazesIncompatiblyNewTables
+[       OK ] SQLMetaTableTest.RazeIfIncompatibleRazesIncompatiblyNewTables (52 ms)
+[ RUN      ] SQLMetaTableTest.RazeIfIncompatibleDoesntRazeWhenItShouldnt
+[       OK ] SQLMetaTableTest.RazeIfIncompatibleDoesntRazeWhenItShouldnt (33 ms)
+[ RUN      ] SQLMetaTableTest.VersionNumber
+[       OK ] SQLMetaTableTest.VersionNumber (32 ms)
+[ RUN      ] SQLMetaTableTest.StringValue
+[       OK ] SQLMetaTableTest.StringValue (35 ms)
+[ RUN      ] SQLMetaTableTest.IntValue
+[       OK ] SQLMetaTableTest.IntValue (34 ms)
+[ RUN      ] SQLMetaTableTest.Int64Value
+[       OK ] SQLMetaTableTest.Int64Value (35 ms)
+[ RUN      ] SQLMetaTableTest.DeleteKey
+[       OK ] SQLMetaTableTest.DeleteKey (37 ms)
+[----------] 11 tests from SQLMetaTableTest (2848 ms total)
+
+[----------] 49 tests from RecoverModuleTest
+[ RUN      ] RecoverModuleTest.CreateVtable
+[       OK ] RecoverModuleTest.CreateVtable (20 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableWithDatabaseSpecifier
+[       OK ] RecoverModuleTest.CreateVtableWithDatabaseSpecifier (26 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableOnSqliteSchema
+[       OK ] RecoverModuleTest.CreateVtableOnSqliteSchema (18 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableFailsOnNonTempTable
+[       OK ] RecoverModuleTest.CreateVtableFailsOnNonTempTable (19 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableFailsOnMissingTable
+[       OK ] RecoverModuleTest.CreateVtableFailsOnMissingTable (17 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableFailsOnMissingDatabase
+[       OK ] RecoverModuleTest.CreateVtableFailsOnMissingDatabase (17 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableFailsOnTableWithInvalidQualifier
+[       OK ] RecoverModuleTest.CreateVtableFailsOnTableWithInvalidQualifier (19 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableFailsOnMissingTableName
+[       OK ] RecoverModuleTest.CreateVtableFailsOnMissingTableName (16 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableFailsOnMissingSchemaSpec
+[       OK ] RecoverModuleTest.CreateVtableFailsOnMissingSchemaSpec (18 ms)
+[ RUN      ] RecoverModuleTest.CreateVtableFailsOnMissingDbName
+[       OK ] RecoverModuleTest.CreateVtableFailsOnMissingDbName (16 ms)
+[ RUN      ] RecoverModuleTest.ColumnTypeMappingAny
+[       OK ] RecoverModuleTest.ColumnTypeMappingAny (17 ms)
+[ RUN      ] RecoverModuleTest.ColumnTypeMappingAnyNotNull
+[       OK ] RecoverModuleTest.ColumnTypeMappingAnyNotNull (19 ms)
+[ RUN      ] RecoverModuleTest.ColumnTypeMappingAnyStrict
+[       OK ] RecoverModuleTest.ColumnTypeMappingAnyStrict (17 ms)
+[ RUN      ] RecoverModuleTest.ColumnTypeExtraKeyword
+[       OK ] RecoverModuleTest.ColumnTypeExtraKeyword (16 ms)
+[ RUN      ] RecoverModuleTest.ColumnTypeNotNullExtraKeyword
+[       OK ] RecoverModuleTest.ColumnTypeNotNullExtraKeyword (17 ms)
+[ RUN      ] RecoverModuleTest.ColumnTypeDoubleTypes
+[       OK ] RecoverModuleTest.ColumnTypeDoubleTypes (16 ms)
+[ RUN      ] RecoverModuleTest.ColumnTypeNotNullDoubleTypes
+[       OK ] RecoverModuleTest.ColumnTypeNotNullDoubleTypes (16 ms)
+[ RUN      ] RecoverModuleTest.ReadFromAlteredTableNullDefaults
+[       OK ] RecoverModuleTest.ReadFromAlteredTableNullDefaults (58 ms)
+[ RUN      ] RecoverModuleTest.ReadFromAlteredTableSkipsNulls
+[       OK ] RecoverModuleTest.ReadFromAlteredTableSkipsNulls (47 ms)
+[ RUN      ] RecoverModuleTest.LeafNodes
+[       OK ] RecoverModuleTest.LeafNodes (26 ms)
+[ RUN      ] RecoverModuleTest.EmptyTable
+[       OK ] RecoverModuleTest.EmptyTable (19 ms)
+[ RUN      ] RecoverModuleTest.SingleLevelInteriorNodes
+[       OK ] RecoverModuleTest.SingleLevelInteriorNodes (33 ms)
+[ RUN      ] RecoverModuleTest.MultiLevelInteriorNodes
+[       OK ] RecoverModuleTest.MultiLevelInteriorNodes (512 ms)
+[ RUN      ] RecoverModuleTest.Any
+[       OK ] RecoverModuleTest.Any (53 ms)
+[ RUN      ] RecoverModuleTest.Integers
+[       OK ] RecoverModuleTest.Integers (48 ms)
+[ RUN      ] RecoverModuleTest.NonNullIntegers
+[       OK ] RecoverModuleTest.NonNullIntegers (48 ms)
+[ RUN      ] RecoverModuleTest.Floats
+[       OK ] RecoverModuleTest.Floats (46 ms)
+[ RUN      ] RecoverModuleTest.NonNullFloats
+[       OK ] RecoverModuleTest.NonNullFloats (49 ms)
+[ RUN      ] RecoverModuleTest.FloatsStrict
+[       OK ] RecoverModuleTest.FloatsStrict (45 ms)
+[ RUN      ] RecoverModuleTest.NonNullFloatsStrict
+[       OK ] RecoverModuleTest.NonNullFloatsStrict (47 ms)
+[ RUN      ] RecoverModuleTest.Texts
+[       OK ] RecoverModuleTest.Texts (54 ms)
+[ RUN      ] RecoverModuleTest.NonNullTexts
+[       OK ] RecoverModuleTest.NonNullTexts (53 ms)
+[ RUN      ] RecoverModuleTest.TextsStrict
+[       OK ] RecoverModuleTest.TextsStrict (54 ms)
+[ RUN      ] RecoverModuleTest.NonNullTextsStrict
+[       OK ] RecoverModuleTest.NonNullTextsStrict (60 ms)
+[ RUN      ] RecoverModuleTest.Blobs
+[       OK ] RecoverModuleTest.Blobs (50 ms)
+[ RUN      ] RecoverModuleTest.NonNullBlobs
+[       OK ] RecoverModuleTest.NonNullBlobs (55 ms)
+[ RUN      ] RecoverModuleTest.AnyNonNull
+[       OK ] RecoverModuleTest.AnyNonNull (58 ms)
+[ RUN      ] RecoverModuleTest.RowidAlias
+[       OK ] RecoverModuleTest.RowidAlias (73 ms)
+[ RUN      ] RecoverModuleTest.IntegerEncodings
+[       OK ] RecoverModuleTest.IntegerEncodings (195 ms)
+[ RUN      ] RecoverModuleTest.VarintEncodings
+[       OK ] RecoverModuleTest.VarintEncodings (1143 ms)
+[ RUN      ] RecoverModuleTest.TextEncodings
+[       OK ] RecoverModuleTest.TextEncodings (83 ms)
+[ RUN      ] RecoverModuleTest.BlobEncodings
+[       OK ] RecoverModuleTest.BlobEncodings (86 ms)
+[ RUN      ] RecoverModuleTest.ValueWithoutOverflow
+[       OK ] RecoverModuleTest.ValueWithoutOverflow (34 ms)
+[ RUN      ] RecoverModuleTest.ValueWithOneByteOverflow
+[       OK ] RecoverModuleTest.ValueWithOneByteOverflow (40 ms)
+[ RUN      ] RecoverModuleTest.ValueWithOneOverflowPage
+[       OK ] RecoverModuleTest.ValueWithOneOverflowPage (38 ms)
+[ RUN      ] RecoverModuleTest.ValueWithOneFullOverflowPage
+[       OK ] RecoverModuleTest.ValueWithOneFullOverflowPage (39 ms)
+[ RUN      ] RecoverModuleTest.ValueWithOneByteSecondOverflowPage
+[       OK ] RecoverModuleTest.ValueWithOneByteSecondOverflowPage (46 ms)
+[ RUN      ] RecoverModuleTest.ValueWithTwoOverflowPages
+[       OK ] RecoverModuleTest.ValueWithTwoOverflowPages (37 ms)
+[ RUN      ] RecoverModuleTest.ValueWithTwoFullOverflowPages
+[       OK ] RecoverModuleTest.ValueWithTwoFullOverflowPages (40 ms)
+[----------] 49 tests from RecoverModuleTest (3616 ms total)
+
+[----------] 19 tests from SQLRecoveryTest
+[ RUN      ] SQLRecoveryTest.RecoverBasic
+[       OK ] SQLRecoveryTest.RecoverBasic (1449 ms)
+[ RUN      ] SQLRecoveryTest.VirtualTable
+[       OK ] SQLRecoveryTest.VirtualTable (46 ms)
+[ RUN      ] SQLRecoveryTest.TableIndependentFromCorruptIndex
+[       OK ] SQLRecoveryTest.TableIndependentFromCorruptIndex (64 ms)
+[ RUN      ] SQLRecoveryTest.RecoverCorruptIndex
+[       OK ] SQLRecoveryTest.RecoverCorruptIndex (83 ms)
+[ RUN      ] SQLRecoveryTest.RecoverCorruptTable
+[       OK ] SQLRecoveryTest.RecoverCorruptTable (81 ms)
+[ RUN      ] SQLRecoveryTest.Meta
+[       OK ] SQLRecoveryTest.Meta (49 ms)
+[ RUN      ] SQLRecoveryTest.AutoRecoverTable
+[       OK ] SQLRecoveryTest.AutoRecoverTable (64 ms)
+[ RUN      ] SQLRecoveryTest.AutoRecoverTableWithDefault
+[       OK ] SQLRecoveryTest.AutoRecoverTableWithDefault (1293 ms)
+[ RUN      ] SQLRecoveryTest.AutoRecoverTableNullFilter
+[       OK ] SQLRecoveryTest.AutoRecoverTableNullFilter (64 ms)
+[ RUN      ] SQLRecoveryTest.AutoRecoverTableWithRowid
+[       OK ] SQLRecoveryTest.AutoRecoverTableWithRowid (54 ms)
+[ RUN      ] SQLRecoveryTest.AutoRecoverTableWithCompoundKey
+[       OK ] SQLRecoveryTest.AutoRecoverTableWithCompoundKey (70 ms)
+[ RUN      ] SQLRecoveryTest.AutoRecoverTableMissingColumns
+[       OK ] SQLRecoveryTest.AutoRecoverTableMissingColumns (59 ms)
+[ RUN      ] SQLRecoveryTest.NoMmap
+[       OK ] SQLRecoveryTest.NoMmap (21 ms)
+[ RUN      ] SQLRecoveryTest.RecoverDatabase
+[       OK ] SQLRecoveryTest.RecoverDatabase (132 ms)
+[ RUN      ] SQLRecoveryTest.RecoverDatabaseWithView
+[       OK ] SQLRecoveryTest.RecoverDatabaseWithView (112 ms)
+[ RUN      ] SQLRecoveryTest.RecoverDatabaseDelete
+[       OK ] SQLRecoveryTest.RecoverDatabaseDelete (42 ms)
+[ RUN      ] SQLRecoveryTest.BeginRecoverDatabase
+[       OK ] SQLRecoveryTest.BeginRecoverDatabase (92 ms)
+[ RUN      ] SQLRecoveryTest.AttachFailure
+[       OK ] SQLRecoveryTest.AttachFailure (25 ms)
+[ RUN      ] SQLRecoveryTest.PageSize
+[       OK ] SQLRecoveryTest.PageSize (245 ms)
+[----------] 19 tests from SQLRecoveryTest (4058 ms total)
+
+[----------] 1 test from SQLMemoryDumpProviderTest
+[ RUN      ] SQLMemoryDumpProviderTest.OnMemoryDump
+[       OK ] SQLMemoryDumpProviderTest.OnMemoryDump (18 ms)
+[----------] 1 test from SQLMemoryDumpProviderTest (18 ms total)
+
+[----------] 18 tests from SQLiteFeaturesTest
+[ RUN      ] SQLiteFeaturesTest.NoFTS1
+[       OK ] SQLiteFeaturesTest.NoFTS1 (12 ms)
+[ RUN      ] SQLiteFeaturesTest.NoFTS2
+[       OK ] SQLiteFeaturesTest.NoFTS2 (11 ms)
+[ RUN      ] SQLiteFeaturesTest.FTS3
+[       OK ] SQLiteFeaturesTest.FTS3 (21 ms)
+[ RUN      ] SQLiteFeaturesTest.FTS3_Prefix
+[       OK ] SQLiteFeaturesTest.FTS3_Prefix (33 ms)
+[ RUN      ] SQLiteFeaturesTest.UsesUsleep
+[       OK ] SQLiteFeaturesTest.UsesUsleep (5 ms)
+[ RUN      ] SQLiteFeaturesTest.ForeignKeySupport
+[       OK ] SQLiteFeaturesTest.ForeignKeySupport (63 ms)
+[ RUN      ] SQLiteFeaturesTest.BooleanSupport
+[       OK ] SQLiteFeaturesTest.BooleanSupport (37 ms)
+[ RUN      ] SQLiteFeaturesTest.IcuEnabled
+[       OK ] SQLiteFeaturesTest.IcuEnabled (4 ms)
+[ RUN      ] SQLiteFeaturesTest.Mmap
+[       OK ] SQLiteFeaturesTest.Mmap (4 ms)
+[ RUN      ] SQLiteFeaturesTest.CachedRegexp
+[       OK ] SQLiteFeaturesTest.CachedRegexp (69 ms)
+[ RUN      ] SQLiteFeaturesTest.JsonIsDisabled
+[ERROR:database.cc(1338)] SQL compilation error: no such function: ->. Statement: SELECT data -> '$.a' FROM rows
+[       OK ] SQLiteFeaturesTest.JsonIsDisabled (24 ms)
+[ RUN      ] SQLiteFeaturesTest.WindowFunctionsAreDisabled
+[ERROR:database.cc(1338)] SQL compilation error: near "(": syntax error. Statement: SELECT data, row_number() OVER (ORDER BY data) AS rank FROM rows ORDER BY id
+[       OK ] SQLiteFeaturesTest.WindowFunctionsAreDisabled (40 ms)
+[ RUN      ] SQLiteFeaturesTest.ConcurrentSelects
+[       OK ] SQLiteFeaturesTest.ConcurrentSelects (49 ms)
+[ RUN      ] SQLiteFeaturesTest.DeleteCurrentlySelectedRow
+[       OK ] SQLiteFeaturesTest.DeleteCurrentlySelectedRow (93 ms)
+[ RUN      ] SQLiteFeaturesTest.DeletePreviouslySelectedRows
+[       OK ] SQLiteFeaturesTest.DeletePreviouslySelectedRows (96 ms)
+[ RUN      ] SQLiteFeaturesTest.DeleteWhileSelectingFromDifferentTable
+[       OK ] SQLiteFeaturesTest.DeleteWhileSelectingFromDifferentTable (180 ms)
+[ RUN      ] SQLiteFeaturesTest.InsertWhileSelectingFromDifferentTable
+[       OK ] SQLiteFeaturesTest.InsertWhileSelectingFromDifferentTable (108 ms)
+[ RUN      ] SQLiteFeaturesTest.WALNoClose
+[       OK ] SQLiteFeaturesTest.WALNoClose (68 ms)
+[----------] 18 tests from SQLiteFeaturesTest (931 ms total)
+
+[----------] 30 tests from SqliteResultCodeTest
+[ RUN      ] SqliteResultCodeTest.ToSqliteResultCode_Success
+[       OK ] SqliteResultCodeTest.ToSqliteResultCode_Success (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteResultCode_PrimaryErrorCodes
+[       OK ] SqliteResultCodeTest.ToSqliteResultCode_PrimaryErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteResultCode_ExtendedErrorCodes
+[       OK ] SqliteResultCodeTest.ToSqliteResultCode_ExtendedErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteResultCode_MissingLowValue
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:41:: Death tests are not supported on this platform.
+Statement 'ToSqliteResultCode(-65536)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteResultCode_MissingLowValue (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteResultCode_MissingHighValue
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:46:: Death tests are not supported on this platform.
+Statement 'ToSqliteResultCode(65536)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteResultCode_MissingHighValue (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteResultCode_SqliteInternalError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:52:: Death tests are not supported on this platform.
+Statement 'ToSqliteResultCode(2)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteResultCode_SqliteInternalError (2 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteResultCode_ChromeBugError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:62:: Death tests are not supported on this platform.
+Statement 'ToSqliteResultCode(12)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteResultCode_ChromeBugError (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_Success_Ok
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:71:: Death tests are not supported on this platform.
+Statement 'ToSqliteErrorCode(SqliteResultCode::kOk)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_Success_Ok (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_Success_Done
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:77:: Death tests are not supported on this platform.
+Statement 'ToSqliteErrorCode(SqliteResultCode::kDone)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_Success_Done (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_Success_Row
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:83:: Death tests are not supported on this platform.
+Statement 'ToSqliteErrorCode(SqliteResultCode::kRow)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_Success_Row (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_PrimaryErrorCodes
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_PrimaryErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_ExtendedErrorCodes
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_ExtendedErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_SqliteInternalError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:108:: Death tests are not supported on this platform.
+Statement 'ToSqliteErrorCode(SqliteResultCode::kInternal)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_SqliteInternalError (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_ChromeBugError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:119:: Death tests are not supported on this platform.
+Statement 'ToSqliteErrorCode(SqliteResultCode::kNotFound)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_ChromeBugError (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteErrorCode_Success
+[       OK ] SqliteResultCodeTest.ToSqliteErrorCode_Success (1 ms)
+[ RUN      ] SqliteResultCodeTest.IsSqliteSuccessCode_PrimaryErrorCodes
+[       OK ] SqliteResultCodeTest.IsSqliteSuccessCode_PrimaryErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.IsSqliteSuccessCode_ExtendedErrorCodes
+[       OK ] SqliteResultCodeTest.IsSqliteSuccessCode_ExtendedErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.IsSqliteSuccessCode_SqliteInternalError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:148:: Death tests are not supported on this platform.
+Statement 'IsSqliteSuccessCode(SqliteResultCode::kInternal)' cannot be verified.
+[       OK ] SqliteResultCodeTest.IsSqliteSuccessCode_SqliteInternalError (1 ms)
+[ RUN      ] SqliteResultCodeTest.IsSqliteSuccessCode_ChromeBugError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:158:: Death tests are not supported on this platform.
+Statement 'IsSqliteSuccessCode(SqliteResultCode::kNotFound)' cannot be verified.
+[       OK ] SqliteResultCodeTest.IsSqliteSuccessCode_ChromeBugError (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteLoggedResultCode_Success
+[       OK ] SqliteResultCodeTest.ToSqliteLoggedResultCode_Success (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteLoggedResultCode_PrimaryErrorCodes
+[       OK ] SqliteResultCodeTest.ToSqliteLoggedResultCode_PrimaryErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteLoggedResultCode_ExtendedErrorCodes
+[       OK ] SqliteResultCodeTest.ToSqliteLoggedResultCode_ExtendedErrorCodes (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteLoggedResultCode_MissingLowValue
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:196:: Death tests are not supported on this platform.
+Statement 'ToSqliteLoggedResultCode(-65536)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteLoggedResultCode_MissingLowValue (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteLoggedResultCode_MissingHighValue
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:206:: Death tests are not supported on this platform.
+Statement 'ToSqliteLoggedResultCode(65536)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteLoggedResultCode_MissingHighValue (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteLoggedResultCode_SqliteInternalError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:216:: Death tests are not supported on this platform.
+Statement 'ToSqliteLoggedResultCode(2)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteLoggedResultCode_SqliteInternalError (1 ms)
+[ RUN      ] SqliteResultCodeTest.ToSqliteLoggedResultCode_ChromeBugError
+
+[WARNING] ../../sql/sqlite_result_code_unittest.cc:227:: Death tests are not supported on this platform.
+Statement 'ToSqliteLoggedResultCode(12)' cannot be verified.
+[       OK ] SqliteResultCodeTest.ToSqliteLoggedResultCode_ChromeBugError (1 ms)
+[ RUN      ] SqliteResultCodeTest.UmaHistogramSqliteResult_Success
+[       OK ] SqliteResultCodeTest.UmaHistogramSqliteResult_Success (1 ms)
+[ RUN      ] SqliteResultCodeTest.UmaHistogramSqliteResult_PrimaryErrorCode
+[       OK ] SqliteResultCodeTest.UmaHistogramSqliteResult_PrimaryErrorCode (1 ms)
+[ RUN      ] SqliteResultCodeTest.UmaHistogramSqliteResult_ExtendedErrorCode
+[       OK ] SqliteResultCodeTest.UmaHistogramSqliteResult_ExtendedErrorCode (1 ms)
+[ RUN      ] SqliteResultCodeTest.CheckMapping
+[       OK ] SqliteResultCodeTest.CheckMapping (1 ms)
+[----------] 30 tests from SqliteResultCodeTest (49 ms total)
+
+[----------] 3 tests from SqlStatementIdTest
+[ RUN      ] SqlStatementIdTest.LessThan
+[       OK ] SqlStatementIdTest.LessThan (1 ms)
+[ RUN      ] SqlStatementIdTest.CopyConstructor
+[       OK ] SqlStatementIdTest.CopyConstructor (1 ms)
+[ RUN      ] SqlStatementIdTest.CopyAssignment
+[       OK ] SqlStatementIdTest.CopyAssignment (1 ms)
+[----------] 3 tests from SqlStatementIdTest (3 ms total)
+
+[----------] 12 tests from StatementTest
+[ RUN      ] StatementTest.Assign
+[       OK ] StatementTest.Assign (4 ms)
+[ RUN      ] StatementTest.Run
+[       OK ] StatementTest.Run (22 ms)
+[ RUN      ] StatementTest.DatabaseErrorCallbackCalledOnError
+[       OK ] StatementTest.DatabaseErrorCallbackCalledOnError (13 ms)
+[ RUN      ] StatementTest.ScopedIgnoreError
+[       OK ] StatementTest.ScopedIgnoreError (15 ms)
+[ RUN      ] StatementTest.Reset
+[       OK ] StatementTest.Reset (32 ms)
+[ RUN      ] StatementTest.BindInt64
+[       OK ] StatementTest.BindInt64 (140 ms)
+[ RUN      ] StatementTest.BindInt64_FromUint64t
+[       OK ] StatementTest.BindInt64_FromUint64t (114 ms)
+[ RUN      ] StatementTest.BindBlob
+[       OK ] StatementTest.BindBlob (51 ms)
+[ RUN      ] StatementTest.BindBlob_String16Overload
+[       OK ] StatementTest.BindBlob_String16Overload (117 ms)
+[ RUN      ] StatementTest.BindString
+[       OK ] StatementTest.BindString (94 ms)
+[ RUN      ] StatementTest.BindString_NullData
+[       OK ] StatementTest.BindString_NullData (26 ms)
+[ RUN      ] StatementTest.GetSQLStatementExcludesBoundValues
+[       OK ] StatementTest.GetSQLStatementExcludesBoundValues (28 ms)
+[----------] 12 tests from StatementTest (666 ms total)
+
+[----------] 4 tests from SQLTransactionTest
+[ RUN      ] SQLTransactionTest.Commit
+[       OK ] SQLTransactionTest.Commit (27 ms)
+[ RUN      ] SQLTransactionTest.RollbackOnDestruction
+[       OK ] SQLTransactionTest.RollbackOnDestruction (20 ms)
+[ RUN      ] SQLTransactionTest.ExplicitRollback
+[       OK ] SQLTransactionTest.ExplicitRollback (22 ms)
+[ RUN      ] SQLTransactionTest.NestedRollback
+[       OK ] SQLTransactionTest.NestedRollback (23 ms)
+[----------] 4 tests from SQLTransactionTest (94 ms total)
+
+[----------] 56 tests from DatabaseOptionsTest
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/0
+[       OK ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/0 (6 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/1
+[       OK ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/1 (5 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/2
+[       OK ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/2 (4 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/3
+[       OK ] DatabaseOptionsTest.FlushToDisk_FalseByDefault/3 (17 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True/0
+[       OK ] DatabaseOptionsTest.FlushToDisk_True/0 (3 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True/1
+[       OK ] DatabaseOptionsTest.FlushToDisk_True/1 (4 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True/2
+[       OK ] DatabaseOptionsTest.FlushToDisk_True/2 (4 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True/3
+[       OK ] DatabaseOptionsTest.FlushToDisk_True/3 (15 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/0
+[       OK ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/0 (4 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/1
+[       OK ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/1 (20 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/2
+[       OK ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/2 (29 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/3
+[       OK ] DatabaseOptionsTest.FlushToDisk_False_DoesNotCrash/3 (24 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/0
+[       OK ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/0 (4 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/1
+[       OK ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/1 (18 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/2
+[       OK ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/2 (20 ms)
+[ RUN      ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/3
+[       OK ] DatabaseOptionsTest.FlushToDisk_True_DoesNotCrash/3 (23 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Default/0
+[       OK ] DatabaseOptionsTest.PageSize_Default/0 (4 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Default/1
+[       OK ] DatabaseOptionsTest.PageSize_Default/1 (20 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Default/2
+[       OK ] DatabaseOptionsTest.PageSize_Default/2 (18 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Default/3
+[       OK ] DatabaseOptionsTest.PageSize_Default/3 (27 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Large/0
+[       OK ] DatabaseOptionsTest.PageSize_Large/0 (4 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Large/1
+[       OK ] DatabaseOptionsTest.PageSize_Large/1 (26 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Large/2
+[       OK ] DatabaseOptionsTest.PageSize_Large/2 (26 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Large/3
+[       OK ] DatabaseOptionsTest.PageSize_Large/3 (31 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Small/0
+[       OK ] DatabaseOptionsTest.PageSize_Small/0 (4 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Small/1
+[       OK ] DatabaseOptionsTest.PageSize_Small/1 (22 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Small/2
+[       OK ] DatabaseOptionsTest.PageSize_Small/2 (25 ms)
+[ RUN      ] DatabaseOptionsTest.PageSize_Small/3
+[       OK ] DatabaseOptionsTest.PageSize_Small/3 (26 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Legacy/0
+[       OK ] DatabaseOptionsTest.CacheSize_Legacy/0 (3 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Legacy/1
+[       OK ] DatabaseOptionsTest.CacheSize_Legacy/1 (4 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Legacy/2
+[       OK ] DatabaseOptionsTest.CacheSize_Legacy/2 (4 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Legacy/3
+[       OK ] DatabaseOptionsTest.CacheSize_Legacy/3 (16 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Small/0
+[       OK ] DatabaseOptionsTest.CacheSize_Small/0 (3 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Small/1
+[       OK ] DatabaseOptionsTest.CacheSize_Small/1 (4 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Small/2
+[       OK ] DatabaseOptionsTest.CacheSize_Small/2 (4 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Small/3
+[       OK ] DatabaseOptionsTest.CacheSize_Small/3 (15 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Large/0
+[       OK ] DatabaseOptionsTest.CacheSize_Large/0 (3 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Large/1
+[       OK ] DatabaseOptionsTest.CacheSize_Large/1 (4 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Large/2
+[       OK ] DatabaseOptionsTest.CacheSize_Large/2 (4 ms)
+[ RUN      ] DatabaseOptionsTest.CacheSize_Large/3
+[       OK ] DatabaseOptionsTest.CacheSize_Large/3 (14 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/0
+[ERROR:database.cc(1544)] SQL compilation error: access to view "view" prohibited. Statement: SELECT id FROM view
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/0 (3 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/1
+[ERROR:database.cc(1544)] SQL compilation error: access to view "view" prohibited. Statement: SELECT id FROM view
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/1 (21 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/2
+[ERROR:database.cc(1544)] SQL compilation error: access to view "view" prohibited. Statement: SELECT id FROM view
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/2 (23 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/3
+[ERROR:database.cc(1544)] SQL compilation error: access to view "view" prohibited. Statement: SELECT id FROM view
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_FalseByDefault/3 (18 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_True/0
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_True/0 (6 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_True/1
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_True/1 (22 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_True/2
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_True/2 (21 ms)
+[ RUN      ] DatabaseOptionsTest.EnableViewsDiscouraged_True/3
+[       OK ] DatabaseOptionsTest.EnableViewsDiscouraged_True/3 (21 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/0
+[ERROR:database.cc(1544)] SQL compilation error: no such table: fts_table. Statement: SELECT content FROM fts_table WHERE content MATCH 'pattern'
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/0 (4 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/1
+[ERROR:database.cc(1544)] SQL compilation error: no such table: fts_table. Statement: SELECT content FROM fts_table WHERE content MATCH 'pattern'
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/1 (16 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/2
+[ERROR:database.cc(1544)] SQL compilation error: no such table: fts_table. Statement: SELECT content FROM fts_table WHERE content MATCH 'pattern'
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/2 (22 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/3
+[ERROR:database.cc(1544)] SQL compilation error: no such table: fts_table. Statement: SELECT content FROM fts_table WHERE content MATCH 'pattern'
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_FalseByDefault/3 (33 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/0
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/0 (6 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/1
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/1 (34 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/2
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/2 (30 ms)
+[ RUN      ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/3
+[       OK ] DatabaseOptionsTest.EnableVirtualTablesDiscouraged_True/3 (27 ms)
+[----------] 56 tests from DatabaseOptionsTest (861 ms total)
+
+[----------] 180 tests from JournalMode/SQLDatabaseTest
+[ RUN      ] JournalMode/SQLDatabaseTest.Execute_ValidStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.Execute_ValidStatement/0 (13 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Execute_ValidStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.Execute_ValidStatement/1 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Execute_InvalidStatement/0
+[ERROR:database.cc(1338)] SQL compilation error: incomplete input. Statement: CREATE TABLE data(
+[       OK ] JournalMode/SQLDatabaseTest.Execute_InvalidStatement/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Execute_InvalidStatement/1
+[ERROR:database.cc(1338)] SQL compilation error: incomplete input. Statement: CREATE TABLE data(
+[       OK ] JournalMode/SQLDatabaseTest.Execute_InvalidStatement/1 (14 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineValid/0
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineValid/0 (14 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineValid/1
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineValid/1 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineInvalid/0
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineInvalid/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineInvalid/1
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_OneLineInvalid/1 (12 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_ExtraContents/0
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_ExtraContents/0 (94 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_ExtraContents/1
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_ExtraContents/1 (39 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_MultipleValidLines/0
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_MultipleValidLines/0 (46 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_MultipleValidLines/1
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_MultipleValidLines/1 (372 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnCompileError/0
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnCompileError/0 (805 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnCompileError/1
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnCompileError/1 (647 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnStepError/0
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnStepError/0 (289 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnStepError/1
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteScriptForTesting_StopsOnStepError/1 (312 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.CachedStatement/0
+
+[WARNING] ../../sql/database_unittest.cc:286:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(id1, kId2Sql)' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:288:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(id2, kId1Sql)' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.CachedStatement/0 (211 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.CachedStatement/1
+
+[WARNING] ../../sql/database_unittest.cc:286:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(id1, kId2Sql)' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:288:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(id2, kId1Sql)' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.CachedStatement/1 (35 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.IsSQLValidTest/0
+[       OK ] JournalMode/SQLDatabaseTest.IsSQLValidTest/0 (16 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.IsSQLValidTest/1
+[       OK ] JournalMode/SQLDatabaseTest.IsSQLValidTest/1 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesTableExist/0
+[       OK ] JournalMode/SQLDatabaseTest.DoesTableExist/0 (30 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesTableExist/1
+[       OK ] JournalMode/SQLDatabaseTest.DoesTableExist/1 (28 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesIndexExist/0
+[       OK ] JournalMode/SQLDatabaseTest.DoesIndexExist/0 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesIndexExist/1
+[       OK ] JournalMode/SQLDatabaseTest.DoesIndexExist/1 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesViewExist/0
+[       OK ] JournalMode/SQLDatabaseTest.DoesViewExist/0 (15 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesViewExist/1
+[       OK ] JournalMode/SQLDatabaseTest.DoesViewExist/1 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesColumnExist/0
+[       OK ] JournalMode/SQLDatabaseTest.DoesColumnExist/0 (16 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoesColumnExist/1
+[       OK ] JournalMode/SQLDatabaseTest.DoesColumnExist/1 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetLastInsertRowId/0
+[       OK ] JournalMode/SQLDatabaseTest.GetLastInsertRowId/0 (20 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetLastInsertRowId/1
+[       OK ] JournalMode/SQLDatabaseTest.GetLastInsertRowId/1 (27 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ScopedErrorExpecter/0
+[       OK ] JournalMode/SQLDatabaseTest.ScopedErrorExpecter/0 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ScopedErrorExpecter/1
+[       OK ] JournalMode/SQLDatabaseTest.ScopedErrorExpecter/1 (23 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SchemaIntrospectionUsesErrorExpecter/0
+[       OK ] JournalMode/SQLDatabaseTest.SchemaIntrospectionUsesErrorExpecter/0 (17 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SchemaIntrospectionUsesErrorExpecter/1
+[       OK ] JournalMode/SQLDatabaseTest.SchemaIntrospectionUsesErrorExpecter/1 (32 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SetErrorCallback/0
+[       OK ] JournalMode/SQLDatabaseTest.SetErrorCallback/0 (21 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SetErrorCallback/1
+[       OK ] JournalMode/SQLDatabaseTest.SetErrorCallback/1 (23 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SetErrorCallbackDchecksOnExistingCallback/0
+
+[WARNING] ../../sql/database_unittest.cc:430:: Death tests are not supported on this platform.
+Statement 'db_->set_error_callback(base::DoNothing())' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.SetErrorCallbackDchecksOnExistingCallback/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SetErrorCallbackDchecksOnExistingCallback/1
+
+[WARNING] ../../sql/database_unittest.cc:430:: Death tests are not supported on this platform.
+Statement 'db_->set_error_callback(base::DoNothing())' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.SetErrorCallbackDchecksOnExistingCallback/1 (11 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ResetErrorCallback/0
+[       OK ] JournalMode/SQLDatabaseTest.ResetErrorCallback/0 (23 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ResetErrorCallback/1
+[       OK ] JournalMode/SQLDatabaseTest.ResetErrorCallback/1 (23 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ErrorCallbackStorageProtectedWhileRun/0
+[ERROR:database.cc(1338)] SQL compilation error: no such table: rows. Statement: INSERT INTO rows(id) VALUES(12)
+[       OK ] JournalMode/SQLDatabaseTest.ErrorCallbackStorageProtectedWhileRun/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ErrorCallbackStorageProtectedWhileRun/1
+[ERROR:database.cc(1338)] SQL compilation error: no such table: rows. Statement: INSERT INTO rows(id) VALUES(12)
+[       OK ] JournalMode/SQLDatabaseTest.ErrorCallbackStorageProtectedWhileRun/1 (10 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Execute_CompilationError/0
+[ERROR:database.cc(1338)] SQL compilation error: no such table: missing_table. Statement: SELECT missing_column FROM missing_table
+[       OK ] JournalMode/SQLDatabaseTest.Execute_CompilationError/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Execute_CompilationError/1
+[ERROR:database.cc(1338)] SQL compilation error: no such table: missing_table. Statement: SELECT missing_column FROM missing_table
+[       OK ] JournalMode/SQLDatabaseTest.Execute_CompilationError/1 (12 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetUniqueStatement_CompilationError/0
+[ERROR:database.cc(1544)] SQL compilation error: no such table: missing_table. Statement: SELECT missing_column FROM missing_table
+[       OK ] JournalMode/SQLDatabaseTest.GetUniqueStatement_CompilationError/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetUniqueStatement_CompilationError/1
+[ERROR:database.cc(1544)] SQL compilation error: no such table: missing_table. Statement: SELECT missing_column FROM missing_table
+[       OK ] JournalMode/SQLDatabaseTest.GetUniqueStatement_CompilationError/1 (10 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetCachedStatement_CompilationError/0
+[ERROR:database.cc(1544)] SQL compilation error: no such table: missing_table. Statement: SELECT missing_column FROM missing_table
+[       OK ] JournalMode/SQLDatabaseTest.GetCachedStatement_CompilationError/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetCachedStatement_CompilationError/1
+[ERROR:database.cc(1544)] SQL compilation error: no such table: missing_table. Statement: SELECT missing_column FROM missing_table
+[       OK ] JournalMode/SQLDatabaseTest.GetCachedStatement_CompilationError/1 (12 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetUniqueStatement_ExtraContents/0
+
+[WARNING] ../../sql/database_unittest.cc:605:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1;SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:607:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1; SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:609:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1;-- Comment")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:611:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1; -- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetUniqueStatement_ExtraContents/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetUniqueStatement_ExtraContents/1
+
+[WARNING] ../../sql/database_unittest.cc:605:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1;SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:607:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1; SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:609:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1;-- Comment")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:611:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("SELECT 1; -- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetUniqueStatement_ExtraContents/1 (13 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetCachedStatement_ExtraContents/0
+
+[WARNING] ../../sql/database_unittest.cc:626:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 626), "SELECT 1;SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:629:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 629), "SELECT 1; SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:632:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 632), "SELECT 1;-- Comment")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:635:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 635), "SELECT 1; -- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetCachedStatement_ExtraContents/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetCachedStatement_ExtraContents/1
+
+[WARNING] ../../sql/database_unittest.cc:626:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 626), "SELECT 1;SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:629:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 629), "SELECT 1; SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:632:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 632), "SELECT 1;-- Comment")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:635:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 635), "SELECT 1; -- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetCachedStatement_ExtraContents/1 (13 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.IsSQLValid_ExtraContents/0
+
+[WARNING] ../../sql/database_unittest.cc:649:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1;SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:651:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1; SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:653:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1;-- Comment")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:655:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1; -- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.IsSQLValid_ExtraContents/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.IsSQLValid_ExtraContents/1
+
+[WARNING] ../../sql/database_unittest.cc:649:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1;SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:651:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1; SELECT 2")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:653:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1;-- Comment")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:655:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("SELECT 1; -- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.IsSQLValid_ExtraContents/1 (11 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetUniqueStatement_NoContents/0
+
+[WARNING] ../../sql/database_unittest.cc:660:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:661:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement(" ")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:662:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("\n")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:663:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("-- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetUniqueStatement_NoContents/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetUniqueStatement_NoContents/1
+
+[WARNING] ../../sql/database_unittest.cc:660:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:661:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement(" ")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:662:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("\n")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:663:: Death tests are not supported on this platform.
+Statement 'db_->GetUniqueStatement("-- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetUniqueStatement_NoContents/1 (14 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetCachedStatement_NoContents/0
+
+[WARNING] ../../sql/database_unittest.cc:667:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 667), "")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:669:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 669), " ")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:670:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 670), "\n")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:672:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 672), "-- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetCachedStatement_NoContents/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetCachedStatement_NoContents/1
+
+[WARNING] ../../sql/database_unittest.cc:667:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 667), "")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:669:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 669), " ")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:670:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 670), "\n")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:672:: Death tests are not supported on this platform.
+Statement 'db_->GetCachedStatement(sql::StatementID("../../sql/database_unittest.cc", 672), "-- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.GetCachedStatement_NoContents/1 (11 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetReadonlyStatement/0
+[ERROR:database.cc(1561)] Readonly SQL statement failed readonly test CREATE TABLE IF NOT EXISTS foo (id INTEGER PRIMARY KEY, value)
+[ERROR:database.cc(1561)] Readonly SQL statement failed readonly test INSERT INTO foo (value) VALUES (12)
+[ERROR:database.cc(1561)] Readonly SQL statement failed readonly test CREATE VIRTUAL TABLE bar USING module
+[       OK ] JournalMode/SQLDatabaseTest.GetReadonlyStatement/0 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetReadonlyStatement/1
+[ERROR:database.cc(1561)] Readonly SQL statement failed readonly test CREATE TABLE IF NOT EXISTS foo (id INTEGER PRIMARY KEY, value)
+[ERROR:database.cc(1561)] Readonly SQL statement failed readonly test INSERT INTO foo (value) VALUES (12)
+[ERROR:database.cc(1561)] Readonly SQL statement failed readonly test CREATE VIRTUAL TABLE bar USING module
+[       OK ] JournalMode/SQLDatabaseTest.GetReadonlyStatement/1 (29 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.IsSQLValid_NoContents/0
+
+[WARNING] ../../sql/database_unittest.cc:727:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:728:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid(" ")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:729:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("\n")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:730:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("-- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.IsSQLValid_NoContents/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.IsSQLValid_NoContents/1
+
+[WARNING] ../../sql/database_unittest.cc:727:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:728:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid(" ")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:729:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("\n")' cannot be verified.
+
+[WARNING] ../../sql/database_unittest.cc:730:: Death tests are not supported on this platform.
+Statement 'db_->IsSQLValid("-- Comment")' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.IsSQLValid_NoContents/1 (13 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze/0
+[       OK ] JournalMode/SQLDatabaseTest.Raze/0 (31 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze/1
+[       OK ] JournalMode/SQLDatabaseTest.Raze/1 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeDuringSelect/0
+[ERROR:database.cc(1084)] Not implemented reached in bool sql::Database::Raze()Unhandled sqlite3_backup_step() error: 1
+[       OK ] JournalMode/SQLDatabaseTest.RazeDuringSelect/0 (30 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeDuringSelect/1
+[ERROR:database.cc(1084)] Not implemented reached in bool sql::Database::Raze()Unhandled sqlite3_backup_step() error: 1
+[       OK ] JournalMode/SQLDatabaseTest.RazeDuringSelect/1 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazePageSize/0
+[       OK ] JournalMode/SQLDatabaseTest.RazePageSize/0 (180 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazePageSize/1
+[       OK ] JournalMode/SQLDatabaseTest.RazePageSize/1 (192 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeMultiple/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeMultiple/0 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeMultiple/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeMultiple/1 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasWriteLock/0
+[       OK ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasWriteLock/0 (33 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasWriteLock/1
+[       OK ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasWriteLock/1 (29 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasReadLock/0
+[       OK ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasReadLock/0 (35 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasReadLock/1
+[       OK ] JournalMode/SQLDatabaseTest.Raze_OtherConnectionHasReadLock/1 (31 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze_EmptyDatabaseFile/0
+[       OK ] JournalMode/SQLDatabaseTest.Raze_EmptyDatabaseFile/0 (40 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Raze_EmptyDatabaseFile/1
+[       OK ] JournalMode/SQLDatabaseTest.Raze_EmptyDatabaseFile/1 (56 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeNOTADB/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeNOTADB/0 (19 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeNOTADB/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeNOTADB/1 (33 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeNOTADB2/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeNOTADB2/0 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeNOTADB2/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeNOTADB2/1 (46 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeCallbackReopen/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeCallbackReopen/0 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeCallbackReopen/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeCallbackReopen/1 (56 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_DeletesData/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_DeletesData/0 (44 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_DeletesData/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_DeletesData/1 (40 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsOpen/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsOpen/0 (33 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsOpen/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsOpen/1 (23 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_Reopen_NoChanges/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_Reopen_NoChanges/0 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_Reopen_NoChanges/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_Reopen_NoChanges/1 (39 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_OpenTransaction/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_OpenTransaction/0 (43 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_OpenTransaction/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_OpenTransaction/1 (39 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_Preload_NoCrash/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_Preload_NoCrash/0 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_Preload_NoCrash/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_Preload_NoCrash/1 (23 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_DoesTableExist/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_DoesTableExist/0 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_DoesTableExist/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_DoesTableExist/1 (28 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsSQLValid/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsSQLValid/0 (21 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsSQLValid/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_IsSQLValid/1 (23 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_Execute/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_Execute/0 (17 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_Execute/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_Execute/1 (22 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetUniqueStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetUniqueStatement/0 (18 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetUniqueStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetUniqueStatement/1 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetCachedStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetCachedStatement/0 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetCachedStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_GetCachedStatement/1 (20 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesUniqueStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesUniqueStatement/0 (17 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesUniqueStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesUniqueStatement/1 (27 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesCachedStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesCachedStatement/0 (20 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesCachedStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_InvalidatesCachedStatement/1 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_TransactionBegin/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_TransactionBegin/0 (16 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeAndPoison_TransactionBegin/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeAndPoison_TransactionBegin/1 (519 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Close_IsSQLValid/0
+
+[WARNING] ../../sql/database_unittest.cc:1216:: Death tests are not supported on this platform.
+Statement '{ std::ignore = db_->IsSQLValid("SELECT 1"); }' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.Close_IsSQLValid/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Close_IsSQLValid/1
+
+[WARNING] ../../sql/database_unittest.cc:1216:: Death tests are not supported on this platform.
+Statement '{ std::ignore = db_->IsSQLValid("SELECT 1"); }' cannot be verified.
+[       OK ] JournalMode/SQLDatabaseTest.Close_IsSQLValid/1 (324 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeTruncate/0
+[       OK ] JournalMode/SQLDatabaseTest.RazeTruncate/0 (722 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.RazeTruncate/1
+[       OK ] JournalMode/SQLDatabaseTest.RazeTruncate/1 (52 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SetTempDirForSQL/0
+[       OK ] JournalMode/SQLDatabaseTest.SetTempDirForSQL/0 (16 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SetTempDirForSQL/1
+[       OK ] JournalMode/SQLDatabaseTest.SetTempDirForSQL/1 (25 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Delete/0
+[       OK ] JournalMode/SQLDatabaseTest.Delete/0 (15 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Delete/1
+[       OK ] JournalMode/SQLDatabaseTest.Delete/1 (27 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.PosixFilePermissions/0
+[ERROR:database_unittest.cc(1333)] journal_path: /data/user/0/org.chromium.native_test/cache/.org.chromium.Chromium.zfekzc/database_test.sqlite-journal
+[       OK ] JournalMode/SQLDatabaseTest.PosixFilePermissions/0 (17 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.PosixFilePermissions/1
+[       OK ] JournalMode/SQLDatabaseTest.PosixFilePermissions/1 (34 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_IsOpen/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_IsOpen/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_IsOpen/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_IsOpen/1 (13 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_Close_Reopen_NoChanges/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_Close_Reopen_NoChanges/0 (17 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_Close_Reopen_NoChanges/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_Close_Reopen_NoChanges/1 (29 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_Preload_NoCrash/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_Preload_NoCrash/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_Preload_NoCrash/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_Preload_NoCrash/1 (12 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_DoesTableExist/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_DoesTableExist/0 (13 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_DoesTableExist/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_DoesTableExist/1 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_IsSQLValid/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_IsSQLValid/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_IsSQLValid/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_IsSQLValid/1 (14 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_Execute/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_Execute/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_Execute/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_Execute/1 (11 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_GetUniqueStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_GetUniqueStatement/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_GetUniqueStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_GetUniqueStatement/1 (11 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_GetCachedStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_GetCachedStatement/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_GetCachedStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_GetCachedStatement/1 (11 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_InvalidatesUniqueStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_InvalidatesUniqueStatement/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_InvalidatesUniqueStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_InvalidatesUniqueStatement/1 (12 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_InvalidatesCachedStatement/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_InvalidatesCachedStatement/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_InvalidatesCachedStatement/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_InvalidatesCachedStatement/1 (15 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_TransactionBegin/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_TransactionBegin/0 (6 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_TransactionBegin/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_TransactionBegin/1 (14 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_OpenTransaction/0
+[       OK ] JournalMode/SQLDatabaseTest.Poison_OpenTransaction/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.Poison_OpenTransaction/1
+[       OK ] JournalMode/SQLDatabaseTest.Poison_OpenTransaction/1 (11 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.AttachDatabase/0
+[       OK ] JournalMode/SQLDatabaseTest.AttachDatabase/0 (41 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.AttachDatabase/1
+[       OK ] JournalMode/SQLDatabaseTest.AttachDatabase/1 (47 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.AttachDatabaseWithOpenTransaction/0
+[       OK ] JournalMode/SQLDatabaseTest.AttachDatabaseWithOpenTransaction/0 (37 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.AttachDatabaseWithOpenTransaction/1
+[       OK ] JournalMode/SQLDatabaseTest.AttachDatabaseWithOpenTransaction/1 (45 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.FullIntegrityCheck/0
+[       OK ] JournalMode/SQLDatabaseTest.FullIntegrityCheck/0 (30 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.FullIntegrityCheck/1
+[       OK ] JournalMode/SQLDatabaseTest.FullIntegrityCheck/1 (43 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.OnMemoryDump/0
+[       OK ] JournalMode/SQLDatabaseTest.OnMemoryDump/0 (4 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.OnMemoryDump/1
+[       OK ] JournalMode/SQLDatabaseTest.OnMemoryDump/1 (14 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.CollectDiagnosticInfo/0
+[ERROR:database.cc(1338)] SQL compilation error: table volcano has 1 columns but 3 values were supplied. Statement: INSERT INTO volcano VALUES ('bound_value1', 42, 1234)
+[       OK ] JournalMode/SQLDatabaseTest.CollectDiagnosticInfo/0 (31 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.CollectDiagnosticInfo/1
+[ERROR:database.cc(1338)] SQL compilation error: table volcano has 1 columns but 3 values were supplied. Statement: INSERT INTO volcano VALUES ('bound_value1', 42, 1234)
+[       OK ] JournalMode/SQLDatabaseTest.CollectDiagnosticInfo/1 (27 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabled/0
+[       OK ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabled/0 (5 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabled/1
+[       OK ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabled/1 (20 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabledAltStatus/0
+[       OK ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabledAltStatus/0 (18 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabledAltStatus/1
+[       OK ] JournalMode/SQLDatabaseTest.MmapInitiallyEnabledAltStatus/1 (41 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpen/0
+[       OK ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpen/0 (65 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpen/1
+[       OK ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpen/1 (34 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpenAltStatus/0
+[       OK ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpenAltStatus/0 (54 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpenAltStatus/1
+[       OK ] JournalMode/SQLDatabaseTest.ComputeMmapSizeForOpenAltStatus/1 (33 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetMemoryUsage/0
+[       OK ] JournalMode/SQLDatabaseTest.GetMemoryUsage/0 (22 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.GetMemoryUsage/1
+[       OK ] JournalMode/SQLDatabaseTest.GetMemoryUsage/1 (27 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoubleQuotedStringLiteralsDisabledByDefault/0
+[       OK ] JournalMode/SQLDatabaseTest.DoubleQuotedStringLiteralsDisabledByDefault/0 (15 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.DoubleQuotedStringLiteralsDisabledByDefault/1
+[       OK ] JournalMode/SQLDatabaseTest.DoubleQuotedStringLiteralsDisabledByDefault/1 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ForeignKeyEnforcementDisabledByDefault/0
+[       OK ] JournalMode/SQLDatabaseTest.ForeignKeyEnforcementDisabledByDefault/0 (49 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ForeignKeyEnforcementDisabledByDefault/1
+[       OK ] JournalMode/SQLDatabaseTest.ForeignKeyEnforcementDisabledByDefault/1 (26 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.TriggersDisabledByDefault/0
+[       OK ] JournalMode/SQLDatabaseTest.TriggersDisabledByDefault/0 (39 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.TriggersDisabledByDefault/1
+[       OK ] JournalMode/SQLDatabaseTest.TriggersDisabledByDefault/1 (24 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.LockingModeNormal/0
+[       OK ] JournalMode/SQLDatabaseTest.LockingModeNormal/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.LockingModeNormal/1
+[       OK ] JournalMode/SQLDatabaseTest.LockingModeNormal/1 (10 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.OpenedInCorrectMode/0
+[       OK ] JournalMode/SQLDatabaseTest.OpenedInCorrectMode/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.OpenedInCorrectMode/1
+[       OK ] JournalMode/SQLDatabaseTest.OpenedInCorrectMode/1 (13 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.CheckpointDatabase/0
+[       OK ] JournalMode/SQLDatabaseTest.CheckpointDatabase/0 (5 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.CheckpointDatabase/1
+[       OK ] JournalMode/SQLDatabaseTest.CheckpointDatabase/1 (27 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.OpenFailsAfterCorruptSizeInHeader/0
+[       OK ] JournalMode/SQLDatabaseTest.OpenFailsAfterCorruptSizeInHeader/0 (17 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.OpenFailsAfterCorruptSizeInHeader/1
+[       OK ] JournalMode/SQLDatabaseTest.OpenFailsAfterCorruptSizeInHeader/1 (30 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteFailsAfterCorruptSizeInHeader/0
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteFailsAfterCorruptSizeInHeader/0 (15 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.ExecuteFailsAfterCorruptSizeInHeader/1
+[       OK ] JournalMode/SQLDatabaseTest.ExecuteFailsAfterCorruptSizeInHeader/1 (37 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SchemaFailsAfterCorruptSizeInHeader/0
+[       OK ] JournalMode/SQLDatabaseTest.SchemaFailsAfterCorruptSizeInHeader/0 (17 ms)
+[ RUN      ] JournalMode/SQLDatabaseTest.SchemaFailsAfterCorruptSizeInHeader/1
+[       OK ] JournalMode/SQLDatabaseTest.SchemaFailsAfterCorruptSizeInHeader/1 (31 ms)
+[----------] 180 tests from JournalMode/SQLDatabaseTest (8440 ms total)
+
+[----------] 2 tests from JournalMode/SQLDatabaseTestExclusiveMode
+[ RUN      ] JournalMode/SQLDatabaseTestExclusiveMode.LockingModeExclusive/0
+[       OK ] JournalMode/SQLDatabaseTestExclusiveMode.LockingModeExclusive/0 (3 ms)
+[ RUN      ] JournalMode/SQLDatabaseTestExclusiveMode.LockingModeExclusive/1
+[       OK ] JournalMode/SQLDatabaseTestExclusiveMode.LockingModeExclusive/1 (10 ms)
+[----------] 2 tests from JournalMode/SQLDatabaseTestExclusiveMode (14 ms total)
+
+[----------] 24 tests from All/RecoverModuleColumnTypeMappingTest
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Unqualified/0
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Unqualified/0 (17 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Unqualified/1
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Unqualified/1 (14 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Unqualified/2
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Unqualified/2 (14 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Unqualified/3
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Unqualified/3 (17 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Unqualified/4
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Unqualified/4 (17 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Unqualified/5
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Unqualified/5 (19 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.NotNull/0
+[       OK ] All/RecoverModuleColumnTypeMappingTest.NotNull/0 (21 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.NotNull/1
+[       OK ] All/RecoverModuleColumnTypeMappingTest.NotNull/1 (17 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.NotNull/2
+[       OK ] All/RecoverModuleColumnTypeMappingTest.NotNull/2 (16 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.NotNull/3
+[       OK ] All/RecoverModuleColumnTypeMappingTest.NotNull/3 (16 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.NotNull/4
+[       OK ] All/RecoverModuleColumnTypeMappingTest.NotNull/4 (16 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.NotNull/5
+[       OK ] All/RecoverModuleColumnTypeMappingTest.NotNull/5 (18 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Strict/0
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Strict/0 (20 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Strict/1
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Strict/1 (18 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Strict/2
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Strict/2 (16 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Strict/3
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Strict/3 (15 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Strict/4
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Strict/4 (15 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.Strict/5
+[       OK ] All/RecoverModuleColumnTypeMappingTest.Strict/5 (15 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/0
+[       OK ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/0 (17 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/1
+[       OK ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/1 (15 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/2
+[       OK ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/2 (15 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/3
+[       OK ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/3 (36 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/4
+[       OK ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/4 (15 ms)
+[ RUN      ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/5
+[       OK ] All/RecoverModuleColumnTypeMappingTest.StrictNotNull/5 (17 ms)
+[----------] 24 tests from All/RecoverModuleColumnTypeMappingTest (433 ms total)
+
+[----------] Global test environment tear-down
+[==========] 411 tests from 15 test suites ran. (22057 ms total)
+[  PASSED  ] 411 tests.
+<<ScopedMainEntryLogger

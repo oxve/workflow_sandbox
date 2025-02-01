@@ -1,0 +1,25 @@
+>>ScopedMainEntryLogger
+[==========] Running 5 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 5 tests from URLParse
+[ RUN      ] URLParse.FullURL
+Full_URL_Parse_AMillion	426.598	ms
+[       OK ] URLParse.FullURL (427 ms)
+[ RUN      ] URLParse.TypicalURLParse
+Typical_URL_Parse_AMillion	808.265	ms
+[       OK ] URLParse.TypicalURLParse (809 ms)
+[ RUN      ] URLParse.TypicalURLParseCanon
+Typical_Parse_Canon_AMillion	3415.37	ms
+[       OK ] URLParse.TypicalURLParseCanon (3416 ms)
+[ RUN      ] URLParse.TypicalURLParseCanonStdString
+Typical_Parse_Canon_AMillion	7742.91	ms
+[       OK ] URLParse.TypicalURLParseCanonStdString (7744 ms)
+[ RUN      ] URLParse.GURL
+Typical_GURL_AMillion	7076.5	ms
+[       OK ] URLParse.GURL (7077 ms)
+[----------] 5 tests from URLParse (19477 ms total)
+
+[----------] Global test environment tear-down
+[==========] 5 tests from 1 test suite ran. (19478 ms total)
+[  PASSED  ] 5 tests.
+<<ScopedMainEntryLogger
