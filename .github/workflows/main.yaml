@@ -145,24 +145,44 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: src
-      - name: Run On-Host Tests
-        id: on-host-tests
-        if: always() && needs.initialize.outputs.test_on_host == 'true'
-        uses: ./src/.github/actions/on_host_tests
-        with:
-          test_artifacts_key: ${{ env.TEST_ARTIFACTS_KEY }}
-          results_dir: ${{ env.TEST_RESULTS_DIR }}
-          platform: ${{ inputs.platform }}
-      - name: Process Test Results
-        if: |
-          always() &&
-          (
-            steps.on-host-tests.outcome == 'success' ||
-            steps.on-host-tests.outcome == 'failure'
-          )
-        uses: ./src/.github/actions/process_test_results
-        with:
-          results_dir: ${{ env.TEST_RESULTS_DIR }}
-          datadog_api_key: ${{ secrets.DD_API_KEY }}
-          is_postsubmit: ${{ github.event_name == 'schedule' || github.event_name == 'push' }}
-        continue-on-error: true
+
+      - name: Set Up Cloud SDK
+        uses: isarkis/setup-gcloud@40dce7857b354839efac498d3632050f568090b6 # v1.1.1
+
+      - name: Set GCS Project Name
+        env:
+          GCS_RESULTS_PATH: gs://cobalt-unittest-storage/results/arm/13082735221/
+        run: |
+          echo "PROJECT_NAME=$(gcloud config get-value project)" >> $GITHUB_ENV
+          test_output="${GITHUB_WORKSPACE}/results"
+          mkdir -p "${test_output}"
+          gsutil cp -r "${GCS_RESULTS_PATH}/" "${test_output}"
+        shell: bash
+
+      - name: Set Output
+        id: set-output
+        if: always()
+        run: |
+          set -x
+          echo "test_targets=$(ls results/*log.txt)" >> $GITHUB_OUTPUT
+        shell: bash
+    outputs:
+      test_targets: ${{ steps.set-output.outputs.test_targets }}
+
+  on-device-test-logs:
+    needs: [initialize, test]
+    permissions: {}
+    runs-on: ubuntu-latest
+    name: ${{ matrix.test_targets }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
+        include: ${{ fromJson(needs.initialize.outputs.includes) }}
+        config: [devel]
+        test_targets: ${{ fromJson(needs.test.outputs.test_targets) }}
+    steps:
+      - name: Print logs
+        run: |
+          echo hej
+        shell: bash
