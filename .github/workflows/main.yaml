@@ -164,5 +164,5 @@ jobs:
     steps:
       - name: Print logs
         run: |
-          cat ${{ matrix.name }}
+          cat ${{ matrix.test_targets }}
         shell: bash
