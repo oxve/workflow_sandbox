@@ -145,7 +145,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Process Test Results
         id: process-test-results
-        uses: ./src/.github/actions/process_test_results
+        uses: ./.github/actions/process_test_results
     outputs:
       test_targets: ${{ steps.process-test-results.outputs.test_targets }}
 
