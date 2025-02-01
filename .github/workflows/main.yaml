@@ -126,7 +126,7 @@ jobs:
   #       uses: ./src/.github/actions/upload_test_artifacts
 
   test:
-    needs: [initialize, build]
+    needs: [initialize]
     if: needs.initialize.outputs.test_on_host == 'true' || needs.initialize.outputs.test_on_device == 'true'
     permissions: {}
     runs-on: ubuntu-latest
