@@ -150,7 +150,7 @@ jobs:
         if: always()
         run: |
           set -x
-          echo "test_targets=$(ls results/*log.txt)" >> $GITHUB_OUTPUT
+          echo "test_targets=$(ls test_logs/*log.txt)" >> $GITHUB_OUTPUT
         shell: bash
     outputs:
       test_targets: ${{ steps.set-output.outputs.test_targets }}
