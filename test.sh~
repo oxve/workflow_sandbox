@@ -1,0 +1,2 @@
+echo "hej"
+grep -v "abc" test.sh

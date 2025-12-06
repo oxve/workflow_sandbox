@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="79" failures="0" disabled="1" errors="0" time="0.277" timestamp="2025-01-31T16:28:16.934" name="AllTests">
+  <testsuite name="MidiMessageUtilTest" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.004" timestamp="2025-01-31T16:28:16.938">
+    <testcase name="GetMessageLength" file="../../media/midi/message_util_unittest.cc" line="51" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:16.939" classname="MidiMessageUtilTest" />
+    <testcase name="IsValidWebMIDIData" file="../../media/midi/message_util_unittest.cc" line="72" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:16.941" classname="MidiMessageUtilTest" />
+  </testsuite>
+  <testsuite name="MidiManagerTest" tests="5" failures="0" disabled="0" skipped="0" errors="0" time="0.028" timestamp="2025-01-31T16:28:16.943">
+    <testcase name="StartAndEndSession" file="../../media/midi/midi_manager_unittest.cc" line="236" status="run" result="completed" time="0.004" timestamp="2025-01-31T16:28:16.943" classname="MidiManagerTest" />
+    <testcase name="StartAndEndSessionWithError" file="../../media/midi/midi_manager_unittest.cc" line="246" status="run" result="completed" time="0.005" timestamp="2025-01-31T16:28:16.948" classname="MidiManagerTest" />
+    <testcase name="StartMultipleSessions" file="../../media/midi/midi_manager_unittest.cc" line="256" status="run" result="completed" time="0.004" timestamp="2025-01-31T16:28:16.954" classname="MidiManagerTest" />
+    <testcase name="TooManyPendingSessions" file="../../media/midi/midi_manager_unittest.cc" line="276" status="run" result="completed" time="0.006" timestamp="2025-01-31T16:28:16.959" classname="MidiManagerTest" />
+    <testcase name="AbortSession" file="../../media/midi/midi_manager_unittest.cc" line="311" status="run" result="completed" time="0.006" timestamp="2025-01-31T16:28:16.965" classname="MidiManagerTest" />
+  </testsuite>
+  <testsuite name="PlatformMidiManagerTest" tests="2" failures="0" disabled="1" skipped="0" errors="0" time="0.007" timestamp="2025-01-31T16:28:16.972">
+    <testcase name="DISABLED_CreatePlatformMidiManager" file="../../media/midi/midi_manager_unittest.cc" line="377" status="notrun" result="suppressed" time="0" timestamp="1969-12-31T16:00:00.000" classname="PlatformMidiManagerTest" />
+    <testcase name="InstanceIdOverflow" file="../../media/midi/midi_manager_unittest.cc" line="389" status="run" result="completed" time="0.007" timestamp="2025-01-31T16:28:16.972" classname="PlatformMidiManagerTest" />
+  </testsuite>
+  <testsuite name="MidiManagerUsbTest" tests="8" failures="0" disabled="0" skipped="0" errors="0" time="0.021" timestamp="2025-01-31T16:28:16.980">
+    <testcase name="Initialize" file="../../media/midi/midi_manager_usb_unittest.cc" line="300" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:16.980" classname="MidiManagerUsbTest" />
+    <testcase name="InitializeMultipleDevices" file="../../media/midi/midi_manager_usb_unittest.cc" line="355" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:16.983" classname="MidiManagerUsbTest" />
+    <testcase name="InitializeFail" file="../../media/midi/midi_manager_usb_unittest.cc" line="431" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:16.985" classname="MidiManagerUsbTest" />
+    <testcase name="InitializeFailBecauseOfInvalidDescriptors" file="../../media/midi/midi_manager_usb_unittest.cc" line="439" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:16.989" classname="MidiManagerUsbTest" />
+    <testcase name="Send" file="../../media/midi/midi_manager_usb_unittest.cc" line="453" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:16.991" classname="MidiManagerUsbTest" />
+    <testcase name="SendFromCompromizedRenderer" file="../../media/midi/midi_manager_usb_unittest.cc" line="498" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:16.994" classname="MidiManagerUsbTest" />
+    <testcase name="Receive" file="../../media/midi/midi_manager_usb_unittest.cc" line="540" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:16.997" classname="MidiManagerUsbTest" />
+    <testcase name="AttachDevice" file="../../media/midi/midi_manager_usb_unittest.cc" line="586" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:16.999" classname="MidiManagerUsbTest" />
+  </testsuite>
+  <testsuite name="MidiMessageQueueTest" tests="16" failures="0" disabled="0" skipped="0" errors="0" time="0.029" timestamp="2025-01-31T16:28:17.003">
+    <testcase name="EmptyData" file="../../media/midi/midi_message_queue_unittest.cc" line="74" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:17.003" classname="MidiMessageQueueTest" />
+    <testcase name="RunningStatusDisabled" file="../../media/midi/midi_message_queue_unittest.cc" line="81" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.006" classname="MidiMessageQueueTest" />
+    <testcase name="RunningStatusEnabled" file="../../media/midi/midi_message_queue_unittest.cc" line="114" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.008" classname="MidiMessageQueueTest" />
+    <testcase name="RunningStatusEnabledWithRealTimeEvent" file="../../media/midi/midi_message_queue_unittest.cc" line="159" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.009" classname="MidiMessageQueueTest" />
+    <testcase name="RunningStatusEnabledWithSystemCommonMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="189" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.011" classname="MidiMessageQueueTest" />
+    <testcase name="Issue540016" file="../../media/midi/midi_message_queue_unittest.cc" line="208" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.013" classname="MidiMessageQueueTest" />
+    <testcase name="ReconstructNonSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="217" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.015" classname="MidiMessageQueueTest" />
+    <testcase name="ReconstructBrokenNonSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="237" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:17.017" classname="MidiMessageQueueTest" />
+    <testcase name="ReconstructSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="258" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.020" classname="MidiMessageQueueTest" />
+    <testcase name="ReconstructBrokenSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="278" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.022" classname="MidiMessageQueueTest" />
+    <testcase name="OneByteMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="302" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.024" classname="MidiMessageQueueTest" />
+    <testcase name="OneByteMessageInjectedInNonSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="338" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.025" classname="MidiMessageQueueTest" />
+    <testcase name="OneByteMessageInjectedInSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="362" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.027" classname="MidiMessageQueueTest" />
+    <testcase name="ReservedMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="386" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.028" classname="MidiMessageQueueTest" />
+    <testcase name="ReservedMessageInjectedInNonSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="477" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.029" classname="MidiMessageQueueTest" />
+    <testcase name="ReservedMessageInjectedInSysExMessage" file="../../media/midi/midi_message_queue_unittest.cc" line="524" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.031" classname="MidiMessageQueueTest" />
+  </testsuite>
+  <testsuite name="MidiTaskServiceTest" tests="7" failures="0" disabled="0" skipped="0" errors="0" time="0.122" timestamp="2025-01-31T16:28:17.033">
+    <testcase name="RunUnauthorizedBoundTask" file="../../media/midi/task_service_unittest.cc" line="158" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.033" classname="MidiTaskServiceTest" />
+    <testcase name="BindTwice" file="../../media/midi/task_service_unittest.cc" line="172" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.034" classname="MidiTaskServiceTest" />
+    <testcase name="RunStaticTask" file="../../media/midi/task_service_unittest.cc" line="188" status="run" result="completed" time="0.005" timestamp="2025-01-31T16:28:17.037" classname="MidiTaskServiceTest" />
+    <testcase name="RunBoundTasks" file="../../media/midi/task_service_unittest.cc" line="214" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:17.043" classname="MidiTaskServiceTest" />
+    <testcase name="RunBlockingTask" file="../../media/midi/task_service_unittest.cc" line="250" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:17.047" classname="MidiTaskServiceTest" />
+    <testcase name="RunBoundDelayedTask" file="../../media/midi/task_service_unittest.cc" line="278" status="run" result="completed" time="0.103" timestamp="2025-01-31T16:28:17.051" classname="MidiTaskServiceTest" />
+    <testcase name="RunBoundTaskOnDefaultRunner" file="../../media/midi/task_service_unittest.cc" line="296" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.154" classname="MidiTaskServiceTest" />
+  </testsuite>
+  <testsuite name="UsbMidiDescriptorParserTest" tests="8" failures="0" disabled="0" skipped="0" errors="0" time="0.009" timestamp="2025-01-31T16:28:17.156">
+    <testcase name="ParseEmpty" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="15" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.156" classname="UsbMidiDescriptorParserTest" />
+    <testcase name="InvalidSize" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="22" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.157" classname="UsbMidiDescriptorParserTest" />
+    <testcase name="NonExistingJackIsAssociated" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="30" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.159" classname="UsbMidiDescriptorParserTest" />
+    <testcase name="JacksShouldBeIgnoredWhenParserIsNotParsingMidiInterface" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="44" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.160" classname="UsbMidiDescriptorParserTest" />
+    <testcase name="Parse" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="57" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.161" classname="UsbMidiDescriptorParserTest" />
+    <testcase name="ParseDeviceInfoEmpty" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="97" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.162" classname="UsbMidiDescriptorParserTest" />
+    <testcase name="ParseDeviceInfo" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="103" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.164" classname="UsbMidiDescriptorParserTest" />
+    <testcase name="BcdVersionToString" file="../../media/midi/usb_midi_descriptor_parser_unittest.cc" line="119" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.165" classname="UsbMidiDescriptorParserTest" />
+  </testsuite>
+  <testsuite name="UsbMidiInputStreamTest" tests="7" failures="0" disabled="0" skipped="0" errors="0" time="0.009" timestamp="2025-01-31T16:28:17.166">
+    <testcase name="UnknownMessage" file="../../media/midi/usb_midi_input_stream_unittest.cc" line="98" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.166" classname="UsbMidiInputStreamTest" />
+    <testcase name="SystemCommonMessage" file="../../media/midi/usb_midi_input_stream_unittest.cc" line="107" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.168" classname="UsbMidiInputStreamTest" />
+    <testcase name="SystemExclusiveMessage" file="../../media/midi/usb_midi_input_stream_unittest.cc" line="118" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.169" classname="UsbMidiInputStreamTest" />
+    <testcase name="ChannelMessage" file="../../media/midi/usb_midi_input_stream_unittest.cc" line="131" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.171" classname="UsbMidiInputStreamTest" />
+    <testcase name="SingleByteMessage" file="../../media/midi/usb_midi_input_stream_unittest.cc" line="148" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.172" classname="UsbMidiInputStreamTest" />
+    <testcase name="DispatchForMultipleCables" file="../../media/midi/usb_midi_input_stream_unittest.cc" line="157" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.174" classname="UsbMidiInputStreamTest" />
+    <testcase name="DispatchForDevice2" file="../../media/midi/usb_midi_input_stream_unittest.cc" line="166" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.175" classname="UsbMidiInputStreamTest" />
+  </testsuite>
+  <testsuite name="UsbMidiOutputStreamTest" tests="24" failures="0" disabled="0" skipped="0" errors="0" time="0.034" timestamp="2025-01-31T16:28:17.176">
+    <testcase name="SendEmpty" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="73" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.177" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendNoteOn" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="79" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.178" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendNoteOnPending" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="86" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.179" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendNoteOnBurst" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="100" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.180" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendNoteOff" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="115" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.182" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendPolyphonicKeyPress" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="124" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.183" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendControlChange" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="133" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.184" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendProgramChange" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="142" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.185" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendChannelPressure" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="151" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.187" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendPitchWheelChange" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="160" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.189" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendTwoByteSysEx" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="169" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.190" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendThreeByteSysEx" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="178" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.191" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendFourByteSysEx" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="187" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.192" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendFiveByteSysEx" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="197" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.194" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendSixByteSysEx" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="207" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.195" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendPendingSysEx" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="217" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.196" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendNoteOnAfterSysEx" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="240" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.197" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendTimeCodeQuarterFrame" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="251" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.199" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendSongPositionPointer" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="260" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.200" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendSongSelect" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="269" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.201" classname="UsbMidiOutputStreamTest" />
+    <testcase name="TuneRequest" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="278" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:17.203" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendSongPositionPointerPending" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="287" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.206" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendRealTimeMessages" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="302" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.207" classname="UsbMidiOutputStreamTest" />
+    <testcase name="SendRealTimeInSysExMessage" file="../../media/midi/usb_midi_output_stream_unittest.cc" line="316" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:17.209" classname="UsbMidiOutputStreamTest" />
+  </testsuite>
+</testsuites>

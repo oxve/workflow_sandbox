@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="146" failures="0" disabled="0" errors="0" time="0.452" timestamp="2025-01-31T16:28:14.915" name="AllTests">
+  <testsuite name="GURLTest" tests="39" failures="0" disabled="0" skipped="0" errors="0" time="0.062" timestamp="2025-01-31T16:28:14.917">
+    <testcase name="Types" file="../../url/gurl_unittest.cc" line="32" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.918" classname="GURLTest" />
+    <testcase name="Components" file="../../url/gurl_unittest.cc" line="57" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.920" classname="GURLTest" />
+    <testcase name="Empty" file="../../url/gurl_unittest.cc" line="90" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.921" classname="GURLTest" />
+    <testcase name="Copy" file="../../url/gurl_unittest.cc" line="106" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.924" classname="GURLTest" />
+    <testcase name="Assign" file="../../url/gurl_unittest.cc" line="139" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.926" classname="GURLTest" />
+    <testcase name="SelfAssign" file="../../url/gurl_unittest.cc" line="175" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.927" classname="GURLTest" />
+    <testcase name="CopyFileSystem" file="../../url/gurl_unittest.cc" line="181" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.929" classname="GURLTest" />
+    <testcase name="IsValid" file="../../url/gurl_unittest.cc" line="211" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.930" classname="GURLTest" />
+    <testcase name="ExtraSlashesBeforeAuthority" file="../../url/gurl_unittest.cc" line="246" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.932" classname="GURLTest" />
+    <testcase name="ComponentGettersWorkEvenForInvalidURL" file="../../url/gurl_unittest.cc" line="256" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.934" classname="GURLTest" />
+    <testcase name="Resolve" file="../../url/gurl_unittest.cc" line="300" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.935" classname="GURLTest" />
+    <testcase name="GetOrigin" file="../../url/gurl_unittest.cc" line="367" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.937" classname="GURLTest" />
+    <testcase name="GetAsReferrer" file="../../url/gurl_unittest.cc" line="393" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:14.939" classname="GURLTest" />
+    <testcase name="GetWithEmptyPath" file="../../url/gurl_unittest.cc" line="416" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.941" classname="GURLTest" />
+    <testcase name="GetWithoutFilename" file="../../url/gurl_unittest.cc" line="435" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.943" classname="GURLTest" />
+    <testcase name="GetWithoutRef" file="../../url/gurl_unittest.cc" line="481" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.945" classname="GURLTest" />
+    <testcase name="Replacements" file="../../url/gurl_unittest.cc" line="556" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.947" classname="GURLTest" />
+    <testcase name="ClearFragmentOnDataUrl" file="../../url/gurl_unittest.cc" line="661" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.948" classname="GURLTest" />
+    <testcase name="PathForRequest" file="../../url/gurl_unittest.cc" line="695" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.950" classname="GURLTest" />
+    <testcase name="EffectiveIntPort" file="../../url/gurl_unittest.cc" line="727" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.951" classname="GURLTest" />
+    <testcase name="IPAddress" file="../../url/gurl_unittest.cc" line="766" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.952" classname="GURLTest" />
+    <testcase name="HostNoBrackets" file="../../url/gurl_unittest.cc" line="787" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.954" classname="GURLTest" />
+    <testcase name="DomainIs" file="../../url/gurl_unittest.cc" line="814" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.955" classname="GURLTest" />
+    <testcase name="DomainIsTerminatingDotBehavior" file="../../url/gurl_unittest.cc" line="845" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.957" classname="GURLTest" />
+    <testcase name="DomainIsWithFilesystemScheme" file="../../url/gurl_unittest.cc" line="864" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.958" classname="GURLTest" />
+    <testcase name="Newlines" file="../../url/gurl_unittest.cc" line="873" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.960" classname="GURLTest" />
+    <testcase name="IsStandard" file="../../url/gurl_unittest.cc" line="901" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.961" classname="GURLTest" />
+    <testcase name="SchemeIsHTTPOrHTTPS" file="../../url/gurl_unittest.cc" line="915" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.963" classname="GURLTest" />
+    <testcase name="SchemeIsWSOrWSS" file="../../url/gurl_unittest.cc" line="921" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.964" classname="GURLTest" />
+    <testcase name="SchemeIsCryptographic" file="../../url/gurl_unittest.cc" line="927" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.965" classname="GURLTest" />
+    <testcase name="SchemeIsCryptographicStatic" file="../../url/gurl_unittest.cc" line="940" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.966" classname="GURLTest" />
+    <testcase name="SchemeIsBlob" file="../../url/gurl_unittest.cc" line="948" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.968" classname="GURLTest" />
+    <testcase name="SchemeIsLocal" file="../../url/gurl_unittest.cc" line="954" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.969" classname="GURLTest" />
+    <testcase name="ContentForNonStandardURLs" file="../../url/gurl_unittest.cc" line="971" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.970" classname="GURLTest" />
+    <testcase name="PathForNonStandardURLs" file="../../url/gurl_unittest.cc" line="1014" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.972" classname="GURLTest" />
+    <testcase name="EqualsIgnoringRef" file="../../url/gurl_unittest.cc" line="1043" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:14.973" classname="GURLTest" />
+    <testcase name="DebugAlias" file="../../url/gurl_unittest.cc" line="1106" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.976" classname="GURLTest" />
+    <testcase name="InvalidHost" file="../../url/gurl_unittest.cc" line="1112" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.977" classname="GURLTest" />
+    <testcase name="PortZero" file="../../url/gurl_unittest.cc" line="1127" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.978" classname="GURLTest" />
+  </testsuite>
+  <testsuite name="GURL/AbstractUrlTest/0" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.003" timestamp="2025-01-31T16:28:14.980">
+    <testcase name="IsAboutBlankTest" type_param="&lt;type&gt;" file="../../url/gurl_abstract_tests.h" line="39" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.980" classname="GURL/AbstractUrlTest/0" />
+    <testcase name="IsAboutSrcdocTest" type_param="&lt;type&gt;" file="../../url/gurl_abstract_tests.h" line="74" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.982" classname="GURL/AbstractUrlTest/0" />
+  </testsuite>
+  <testsuite name="OriginTest" tests="16" failures="0" disabled="0" skipped="0" errors="0" time="0.033" timestamp="2025-01-31T16:28:14.984">
+    <testcase name="OpaqueOriginComparison" file="../../url/origin_unittest.cc" line="104" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:14.984" classname="OriginTest" />
+    <testcase name="ConstructFromTuple" file="../../url/origin_unittest.cc" line="182" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.986" classname="OriginTest" />
+    <testcase name="Serialization" file="../../url/origin_unittest.cc" line="207" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:14.988" classname="OriginTest" />
+    <testcase name="Comparison" file="../../url/origin_unittest.cc" line="246" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:14.991" classname="OriginTest" />
+    <testcase name="UnsafelyCreate" file="../../url/origin_unittest.cc" line="272" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:14.993" classname="OriginTest" />
+    <testcase name="UnsafelyCreateUniqueOnInvalidInput" file="../../url/origin_unittest.cc" line="318" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:14.996" classname="OriginTest" />
+    <testcase name="UnsafelyCreateUniqueViaEmbeddedNulls" file="../../url/origin_unittest.cc" line="372" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:14.998" classname="OriginTest" />
+    <testcase name="DomainIs" file="../../url/origin_unittest.cc" line="396" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.000" classname="OriginTest" />
+    <testcase name="DebugAlias" file="../../url/origin_unittest.cc" line="455" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.002" classname="OriginTest" />
+    <testcase name="CanBeDerivedFrom" file="../../url/origin_unittest.cc" line="461" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:15.003" classname="OriginTest" />
+    <testcase name="GetDebugString" file="../../url/origin_unittest.cc" line="623" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.007" classname="OriginTest" />
+    <testcase name="Deserialize" file="../../url/origin_unittest.cc" line="661" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.009" classname="OriginTest" />
+    <testcase name="DeserializeInvalid" file="../../url/origin_unittest.cc" line="682" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.011" classname="OriginTest" />
+    <testcase name="SerializeTBDNonce" file="../../url/origin_unittest.cc" line="690" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.012" classname="OriginTest" />
+    <testcase name="DeserializeValidNonce" file="../../url/origin_unittest.cc" line="736" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.014" classname="OriginTest" />
+    <testcase name="IsSameOriginWith" file="../../url/origin_unittest.cc" line="750" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.016" classname="OriginTest" />
+  </testsuite>
+  <testsuite name="UrlOrigin/AbstractOriginTest/0" tests="6" failures="0" disabled="0" skipped="0" errors="0" time="0.026" timestamp="2025-01-31T16:28:15.018">
+    <testcase name="NonStandardSchemeWithAndroidWebViewHack" type_param="&lt;type&gt;" file="../../url/origin_abstract_tests.h" line="264" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.018" classname="UrlOrigin/AbstractOriginTest/0" />
+    <testcase name="OpaqueOriginsFromValidUrls" type_param="&lt;type&gt;" file="../../url/origin_abstract_tests.h" line="280" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:15.019" classname="UrlOrigin/AbstractOriginTest/0" />
+    <testcase name="OpaqueOriginsFromInvalidUrls" type_param="&lt;type&gt;" file="../../url/origin_abstract_tests.h" line="310" status="run" result="completed" time="0.004" timestamp="2025-01-31T16:28:15.022" classname="UrlOrigin/AbstractOriginTest/0" />
+    <testcase name="TupleOrigins" type_param="&lt;type&gt;" file="../../url/origin_abstract_tests.h" line="364" status="run" result="completed" time="0.009" timestamp="2025-01-31T16:28:15.026" classname="UrlOrigin/AbstractOriginTest/0" />
+    <testcase name="CustomSchemes_OpaqueOrigins" type_param="&lt;type&gt;" file="../../url/origin_abstract_tests.h" line="444" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:15.037" classname="UrlOrigin/AbstractOriginTest/0" />
+    <testcase name="CustomSchemes_TupleOrigins" type_param="&lt;type&gt;" file="../../url/origin_abstract_tests.h" line="477" status="run" result="completed" time="0.004" timestamp="2025-01-31T16:28:15.040" classname="UrlOrigin/AbstractOriginTest/0" />
+  </testsuite>
+  <testsuite name="SchemeHostPortTest" tests="8" failures="0" disabled="0" skipped="0" errors="0" time="0.011" timestamp="2025-01-31T16:28:15.044">
+    <testcase name="Invalid" file="../../url/scheme_host_port_unittest.cc" line="51" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.045" classname="SchemeHostPortTest" />
+    <testcase name="ExplicitConstruction" file="../../url/scheme_host_port_unittest.cc" line="95" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.046" classname="SchemeHostPortTest" />
+    <testcase name="InvalidConstruction" file="../../url/scheme_host_port_unittest.cc" line="123" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.047" classname="SchemeHostPortTest" />
+    <testcase name="InvalidConstructionWithEmbeddedNulls" file="../../url/scheme_host_port_unittest.cc" line="158" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.049" classname="SchemeHostPortTest" />
+    <testcase name="GURLConstruction" file="../../url/scheme_host_port_unittest.cc" line="186" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.050" classname="SchemeHostPortTest" />
+    <testcase name="Serialization" file="../../url/scheme_host_port_unittest.cc" line="222" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.052" classname="SchemeHostPortTest" />
+    <testcase name="Comparison" file="../../url/scheme_host_port_unittest.cc" line="248" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.054" classname="SchemeHostPortTest" />
+    <testcase name="EmptyHostGurlConversion" file="../../url/scheme_host_port_unittest.cc" line="282" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.055" classname="SchemeHostPortTest" />
+  </testsuite>
+  <testsuite name="URLCanonIcuTest" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.003" timestamp="2025-01-31T16:28:15.057">
+    <testcase name="ICUCharsetConverter" file="../../url/url_canon_icu_unittest.cc" line="45" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.057" classname="URLCanonIcuTest" />
+    <testcase name="QueryWithConverter" file="../../url/url_canon_icu_unittest.cc" line="99" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.059" classname="URLCanonIcuTest" />
+  </testsuite>
+  <testsuite name="URLCanonTest" tests="31" failures="0" disabled="0" skipped="0" errors="0" time="0.047" timestamp="2025-01-31T16:28:15.060">
+    <testcase name="DoAppendUTF8" file="../../url/url_canon_unittest.cc" line="108" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.061" classname="URLCanonTest" />
+    <testcase name="DoAppendUTF8Invalid" file="../../url/url_canon_unittest.cc" line="130" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.062" classname="URLCanonTest" />
+    <testcase name="UTF" file="../../url/url_canon_unittest.cc" line="140" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.063" classname="URLCanonTest" />
+    <testcase name="Scheme" file="../../url/url_canon_unittest.cc" line="221" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.064" classname="URLCanonTest" />
+    <testcase name="IPv4" file="../../url/url_canon_unittest.cc" line="709" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.066" classname="URLCanonTest" />
+    <testcase name="IPEmpty" file="../../url/url_canon_unittest.cc" line="1050" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.068" classname="URLCanonTest" />
+    <testcase name="CanonicalizeHostSubstring" file="../../url/url_canon_unittest.cc" line="1067" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.069" classname="URLCanonTest" />
+    <testcase name="UserInfo" file="../../url/url_canon_unittest.cc" line="1109" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.070" classname="URLCanonTest" />
+    <testcase name="Port" file="../../url/url_canon_unittest.cc" line="1181" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.071" classname="URLCanonTest" />
+    <testcase name="Path" file="../../url/url_canon_unittest.cc" line="1388" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:15.073" classname="URLCanonTest" />
+    <testcase name="PartialPath" file="../../url/url_canon_unittest.cc" line="1406" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:15.075" classname="URLCanonTest" />
+    <testcase name="Query" file="../../url/url_canon_unittest.cc" line="1418" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.077" classname="URLCanonTest" />
+    <testcase name="Ref" file="../../url/url_canon_unittest.cc" line="1484" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.079" classname="URLCanonTest" />
+    <testcase name="CanonicalizeStandardURL" file="../../url/url_canon_unittest.cc" line="1567" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.080" classname="URLCanonTest" />
+    <testcase name="ReplaceStandardURL" file="../../url/url_canon_unittest.cc" line="1651" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.082" classname="URLCanonTest" />
+    <testcase name="ReplaceFileURL" file="../../url/url_canon_unittest.cc" line="1736" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.083" classname="URLCanonTest" />
+    <testcase name="ReplaceFileSystemURL" file="../../url/url_canon_unittest.cc" line="1800" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.084" classname="URLCanonTest" />
+    <testcase name="ReplacePathURL" file="../../url/url_canon_unittest.cc" line="1868" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.086" classname="URLCanonTest" />
+    <testcase name="ReplaceMailtoURL" file="../../url/url_canon_unittest.cc" line="1912" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.087" classname="URLCanonTest" />
+    <testcase name="CanonicalizeFileURL" file="../../url/url_canon_unittest.cc" line="1963" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.090" classname="URLCanonTest" />
+    <testcase name="CanonicalizeFileSystemURL" file="../../url/url_canon_unittest.cc" line="2077" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.091" classname="URLCanonTest" />
+    <testcase name="CanonicalizePathURL" file="../../url/url_canon_unittest.cc" line="2122" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.093" classname="URLCanonTest" />
+    <testcase name="CanonicalizePathURLPath" file="../../url/url_canon_unittest.cc" line="2163" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.094" classname="URLCanonTest" />
+    <testcase name="CanonicalizeMailtoURL" file="../../url/url_canon_unittest.cc" line="2210" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.096" classname="URLCanonTest" />
+    <testcase name="_itoa_s" file="../../url/url_canon_unittest.cc" line="2301" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.098" classname="URLCanonTest" />
+    <testcase name="_itow_s" file="../../url/url_canon_unittest.cc" line="2340" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.099" classname="URLCanonTest" />
+    <testcase name="ResolveRelativeURL" file="../../url/url_canon_unittest.cc" line="2388" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.100" classname="URLCanonTest" />
+    <testcase name="ReplacementOverflow" file="../../url/url_canon_unittest.cc" line="2597" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.102" classname="URLCanonTest" />
+    <testcase name="DefaultPortForScheme" file="../../url/url_canon_unittest.cc" line="2631" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.104" classname="URLCanonTest" />
+    <testcase name="FindWindowsDriveLetter" file="../../url/url_canon_unittest.cc" line="2656" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.105" classname="URLCanonTest" />
+    <testcase name="IDNToASCII" file="../../url/url_canon_unittest.cc" line="2697" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.107" classname="URLCanonTest" />
+  </testsuite>
+  <testsuite name="URLParser" tests="9" failures="0" disabled="0" skipped="0" errors="0" time="0.013" timestamp="2025-01-31T16:28:15.109">
+    <testcase name="Length" file="../../url/url_parse_unittest.cc" line="118" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.109" classname="URLParser" />
+    <testcase name="CountCharactersBefore" file="../../url/url_parse_unittest.cc" line="147" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.110" classname="URLParser" />
+    <testcase name="Standard" file="../../url/url_parse_unittest.cc" line="310" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.112" classname="URLParser" />
+    <testcase name="PathURL" file="../../url/url_parse_unittest.cc" line="345" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.113" classname="URLParser" />
+    <testcase name="ParseFileURL" file="../../url/url_parse_unittest.cc" line="444" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.115" classname="URLParser" />
+    <testcase name="ExtractFileName" file="../../url/url_parse_unittest.cc" line="487" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.116" classname="URLParser" />
+    <testcase name="ExtractQueryKeyValue" file="../../url/url_parse_unittest.cc" line="557" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.118" classname="URLParser" />
+    <testcase name="MailtoUrl" file="../../url/url_parse_unittest.cc" line="613" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.119" classname="URLParser" />
+    <testcase name="FileSystemURL" file="../../url/url_parse_unittest.cc" line="645" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.121" classname="URLParser" />
+  </testsuite>
+  <testsuite name="URLUtilTest" tests="18" failures="0" disabled="0" skipped="0" errors="0" time="0.027" timestamp="2025-01-31T16:28:15.123">
+    <testcase name="FindAndCompareScheme" file="../../url/url_util_unittest.cc" line="34" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.123" classname="URLUtilTest" />
+    <testcase name="IsStandard" file="../../url/url_util_unittest.cc" line="83" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.125" classname="URLUtilTest" />
+    <testcase name="IsReferrerScheme" file="../../url/url_util_unittest.cc" line="91" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.128" classname="URLUtilTest" />
+    <testcase name="AddReferrerScheme" file="../../url/url_util_unittest.cc" line="99" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.129" classname="URLUtilTest" />
+    <testcase name="ShutdownCleansUpSchemes" file="../../url/url_util_unittest.cc" line="108" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.131" classname="URLUtilTest" />
+    <testcase name="GetStandardSchemeType" file="../../url/url_util_unittest.cc" line="121" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.132" classname="URLUtilTest" />
+    <testcase name="GetStandardSchemes" file="../../url/url_util_unittest.cc" line="145" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.133" classname="URLUtilTest" />
+    <testcase name="ReplaceComponents" file="../../url/url_util_unittest.cc" line="154" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.134" classname="URLUtilTest" />
+    <testcase name="ReplaceScheme" file="../../url/url_util_unittest.cc" line="197" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.136" classname="URLUtilTest" />
+    <testcase name="DecodeURLEscapeSequences" file="../../url/url_util_unittest.cc" line="227" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.137" classname="URLUtilTest" />
+    <testcase name="TestEncodeURIComponent" file="../../url/url_util_unittest.cc" line="310" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.138" classname="URLUtilTest" />
+    <testcase name="TestResolveRelativeWithNonStandardBase" file="../../url/url_util_unittest.cc" line="343" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.139" classname="URLUtilTest" />
+    <testcase name="TestNoRefComponent" file="../../url/url_util_unittest.cc" line="432" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.141" classname="URLUtilTest" />
+    <testcase name="PotentiallyDanglingMarkup" file="../../url/url_util_unittest.cc" line="453" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.143" classname="URLUtilTest" />
+    <testcase name="PotentiallyDanglingMarkupAfterReplacement" file="../../url/url_util_unittest.cc" line="501" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.144" classname="URLUtilTest" />
+    <testcase name="PotentiallyDanglingMarkupAfterSchemeOnlyReplacement" file="../../url/url_util_unittest.cc" line="520" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.145" classname="URLUtilTest" />
+    <testcase name="TestDomainIs" file="../../url/url_util_unittest.cc" line="540" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.147" classname="URLUtilTest" />
+    <testcase name="TestCanonicalizeIdempotencyWithLeadingControlCharacters" file="../../url/url_util_unittest.cc" line="610" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:15.148" classname="URLUtilTest" />
+  </testsuite>
+  <testsuite name="SchemeHostPortMojomTraitsTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="0.001" timestamp="2025-01-31T16:28:15.151">
+    <testcase name="RoundTrip" file="../../url/mojom/scheme_host_port_mojom_traits_unittest.cc" line="29" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.151" classname="SchemeHostPortMojomTraitsTest" />
+  </testsuite>
+  <testsuite name="MojoGURLStructTraitsTest" tests="5" failures="0" disabled="0" skipped="0" errors="0" time="0.108" timestamp="2025-01-31T16:28:15.153">
+    <testcase name="Basic" file="../../url/mojom/url_gurl_mojom_traits_unittest.cc" line="77" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:15.153" classname="MojoGURLStructTraitsTest" />
+    <testcase name="ExcessivelyLongUrl" file="../../url/mojom/url_gurl_mojom_traits_unittest.cc" line="91" status="run" result="completed" time="0.091" timestamp="2025-01-31T16:28:15.156" classname="MojoGURLStructTraitsTest" />
+    <testcase name="WindowsDriveInPathReplacement" file="../../url/mojom/url_gurl_mojom_traits_unittest.cc" line="101" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:15.248" classname="MojoGURLStructTraitsTest" />
+    <testcase name="OriginSerialization" file="../../url/mojom/url_gurl_mojom_traits_unittest.cc" line="173" status="run" result="completed" time="0.005" timestamp="2025-01-31T16:28:15.252" classname="MojoGURLStructTraitsTest" />
+    <testcase name="TestMaxURLChars" file="../../url/mojom/url_gurl_mojom_traits_unittest.cc" line="205" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:15.257" classname="MojoGURLStructTraitsTest" />
+  </testsuite>
+  <testsuite name="IPCMessageTest" tests="5" failures="0" disabled="0" skipped="0" errors="0" time="0.093" timestamp="2025-01-31T16:28:15.261">
+    <testcase name="SerializeGurl_Basic" file="../../url/ipc/url_param_traits_unittest.cc" line="48" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.262" classname="IPCMessageTest" />
+    <testcase name="SerializeGurl_ExcessivelyLong" file="../../url/ipc/url_param_traits_unittest.cc" line="62" status="run" result="completed" time="0.086" timestamp="2025-01-31T16:28:15.263" classname="IPCMessageTest" />
+    <testcase name="SerializeGurl_InvalidUrl" file="../../url/ipc/url_param_traits_unittest.cc" line="71" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.351" classname="IPCMessageTest" />
+    <testcase name="SerializeGurl_CorruptPayload" file="../../url/ipc/url_param_traits_unittest.cc" line="80" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.352" classname="IPCMessageTest" />
+    <testcase name="SerializeGurl_WindowsDriveInPathReplacement" file="../../url/ipc/url_param_traits_unittest.cc" line="90" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.353" classname="IPCMessageTest" />
+  </testsuite>
+  <testsuite name="All/URLCanonHostTest" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.007" timestamp="2025-01-31T16:28:15.355">
+    <testcase name="Host/0" value_param="4-byte object &lt;00-00 00-00&gt;" file="../../url/url_canon_unittest.cc" line="314" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:15.355" classname="All/URLCanonHostTest" />
+    <testcase name="Host/1" value_param="4-byte object &lt;01-00 00-00&gt;" file="../../url/url_canon_unittest.cc" line="314" status="run" result="completed" time="0.003" timestamp="2025-01-31T16:28:15.359" classname="All/URLCanonHostTest" />
+  </testsuite>
+  <testsuite name="All/URLCanonIPv6Test" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.003" timestamp="2025-01-31T16:28:15.363">
+    <testcase name="IPv6/0" value_param="false" file="../../url/url_canon_unittest.cc" line="880" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.363" classname="All/URLCanonIPv6Test" />
+    <testcase name="IPv6/1" value_param="true" file="../../url/url_canon_unittest.cc" line="880" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:15.365" classname="All/URLCanonIPv6Test" />
+  </testsuite>
+</testsuites>

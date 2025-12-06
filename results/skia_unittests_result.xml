@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="49" failures="0" disabled="0" errors="0" time="7.172" timestamp="2025-01-31T16:28:28.983" name="AllTests">
+  <testsuite name="StructTraitsDeathTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="0.957" timestamp="2025-01-31T16:28:28.984">
+    <testcase name="ImageInfoOverflowSizeWithStructTrait" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="110" status="run" result="completed" time="0.951" timestamp="2025-01-31T16:28:28.989" classname="StructTraitsDeathTest" />
+  </testsuite>
+  <testsuite name="Convolver" tests="8" failures="0" disabled="0" skipped="0" errors="0" time="5.325" timestamp="2025-01-31T16:28:29.942">
+    <testcase name="Impulse" file="../../skia/ext/convolver_unittest.cc" line="66" status="run" result="completed" time="0.164" timestamp="2025-01-31T16:28:29.944" classname="Convolver" />
+    <testcase name="Halve" file="../../skia/ext/convolver_unittest.cc" line="91" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:30.111" classname="Convolver" />
+    <testcase name="AddFilter" file="../../skia/ext/convolver_unittest.cc" line="141" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:30.114" classname="Convolver" />
+    <testcase name="VerifySIMDEdgeCases" file="../../skia/ext/convolver_unittest.cc" line="300" status="run" result="completed" time="0.111" timestamp="2025-01-31T16:28:30.117" classname="Convolver" />
+    <testcase name="VerifySIMDPrecision" file="../../skia/ext/convolver_unittest.cc" line="313" status="run" result="completed" time="4.676" timestamp="2025-01-31T16:28:30.231" classname="Convolver" />
+    <testcase name="SeparableSingleConvolution" file="../../skia/ext/convolver_unittest.cc" line="331" status="run" result="completed" time="0.185" timestamp="2025-01-31T16:28:34.910" classname="Convolver" />
+    <testcase name="SeparableSingleConvolutionEdges" file="../../skia/ext/convolver_unittest.cc" line="398" status="run" result="completed" time="0.166" timestamp="2025-01-31T16:28:35.098" classname="Convolver" />
+    <testcase name="SetUpGaussianConvolutionFilter" file="../../skia/ext/convolver_unittest.cc" line="480" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.266" classname="Convolver" />
+  </testsuite>
+  <testsuite name="ImageOperations" tests="7" failures="0" disabled="0" skipped="0" errors="0" time="0.073" timestamp="2025-01-31T16:28:35.268">
+    <testcase name="Halve" file="../../skia/ext/image_operations_unittest.cc" line="353" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.269" classname="ImageOperations" />
+    <testcase name="HalveSubset" file="../../skia/ext/image_operations_unittest.cc" line="398" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.273" classname="ImageOperations" />
+    <testcase name="InvalidParams" file="../../skia/ext/image_operations_unittest.cc" line="433" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.278" classname="ImageOperations" />
+    <testcase name="ResampleToSameHamming1" file="../../skia/ext/image_operations_unittest.cc" line="444" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.281" classname="ImageOperations" />
+    <testcase name="ResampleToSameLanczos3" file="../../skia/ext/image_operations_unittest.cc" line="448" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.285" classname="ImageOperations" />
+    <testcase name="ResizeShouldAverageColors" file="../../skia/ext/image_operations_unittest.cc" line="454" status="run" result="completed" time="0.049" timestamp="2025-01-31T16:28:35.288" classname="ImageOperations" />
+    <testcase name="ScaleUp" file="../../skia/ext/image_operations_unittest.cc" line="516" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.340" classname="ImageOperations" />
+  </testsuite>
+  <testsuite name="RecursiveGaussian" tests="4" failures="0" disabled="0" skipped="0" errors="0" time="0.359" timestamp="2025-01-31T16:28:35.343">
+    <testcase name="SmoothingMethodComparison" file="../../skia/ext/recursive_gaussian_convolution_unittest.cc" line="87" status="run" result="completed" time="0.041" timestamp="2025-01-31T16:28:35.344" classname="RecursiveGaussian" />
+    <testcase name="SmoothingImpulse" file="../../skia/ext/recursive_gaussian_convolution_unittest.cc" line="152" status="run" result="completed" time="0.019" timestamp="2025-01-31T16:28:35.387" classname="RecursiveGaussian" />
+    <testcase name="FirstDerivative" file="../../skia/ext/recursive_gaussian_convolution_unittest.cc" line="236" status="run" result="completed" time="0.219" timestamp="2025-01-31T16:28:35.409" classname="RecursiveGaussian" />
+    <testcase name="SecondDerivative" file="../../skia/ext/recursive_gaussian_convolution_unittest.cc" line="325" status="run" result="completed" time="0.07" timestamp="2025-01-31T16:28:35.631" classname="RecursiveGaussian" />
+  </testsuite>
+  <testsuite name="SkiaUtils" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.005" timestamp="2025-01-31T16:28:35.703">
+    <testcase name="PrimariesD65" file="../../skia/ext/skcolorspace_primaries_unittest.cc" line="14" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.704" classname="SkiaUtils" />
+    <testcase name="PrimariesD50" file="../../skia/ext/skcolorspace_primaries_unittest.cc" line="34" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.707" classname="SkiaUtils" />
+  </testsuite>
+  <testsuite name="SkiaMemoryDumpProviderTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="0.004" timestamp="2025-01-31T16:28:35.709">
+    <testcase name="OnMemoryDump" file="../../skia/ext/skia_memory_dump_provider_unittest.cc" line="15" status="run" result="completed" time="0.002" timestamp="2025-01-31T16:28:35.710" classname="SkiaMemoryDumpProviderTest" />
+  </testsuite>
+  <testsuite name="SkiaUtilsBase" tests="5" failures="0" disabled="0" skipped="0" errors="0" time="0.014" timestamp="2025-01-31T16:28:35.714">
+    <testcase name="ConvertNullToN32" file="../../skia/ext/skia_utils_base_unittest.cc" line="22" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.715" classname="SkiaUtilsBase" />
+    <testcase name="ConvertValidToN32" file="../../skia/ext/skia_utils_base_unittest.cc" line="30" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.718" classname="SkiaUtilsBase" />
+    <testcase name="ConvertWeirdStrideToN32" file="../../skia/ext/skia_utils_base_unittest.cc" line="39" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.721" classname="SkiaUtilsBase" />
+    <testcase name="ConvertWeirdFormatToN32" file="../../skia/ext/skia_utils_base_unittest.cc" line="55" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.724" classname="SkiaUtilsBase" />
+    <testcase name="ConvertSkColorToHexString" file="../../skia/ext/skia_utils_base_unittest.cc" line="89" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.727" classname="SkiaUtilsBase" />
+  </testsuite>
+  <testsuite name="StructTraitsTest" tests="21" failures="0" disabled="0" skipped="0" errors="0" time="0.426" timestamp="2025-01-31T16:28:35.729">
+    <testcase name="ImageInfo" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="89" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.730" classname="StructTraitsTest" />
+    <testcase name="ImageInfoOverflowSizeWithoutStructTrait" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="123" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.733" classname="StructTraitsTest" />
+    <testcase name="ImageInfoCustomColorSpace" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="133" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.736" classname="StructTraitsTest" />
+    <testcase name="TileMode" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="148" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.739" classname="StructTraitsTest" />
+    <testcase name="Bitmap" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="168" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.742" classname="StructTraitsTest" />
+    <testcase name="BitmapNull" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="207" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.745" classname="StructTraitsTest" />
+    <testcase name="InlineBitmapSerializeToString" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="247" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.748" classname="StructTraitsTest" />
+    <testcase name="VerifyMojomConstruction" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="263" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:35.751" classname="StructTraitsTest" />
+    <testcase name="BitmapTooWideToSerialize" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="295" status="run" result="completed" time="0.015" timestamp="2025-01-31T16:28:35.754" classname="StructTraitsTest" />
+    <testcase name="BitmapTooTallToSerialize" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="321" status="run" result="completed" time="0.015" timestamp="2025-01-31T16:28:35.771" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidRowBytes_BitmapN32" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="358" status="run" result="completed" time="0.056" timestamp="2025-01-31T16:28:35.788" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidRowBytes_BitmapWithArbitraryBpp" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="361" status="run" result="completed" time="0.056" timestamp="2025-01-31T16:28:35.847" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidRowBytes_BitmapMappedFromTrustedProcess" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="365" status="run" result="completed" time="0.056" timestamp="2025-01-31T16:28:35.905" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidRowBytes_InlineBitmap" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="368" status="run" result="completed" time="0.056" timestamp="2025-01-31T16:28:35.964" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidColorType_BitmapN32" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="386" status="run" result="completed" time="0.058" timestamp="2025-01-31T16:28:36.022" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidColorType_BitmapWithArbitraryBpp" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="389" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:36.083" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidColorType_BitmapMappedFromTrustedProcess" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="393" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:36.086" classname="StructTraitsTest" />
+    <testcase name="BitmapSerializeInvalidColorType_InlineBitmap" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="396" status="run" result="completed" time="0.056" timestamp="2025-01-31T16:28:36.089" classname="StructTraitsTest" />
+    <testcase name="BitmapDeserializeIgnoresRowBytes" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="401" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:36.147" classname="StructTraitsTest" />
+    <testcase name="InlineBitmapDeserializeTooFewBytes" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="429" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:36.150" classname="StructTraitsTest" />
+    <testcase name="InlineBitmapDeserializeTooManyBytes" file="../../skia/public/mojom/test/mojom_traits_unittest.cc" line="460" status="run" result="completed" time="0.001" timestamp="2025-01-31T16:28:36.153" classname="StructTraitsTest" />
+  </testsuite>
+</testsuites>

@@ -9,18 +9,13 @@ on:
 jobs:
   rerun-failing-jobs:
     runs-on: ubuntu-latest
-    # if: github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'cancelled'
+    if: github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'cancelled'
     permissions:
       actions: write
       checks: read
     steps:
-      - name: Download CI Essentials
-        uses: actions/download-artifact@v4
-        with:
-          pattern: ci-essentials-*
-          merge-multiple: true
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Check Retry Count
         id: retry_check
@@ -50,20 +45,17 @@ jobs:
         run: |
           set +x
           echo "Fetching failing checks for PR #${PR_NUMBER}"
-          failing_runs=$(gh pr checks "${PR_NUMBER}" --repo "${REPO}" | grep -E 'fail|cancel')
+          # Fetch failing checks in JSON format
+          failing_runs=$(gh pr checks "${PR_NUMBER}" --repo "${REPO}" --json url,conclusion --jq '.[] | select(.conclusion=="failure" or .conclusion=="cancelled") | .url')
 
           if [ -z "${failing_runs}" ]; then
             echo "No failing checks found to rerun."
             exit 0
           fi
 
-          run_ids_to_rerun=$(echo "${failing_runs}" | python3 ./.github/scripts/extract_run_ids.py)
+          # Extract run IDs from URLs (assuming standard GitHub Actions URL format)
+          run_ids=$(echo "$failing_runs" | grep -oP 'runs/\K\d+' | sort -u)
 
-          if [ -z "${run_ids_to_rerun}" ]; then
-            echo "Could not extract run IDs from failing checks."
-            exit 0
-          fi
-
-          for run_id in ${run_ids_to_rerun}; do
-            gh run rerun "${run_id}" --repo "${REPO}"
+          for run_id in $run_ids; do
+            gh run rerun "$run_id" --repo "$REPO" --failed
           done

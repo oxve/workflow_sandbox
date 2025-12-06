@@ -146,6 +146,8 @@ jobs:
       - name: Process Test Results
         id: process-test-results
         uses: ./.github/actions/process_test_results
+      - name: Simulate Failure
+        run: exit 1
     outputs:
       test_targets: ${{ steps.process-test-results.outputs.test_targets }}
 
