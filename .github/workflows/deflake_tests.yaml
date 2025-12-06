@@ -42,5 +42,17 @@ jobs:
         shell: bash
         run: |
           set +x
-          echo "Rerunning failed jobs for workflow run ${WORKFLOW}"
-          gh run rerun "${WORKFLOW}" --repo "${REPO}" --failed
+          echo "Fetching failed '_tests' jobs for workflow run ${WORKFLOW}"
+          
+          # Fetch failed jobs ending with _tests
+          failed_job_ids=$(gh run view "${WORKFLOW}" --json jobs --jq '.jobs[] | select(.conclusion=="failure" or .conclusion=="cancelled") | select(.name | endswith("_tests")) | .databaseId')
+
+          if [ -z "$failed_job_ids" ]; then
+            echo "No failing '_tests' jobs found to rerun."
+            exit 0
+          fi
+
+          for job_id in $failed_job_ids; do
+            echo "Rerunning job ${job_id}"
+            gh run rerun "${WORKFLOW}" --job "${job_id}" --repo "${REPO}"
+          done
