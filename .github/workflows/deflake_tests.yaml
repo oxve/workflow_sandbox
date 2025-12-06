@@ -22,8 +22,6 @@ jobs:
         env:
           DEFLAKE_ATTEMPTS: 3
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HEAD_REF: ${{ github.event.workflow_run.pull_requests[0].head.ref }}
-          PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
           WORKFLOW: ${{ github.event.workflow_run.id }}
         shell: bash
         run: |
@@ -39,23 +37,10 @@ jobs:
         if: steps.retry_check.outputs.continue == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ github.event.workflow_run.pull_requests[0].number }}
           REPO: ${{ github.repository }}
+          WORKFLOW: ${{ github.event.workflow_run.id }}
         shell: bash
         run: |
           set +x
-          echo "Fetching failing checks for PR #${PR_NUMBER}"
-          # Fetch failing checks in JSON format
-          failing_runs=$(gh pr checks "${PR_NUMBER}" --repo "${REPO}" --json url,conclusion --jq '.[] | select(.conclusion=="failure" or .conclusion=="cancelled") | .url')
-
-          if [ -z "${failing_runs}" ]; then
-            echo "No failing checks found to rerun."
-            exit 0
-          fi
-
-          # Extract run IDs from URLs (assuming standard GitHub Actions URL format)
-          run_ids=$(echo "$failing_runs" | grep -oP 'runs/\K\d+' | sort -u)
-
-          for run_id in $run_ids; do
-            gh run rerun "$run_id" --repo "$REPO" --failed
-          done
+          echo "Rerunning failed jobs for workflow run ${WORKFLOW}"
+          gh run rerun "${WORKFLOW}" --repo "${REPO}" --failed
