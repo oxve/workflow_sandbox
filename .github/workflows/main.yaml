@@ -93,31 +93,37 @@ jobs:
       test_on_host: ${{ env.test_on_host }}
       test_on_device: ${{ env.test_on_device }}
 
-  # Runs builds.
-  build:
-    needs: [initialize]
-    permissions: {}
-    runs-on: ubuntu-latest
-    name: ${{ matrix.name }}_${{ matrix.config }}
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
-        include: ${{ fromJson(needs.initialize.outputs.includes) }}
-        config: [devel, debug, qa, gold]
-    env:
-      TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
-      DEPOT_TOOLS_UPDATE: 0
-      DEPOT_TOOLS_REPORT_BUILD: 0
-      DEPOT_TOOLS_COLLECT_METRICS: 0
-      DEPOT_TOOLS_METRICS: 0
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: src
-      - name: Fail build
-        run: exit 1
+  # # Runs builds.
+  # build:
+  #   needs: [initialize]
+  #   permissions: {}
+  #   runs-on: ubuntu-latest
+  #   name: ${{ matrix.name }}_${{ matrix.config }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
+  #       include: ${{ fromJson(needs.initialize.outputs.includes) }}
+  #       config: [devel, debug, qa, gold]
+  #   env:
+  #     TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
+  #     DEPOT_TOOLS_UPDATE: 0
+  #     DEPOT_TOOLS_REPORT_BUILD: 0
+  #     DEPOT_TOOLS_COLLECT_METRICS: 0
+  #     DEPOT_TOOLS_METRICS: 0
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
+  #       with:
+  #         path: src
+  #     - name: Build Cobalt
+  #       uses: ./src/.github/actions/build
+  #       with:
+  #         targets: ${{ needs.initialize.outputs.targets }}
+  #         test_artifacts_key: ${{ env.TEST_ARTIFACTS_KEY }}
+  #     - name: Upload On Device Test Artifacts
+  #       if: matrix.config == 'devel' && needs.initialize.outputs.test_on_device == 'true'
+  #       uses: ./src/.github/actions/upload_test_artifacts
 
   test:
     needs: [initialize]
