@@ -1,0 +1,56 @@
+name: Run Tests
+description: Runs tests with filtering logic
+inputs:
+  test_targets:
+    description: "List of test targets"
+    required: true
+  test_results_key:
+    description: "Artifact key"
+    required: true
+  mock_rerun:
+    description: "Whether to mock a rerun"
+    default: "false"
+uns:
+  using: "composite"
+  steps:
+    - name: Download test results from last attempt (or mock)
+      id: download-results
+      run: |
+        if [[ ${{ inputs.mock_rerun }} == 'true' || ${{ github.run_attempt }} -gt 1 ]]; then
+           echo "Run attempt: ${{ github.run_attempt }}. Mock rerun: ${{ inputs.mock_rerun }}."
+           
+           # Use local artifacts if mock_rerun is true (for testing in this repo)
+           LOCAL_ARGS=""
+           if [[ ${{ inputs.mock_rerun }} == 'true' ]]; then
+             LOCAL_ARGS="--local-artifacts-dir results/"
+           fi
+
+           python3 cobalt/tools/automated_test_filters.py \
+             --repo ${{ github.repository }} \
+             --run-id ${{ github.run_id }} \
+             --token ${{ github.token }} \
+             --artifact-pattern "^${{ inputs.test_results_key }}$" \
+             --out-dir ${{ github.workspace }}/prev_results \
+             --filter-out-dir ${{ github.workspace }}/cobalt/testing/filters/linux \
+             $LOCAL_ARGS > filters.out
+           
+           cat filters.out
+           grep FAILED_TARGETS filters.out >> $GITHUB_ENV || true
+        fi
+      shell: bash
+
+    - name: Run Tests
+      run: |
+        echo "Running tests..."
+        TARGETS="${{ inputs.test_targets }}"
+        
+        for target in $TARGETS; do
+          if [[ -n "$FAILED_TARGETS" ]]; then
+            if [[ " $FAILED_TARGETS " != " $target " ]]; then
+               echo "Skipping $target as it passed in previous attempt."
+               continue
+            fi
+          fi
+          echo "Running $target"
+        done
+      shell: bash

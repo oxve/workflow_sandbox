@@ -74,30 +74,42 @@ def main():
   parser.add_argument('--artifact-pattern', required=True)
   parser.add_argument('--out-dir', required=True)
   parser.add_argument('--filter-out-dir', required=True)
+  parser.add_argument('--local-artifacts-dir', help='Local directory to use instead of downloading artifacts.')
   args = parser.parse_args()
 
-  artifacts = get_artifacts(args.repo, args.run_id, args.token)
+  if args.local_artifacts_dir:
+    temp_dir = args.local_artifacts_dir
+    matched_artifacts = [] # Not used in local mode
+  else:
+    artifacts = get_artifacts(args.repo, args.run_id, args.token)
 
-  regex = re.compile(args.artifact_pattern)
-  matched_artifacts = [a for a in artifacts if regex.match(a['name'])]
+    regex = re.compile(args.artifact_pattern)
+    matched_artifacts = [a for a in artifacts if regex.match(a['name'])]
 
-  if not matched_artifacts:
-    print(f'No artifacts found matching {args.artifact_pattern}')
-    return
+    if not matched_artifacts:
+      print(f'No artifacts found matching {args.artifact_pattern}')
+      return
 
-  temp_dir = args.out_dir
-  os.makedirs(temp_dir, exist_ok=True)
+    temp_dir = args.out_dir
+    os.makedirs(temp_dir, exist_ok=True)
+
   os.makedirs(args.filter_out_dir, exist_ok=True)
 
   xml_files = []
-  for artifact in matched_artifacts:
-    print(f"Downloading artifact: {artifact['name']}")
-    if download_artifact(artifact['archive_download_url'], args.token,
-                         temp_dir):
-      for root, _, files in os.walk(temp_dir):
-        for f in files:
-          if f.endswith('.xml'):
-            xml_files.append(os.path.join(root, f))
+  if args.local_artifacts_dir:
+    for root, _, files in os.walk(temp_dir):
+      for f in files:
+        if f.endswith('.xml'):
+          xml_files.append(os.path.join(root, f))
+  else:
+    for artifact in matched_artifacts:
+      print(f"Downloading artifact: {artifact['name']}")
+      if download_artifact(artifact['archive_download_url'], args.token,
+                           temp_dir):
+        for root, _, files in os.walk(temp_dir):
+          for f in files:
+            if f.endswith('.xml'):
+              xml_files.append(os.path.join(root, f))
 
   if not xml_files:
     print('No XML files found in artifacts.')

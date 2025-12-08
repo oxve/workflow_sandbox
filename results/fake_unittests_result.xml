@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="1" failures="1" disabled="0" errors="0" time="0.0" timestamp="2025-01-31T16:28:16.934" name="AllTests">
+  <testsuite name="FakeTest" tests="1" failures="1" disabled="0" skipped="0" errors="0" time="0.0" timestamp="2025-01-31T16:28:16.938">
+    <testcase name="FailingCase" file="fake_test.cc" line="1" status="run" result="completed" time="0.0" timestamp="2025-01-31T16:28:16.939" classname="FakeTest">
+      <failure message="Something went wrong" type="Failure" />
+    </testcase>
+  </testsuite>
+</testsuites>
