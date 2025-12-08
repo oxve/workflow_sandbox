@@ -67,7 +67,6 @@ def download_artifact(url, token, dest_dir):
 
 
 def main():
-  raise Exception('Intentional failure to test deflake workflow')
   parser = argparse.ArgumentParser()
   parser.add_argument('--repo', required=True)
   parser.add_argument('--run-id', required=True)
