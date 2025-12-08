@@ -1,5 +1,4 @@
-"A simple util that prints failing tests from JUnit xml using only the Python
-standard library."/usr/bin/env python3
+#!/usr/bin/env python3
 #
 # Copyright 2025 The Cobalt Authors. All Rights Reserved.
 #
@@ -14,6 +13,8 @@ standard library."/usr/bin/env python3
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""A simple util that prints failing tests from JUnit xml using only the Python
+standard library."""
 
 import collections
 import os
