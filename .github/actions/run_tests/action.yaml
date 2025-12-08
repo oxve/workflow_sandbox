@@ -10,7 +10,7 @@ inputs:
   mock_rerun:
     description: "Whether to mock a rerun"
     default: "false"
-uns:
+runs:
   using: "composite"
   steps:
     - name: Download test results from last attempt (or mock)
