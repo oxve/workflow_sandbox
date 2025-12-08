@@ -25,7 +25,7 @@ jobs:
         shell: bash
         run: |
           set +x
-          if gh run view ${WORKFLOW} --attempt ${MAX_ATTEMPTS}; then
+          if gh run view ${WORKFLOW} --attempt ${MAX_ATTEMPTS} --repo "${REPO}"; then
             # The last attemp was successfully loaded. Our work is done.
             exit 0
           fi
@@ -33,7 +33,7 @@ jobs:
           echo "Fetching failed '_tests' jobs for workflow run ${WORKFLOW}"
 
           # Fetch failed jobs ending with _tests
-          failed_job_ids=$(gh run view "${WORKFLOW}" --json jobs --jq '.jobs[] | select(.conclusion=="failure") | select(.name | contains("_tests")) | .databaseId')
+          failed_job_ids=$(gh run view "${WORKFLOW}" --repo "${REPO}" --json jobs --jq '.jobs[] | select(.conclusion=="failure") | select(.name | contains("_tests")) | .databaseId')
 
           if [ -z "$failed_job_ids" ]; then
             echo "No failing '_tests' jobs found to rerun."
