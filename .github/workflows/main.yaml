@@ -187,6 +187,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Print logs
         run: |
-          TODO:
+          # TODO:
           cat ${{ matrix.test_targets }}
         shell: bash
