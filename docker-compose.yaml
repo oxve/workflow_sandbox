@@ -1,0 +1,10 @@
+services:
+  linux:
+    image: ${DOCKER_COMPOSE_IMAGE:-linux-mock}
+    build: cobalt/docker/linux
+  unittest:
+    image: ${DOCKER_COMPOSE_IMAGE:-unittest-mock}
+    build: cobalt/docker/unittest
+  webtest:
+    image: ${DOCKER_COMPOSE_IMAGE:-webtest-mock}
+    build: cobalt/docker/webtest

@@ -242,9 +242,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ci-essentials-${{ inputs.platform }}
-      - name: Build docker image (Mock)
+      - name: Build docker image
         id: build-docker-image
-        run: echo "docker_tag=mock-tag" >> $GITHUB_OUTPUT
+        uses: ./.github/actions/docker
+        with:
+          docker_service: ${{ needs.initialize.outputs.docker_service }}
+          is_pr: ${{ (github.event_name == 'pull_request') }}
+          docker_content_sha: ${{ needs.initialize.outputs.docker_content_sha }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       docker_tag: ${{ steps.build-docker-image.outputs.docker_tag }}
 
@@ -258,9 +263,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ci-essentials-${{ inputs.platform }}
-      - name: Build docker image (Mock)
+      - name: Build docker image
         id: build-docker-image
-        run: echo "docker_tag=mock-tag" >> $GITHUB_OUTPUT
+        uses: ./.github/actions/docker
+        with:
+          docker_service: unittest
+          is_pr: ${{ (github.event_name == 'pull_request') }}
+          docker_content_sha: ${{ needs.initialize.outputs.docker_content_sha }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       docker_tag: ${{ steps.build-docker-image.outputs.docker_tag }}
 
@@ -274,9 +284,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ci-essentials-${{ inputs.platform }}
-      - name: Build docker image (Mock)
+      - name: Build docker image
         id: build-docker-image
-        run: echo "docker_tag=mock-tag" >> $GITHUB_OUTPUT
+        uses: ./.github/actions/docker
+        with:
+          docker_service: webtest
+          is_pr: ${{ (github.event_name == 'pull_request') }}
+          docker_content_sha: ${{ needs.initialize.outputs.docker_content_sha }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       docker_tag: ${{ steps.build-docker-image.outputs.docker_tag }}
 
@@ -291,10 +306,8 @@ jobs:
         platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
         include: ${{ fromJson(needs.initialize.outputs.includes) }}
         config: ${{ fromJson(needs.initialize.outputs.build_configs) }}
-    # container:
-    #   image: ${{ needs.docker-build-image.outputs.docker_tag }}
-    #   volumes:
-    #     - /runner-cache:/runner-cache
+    container:
+      image: ${{ needs.docker-build-image.outputs.docker_tag }}
     env:
       TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
       DEPOT_TOOLS_UPDATE: 0
@@ -417,7 +430,7 @@ jobs:
         include: ${{ fromJson(needs.initialize.outputs.includes) }}
         config: [devel]
         shard: ${{ fromJson(needs.initialize.outputs.gtest_shards) }}
-    # container: ${{ needs.docker-unittest-image.outputs.docker_tag }}
+    container: ${{ needs.docker-unittest-image.outputs.docker_tag }}
     env:
       TMPDIR: /__w/_temp
       TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
@@ -447,10 +460,8 @@ jobs:
         platform: ${{ fromJson(needs.initialize.outputs.platforms) }}
         include: ${{ fromJson(needs.initialize.outputs.includes) }}
         config: [devel]
-    # container:
-    #   image: ${{ needs.docker-webtest-image.outputs.docker_tag }}
-    #   volumes:
-    #     - /runner-cache:/runner-cache
+    container:
+      image: ${{ needs.docker-webtest-image.outputs.docker_tag }}
     env:
       DEPOT_TOOLS_UPDATE: 0
       DEPOT_TOOLS_REPORT_BUILD: 0
