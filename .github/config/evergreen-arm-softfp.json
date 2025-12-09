@@ -1,0 +1,21 @@
+{
+  "docker_service": "linux",
+  "platforms": [
+    "evergreen-arm-softfp"
+  ],
+  "targets": [
+    "cobalt",
+    "copy_cobalt_lib"
+  ],
+  "build_configs": [
+    "devel",
+    "qa",
+    "gold"
+  ],
+  "includes": [
+    {
+      "name": "arm-softfp",
+      "platform": "evergreen-arm-softfp"
+    }
+  ]
+}

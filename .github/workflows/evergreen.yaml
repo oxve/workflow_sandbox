@@ -1,4 +1,5 @@
-name: linux
+name: evergreen
+permissions: read-all
 
 on:
   pull_request:
@@ -21,47 +22,55 @@ on:
         default: false
 
 jobs:
-  # This is default Chromium build config
-  chromium_linux-x64:
+  # evergreen-x64 is Evergreen on linux.
+  evergreen-x64:
     uses: ./.github/workflows/main.yaml
     permissions:
       packages: write
       pull-requests: write
     with:
-      platform: chromium_linux
+      platform: evergreen-x64
+      nightly: ${{ github.event.inputs.nightly }}
+      run_api_leak_detector: true
+    secrets:
+      datadog_api_key: ${{ secrets.DD_API_KEY }}
+  evergreen-arm-hardfp-raspi:
+    uses: ./.github/workflows/main.yaml
+    permissions:
+      packages: write
+      pull-requests: write
+    with:
+      platform: evergreen-arm-hardfp-raspi
       nightly: ${{ github.event.inputs.nightly }}
     secrets:
       datadog_api_key: ${{ secrets.DD_API_KEY }}
-  # This is default Cobalt build config
-  linux:
+  evergreen-arm-hardfp-rdk:
     uses: ./.github/workflows/main.yaml
     permissions:
       packages: write
       pull-requests: write
     with:
-      platform: linux
+      platform: evergreen-arm-hardfp-rdk
       nightly: ${{ github.event.inputs.nightly }}
     secrets:
       datadog_api_key: ${{ secrets.DD_API_KEY }}
-  # This is cobalt on linux using modular build config
-  linux-modular:
+  evergreen-arm-softfp:
     uses: ./.github/workflows/main.yaml
     permissions:
       packages: write
       pull-requests: write
     with:
-      platform: linux-modular
+      platform: evergreen-arm-softfp
       nightly: ${{ github.event.inputs.nightly }}
     secrets:
       datadog_api_key: ${{ secrets.DD_API_KEY }}
-  # This is content_shell without starboard
-  linux-web-tests:
+  evergreen-arm64:
     uses: ./.github/workflows/main.yaml
     permissions:
       packages: write
       pull-requests: write
     with:
-      platform: linux-web-tests
+      platform: evergreen-arm64
       nightly: ${{ github.event.inputs.nightly }}
     secrets:
       datadog_api_key: ${{ secrets.DD_API_KEY }}
