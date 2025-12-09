@@ -434,6 +434,10 @@ jobs:
         shard: ${{ fromJson(needs.initialize.outputs.gtest_shards) }}
     container: ${{ needs.docker-unittest-image.outputs.docker_tag }}
     env:
+      TMPDIR: /__w/_temp
+      TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
+      TEST_RESULTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_results-${{ matrix.shard }}
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Restore CI Essentials
