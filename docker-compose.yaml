@@ -2,6 +2,12 @@ services:
   linux:
     image: ${DOCKER_COMPOSE_IMAGE:-linux-mock}
     build: cobalt/docker/linux
+  raspi:
+    image: ${DOCKER_COMPOSE_IMAGE:-raspi-mock}
+    build: cobalt/docker/linux
+  rdk:
+    image: ${DOCKER_COMPOSE_IMAGE:-rdk-mock}
+    build: cobalt/docker/linux
   unittest:
     image: ${DOCKER_COMPOSE_IMAGE:-unittest-mock}
     build: cobalt/docker/unittest
