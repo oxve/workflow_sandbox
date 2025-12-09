@@ -448,7 +448,7 @@ jobs:
         id: test-target-json
         run: echo 'test_targets_json=["cobalt:gn_all"]' >> $GITHUB_OUTPUT && echo "test_targets_count=1" >> $GITHUB_OUTPUT
       - name: Run On-Host Tests (Mock)
-        run: echo "Mocking on host tests" && mkdir -p results && cp results/fake_unittests_result.xml results/unittest_result.xml
+        run: exit 1
     outputs:
       test_targets_json: ${{ steps.test-target-json.outputs.test_targets_json }}
 
