@@ -41,7 +41,5 @@ jobs:
             exit 0
           fi
 
-          for job_id in $failed_job_ids; do
-            echo "Rerunning failed jobs under https://github.com/${REPO}/actions/runs/${WORKFLOW}"
-            gh run rerun --repo "${REPO}" "${WORKFLOW}" --failed
-          done
+          echo "Rerunning failed jobs under https://github.com/${REPO}/actions/runs/${WORKFLOW}"
+          gh run rerun --repo "${REPO}" "${WORKFLOW}" --failed
