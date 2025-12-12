@@ -33,7 +33,7 @@ jobs:
 
           echo "Fetching failed '_tests' jobs for workflow run ${WORKFLOW}"
 
-          # Fetch failed jobs ending with _tests
+          # Fetch failed jobs containing on_host_tests
           failed_job_ids=$(gh run view --repo "${REPO}" "${WORKFLOW}" --json jobs --jq '.jobs[] | select(.conclusion=="failure") | select(.name | contains("_tests")) | .databaseId')
 
           if [ -z "$failed_job_ids" ]; then
@@ -41,5 +41,6 @@ jobs:
             exit 0
           fi
 
+          # Rerun all failed jobs under the workflow all in one go. One by one throws an error.
           echo "Rerunning failed jobs under https://github.com/${REPO}/actions/runs/${WORKFLOW}"
           gh run rerun --repo "${REPO}" "${WORKFLOW}" --failed
