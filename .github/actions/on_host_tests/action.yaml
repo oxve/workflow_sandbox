@@ -24,11 +24,35 @@ runs:
         mkdir -p unit_test/
         cd unit_test/
         tar -I 'zstd -T0' -xf ../test_artifacts.tar.zstd
+    - name: Read Test Targets
+      id: read-targets
+      run: |
+        targets=$(cat unit_test/out/${{ matrix.platform }}_${{ matrix.config }}/test_targets.json | jq -cr '.executables')
+        echo "targets=${targets}" >> $GITHUB_OUTPUT
+      shell: bash
+    - name: Filter Test Targets
+      id: filter-targets
+      uses: ./.github/actions/filter_test_targets
+      with:
+        test_targets: ${{ steps.read-targets.outputs.targets }}
+        test_results_key: ${{ inputs.test_results_key }}
+        mode: host
+    - name: Restore Previous Results
+      if: github.run_attempt > 1
+      run: |
+        # Make results dir available (it is also defined in Run Tests, but we need it now)
+        results_dir="${GITHUB_WORKSPACE}/results"
+        mkdir -p ${results_dir}
+        if [ -d "previous_results" ]; then
+          cp -rn previous_results/* ${results_dir}/ || true
+        fi
+      shell: bash
     - name: Run Tests
       id: run-tests
       shell: bash
       env:
         XVFB_SERVER_ARGS: "-screen 0 1920x1080x24i +render +extension GLX -noreset"
+        FILTERED_TARGETS: ${{ steps.filter-targets.outputs.filtered_test_targets }}
       run: |
         set -x
         env
@@ -52,7 +76,7 @@ runs:
         failed_suites=""
         cd unit_test/
 
-        for test_binary_path in $(cat out/${{ matrix.platform }}_${{ matrix.config }}/test_targets.json | jq -cr '.executables | join(" ")'); do
+        for test_binary_path in $(echo "${FILTERED_TARGETS}" | jq -cr 'join(" ")'); do
           filename=$(basename "${test_binary_path}")
           test_binary="${filename%%.*}"
 

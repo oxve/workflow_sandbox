@@ -1,0 +1,48 @@
+name: Filter Test Targets
+description: Filters test targets based on previous run results.
+inputs:
+  test_targets:
+    description: "The list of test targets (JSON string)."
+    required: true
+  test_results_key:
+    description: "The artifact key for test results."
+    required: true
+  mode:
+    description: "The mode (device or host)."
+    required: true
+outputs:
+  filtered_test_targets:
+    description: "The filtered list of test targets."
+    value: ${{ steps.filter.outputs.filtered_test_targets }}uns:
+  using: "composite"
+  steps:
+    - name: Download Previous Results
+      if: github.run_attempt > 1
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.test_results_key }}
+        path: previous_results
+      continue-on-error: true
+
+    - name: Filter Targets
+      id: filter
+      shell: bash
+      run: |
+        if [[ "${GITHUB_RUN_ATTEMPT}" -le 1 ]]; then
+          echo "filtered_test_targets=${{ inputs.test_targets }}" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+
+        # Check if previous results directory exists (download might have failed)
+        if [[ ! -d "previous_results" ]]; then
+           echo "No previous results found. Retrying all targets."
+           echo "filtered_test_targets=${{ inputs.test_targets }}" >> $GITHUB_OUTPUT
+           exit 0
+        fi
+
+        filtered_targets=$(python3 ${GITHUB_WORKSPACE}/.github/scripts/filter_test_targets.py \
+          --targets '${{ inputs.test_targets }}' \
+          --results-dir previous_results \
+          --mode ${{ inputs.mode }})
+        
+        echo "filtered_test_targets=${filtered_targets}" >> $GITHUB_OUTPUT
