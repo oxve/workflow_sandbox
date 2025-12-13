@@ -40,7 +40,7 @@ outputs:
            exit 0
         fi
 
-        filtered_targets=$(python3 ${GITHUB_WORKSPACE}/.github/scripts/filter_test_targets.py \
+        filtered_targets=$(python3 ${GITHUB_WORKSPACE}/cobalt/tools/filter_test_targets.py \
           --targets '${{ inputs.test_targets }}' \
           --results-dir previous_results \
           --mode ${{ inputs.mode }})

@@ -3,7 +3,8 @@ import json
 import os
 import glob
 import sys
-import xml.etree.ElementTree as ET
+
+import junit_mini_parser
 
 def get_target_name(target, mode):
     if mode == 'device':
@@ -15,18 +16,6 @@ def get_target_name(target, mode):
         # "out/dir/target_binary" -> "target_binary"
         return os.path.splitext(os.path.basename(target))[0]
     return target
-
-def has_failed(xml_path):
-    try:
-        tree = ET.parse(xml_path)
-        root = tree.getroot()
-        # check number of failures and errors
-        failures = int(root.get('failures', 0))
-        errors = int(root.get('errors', 0))
-        return failures > 0 or errors > 0
-    except Exception as e:
-        print(f"Error parsing {xml_path}: {e}", file=sys.stderr)
-        return True # Treat parse error as failure
 
 def main():
     parser = argparse.ArgumentParser()
@@ -42,7 +31,7 @@ def main():
         sys.exit(1)
 
     filtered = []
-    
+
     # If results dir doesn't exist, it means download failed or no previous results.
     # We should re-run everything.
     if not os.path.exists(args.results_dir):
@@ -51,7 +40,7 @@ def main():
 
     for target in targets:
         name = get_target_name(target, args.mode)
-        
+
         xml_files = []
         if args.mode == 'device':
              # device XMLs are deep: dir/subdir/target_testoutput.xml
@@ -66,15 +55,12 @@ def main():
             print(f"Missing XML for {name}, adding to retry.", file=sys.stderr)
             filtered.append(target)
             continue
-        
-        failed = False
-        for xml in xml_files:
-            if has_failed(xml):
-                failed = True
-                print(f"Found failure in {xml} for {name}.", file=sys.stderr)
-                break
-        
-        if failed:
+
+        # Use parser to detect failures
+        failing_tests = junit_mini_parser.find_failing_tests(xml_files)
+
+        if failing_tests:
+            print(f"Found failures for {name}.", file=sys.stderr)
             filtered.append(target)
         else:
             print(f"{name} passed previously.", file=sys.stderr)
