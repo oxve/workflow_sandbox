@@ -532,7 +532,7 @@ jobs:
     outputs:
       test_targets_json: ${{ steps.test-target-json.outputs.test_targets_json }}
 
-web-tests:
+  web-tests:
     needs: [initialize, docker-webtest-image, build]
     if: needs.initialize.outputs.web_tests == 'true'
     permissions: {}
