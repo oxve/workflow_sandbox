@@ -348,7 +348,12 @@ jobs:
         run: echo "Mocking retry"
 
       - name: Build Cobalt (Mock)
-        run: echo "Mocking build" && mkdir -p out/${{ matrix.platform }}_${{ matrix.config }} && echo '["cobalt:gn_all"]' > out/${{ matrix.platform }}_${{ matrix.config }}/test_targets.json
+        run: |
+          echo "Mocking build"
+          mkdir -p out/${{ matrix.platform }}_${{ matrix.config }}
+          targets=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ matrix.platform }}.json | jq -cr ".targets")
+          # Create JSON object with test_targets key
+          echo "{\"test_targets\": $targets}" > out/${{ matrix.platform }}_${{ matrix.config }}/test_targets.json
 
       - name: Release Package (Mock)
         run: echo "Mocking package"
@@ -382,7 +387,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Restore CI Essentials
-        uses: actions/download-artifact@v4
+        run: |
+          test_targets_json=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ matrix.platform }}.json | jq -cr ".targets")
+          echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
+          echo "test_targets_count=$(echo "${test_targets_json}" | jq -cr "length")" >> $GITHUB_OUTPUT
         with:
           name: ci-essentials-${{ inputs.platform }}
       - name: Parse Test Target JSON (Mock)
@@ -438,7 +446,10 @@ jobs:
       TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
       TEST_RESULTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_results-${{ matrix.shard }}
     steps:
-      - name: Checkout
+        run: |
+          test_targets_json=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ matrix.platform }}.json | jq -cr ".targets")
+          echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
+          echo "test_targets_count=$(echo "${test_targets_json}" | jq -cr "length")" >> $GITHUB_OUTPUT
         uses: actions/checkout@v4
       - name: Restore CI Essentials
         uses: actions/download-artifact@v4
