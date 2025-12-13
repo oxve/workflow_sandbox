@@ -394,7 +394,49 @@ jobs:
         id: test-target-json
         run: echo 'test_targets_json=["cobalt:gn_all"]' >> $GITHUB_OUTPUT && echo "test_targets_count=1" >> $GITHUB_OUTPUT
       - name: Run On-Device Tests (Mock)
-        run: echo "Mocking on device tests" && mkdir -p results && cp results/fake_unittests_result.xml results/unittest_result.xml
+        run: |
+          echo "Mocking on device tests"
+          mkdir -p results
+
+          if [ "${{ github.run_attempt }}" == "1" ]; then
+            echo "Attempt 1 - Simulating Failures"
+
+            # 1. PASS: base:base_perftests
+            cat <<EOF > results/base_perftests_testoutput.xml
+            <testsuites failures="0" errors="0">
+              <testsuite name="base_perftests" failures="0" tests="1">
+                <testcase name="PassTest" time="0.001"/>
+              </testsuite>
+            </testsuites>
+            EOF
+
+            # 2. FAIL: base:base_unittests
+            cat <<EOF > results/base_unittests_testoutput.xml
+            <testsuites failures="1" errors="0">
+              <testsuite name="base_unittests" failures="1" tests="1">
+                <testcase name="FailTest" time="0.001">
+                  <failure message="Artificial Failure"/>
+                </testcase>
+              </testsuite>
+            </testsuites>
+            EOF
+
+            # 3. MISSING: cobalt:cobalt_unittests (Do nothing)
+
+            exit 1
+          else
+            echo "Attempt > 1 - Passing All"
+            # Pass all
+            for target in base_perftests base_unittests cobalt_unittests; do
+                cat <<EOF > results/${target}_testoutput.xml
+                <testsuites failures="0" errors="0">
+                  <testsuite name="${target}" failures="0" tests="1">
+                    <testcase name="PassTest" time="0.001"/>
+                  </testsuite>
+                </testsuites>
+                EOF
+            done
+          fi
     outputs:
       test_targets_json: ${{ steps.test-target-json.outputs.test_targets_json }}
 
