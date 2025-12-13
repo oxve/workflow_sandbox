@@ -351,10 +351,7 @@ jobs:
         run: |
           echo "Mocking build"
           mkdir -p out/${{ matrix.platform }}_${{ matrix.config }}
-          targets=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ matrix.platform }}.json | jq -cr ".targets")
-          # Create JSON object with test_targets key
-          echo "{\"test_targets\": $targets}" > out/${{ matrix.platform }}_${{ matrix.config }}/test_targets.json
-
+          cp ${GITHUB_WORKSPACE}/cobalt/build/testing/targets/${{ matrix.platform }}/test_targets.json out/${{ matrix.platform }}_${{ matrix.config }}/test_targets.json
       - name: Release Package (Mock)
         run: echo "Mocking package"
       - name: Upload Test Artifacts (Mock)
@@ -390,10 +387,10 @@ jobs:
         run: |
           test_targets_json=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ matrix.platform }}.json | jq -cr ".targets")
           echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
+        run: |
+          test_targets_json=$(cat ${GITHUB_WORKSPACE}/cobalt/build/testing/targets/${{ matrix.platform }}/test_targets.json | jq -cr ".test_targets")
+          echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
           echo "test_targets_count=$(echo "${test_targets_json}" | jq -cr "length")" >> $GITHUB_OUTPUT
-        with:
-          name: ci-essentials-${{ inputs.platform }}
-      - name: Parse Test Target JSON (Mock)
         id: test-target-json
         run: echo 'test_targets_json=["cobalt:gn_all"]' >> $GITHUB_OUTPUT && echo "test_targets_count=1" >> $GITHUB_OUTPUT
       - name: Run On-Device Tests (Mock)
@@ -449,10 +446,10 @@ jobs:
         run: |
           test_targets_json=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ matrix.platform }}.json | jq -cr ".targets")
           echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
+        run: |
+          test_targets_json=$(cat ${GITHUB_WORKSPACE}/cobalt/build/testing/targets/${{ matrix.platform }}/test_targets.json | jq -cr ".test_targets")
+          echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
           echo "test_targets_count=$(echo "${test_targets_json}" | jq -cr "length")" >> $GITHUB_OUTPUT
-        uses: actions/checkout@v4
-      - name: Restore CI Essentials
-        uses: actions/download-artifact@v4
         with:
           name: ci-essentials-${{ inputs.platform }}
       - name: Parse Test Target JSON (Mock)

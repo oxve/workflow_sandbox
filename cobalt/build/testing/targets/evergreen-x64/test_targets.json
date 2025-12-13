@@ -1,0 +1,23 @@
+{
+  "TODO(b/382508397)": "Remove this when list is dynamically generated.",
+  "disabled": {
+    "base:base_unittests_loader": "b/418842688 - Compilation failure",
+    "net:net_unittests_loader": "b/418842688 - Compilation failure",
+    "third_party/blink/renderer/platform:blink_platform_unittests_loader": "b/418842688 - Compilation failure",
+    "third_party/blink/renderer/controller:blink_unittests_loader": "b/418842688 - Compilation failure",
+    "third_party/perfetto:perfetto_unittests_loader": "b/418842688 - Compilation failure",
+    "third_party/blink/renderer/platform/heap:blink_heap_perftests_loader": "b/418842688 - Execution failure, crashes horribly",
+    "skia:skia_unittests_loader": "b/453909269 - Fails remotely",
+    "third_party/blink/renderer/platform:blink_platform_perftests_loader": "b/453909269 - Fails remotely"
+  },
+  "test_targets": [
+    "base:base_perftests_loader",
+    "cc:cc_perftests_loader",
+    "cc:cc_unittests_loader"
+  ],
+  "executables": [
+    "out/evergreen-x64_devel/base_perftests_loader.py",
+    "out/evergreen-x64_devel/blink_heap_unittests_loader.py",
+    "out/evergreen-x64_devel/boringssl_crypto_tests_loader.py"
+  ]
+}
