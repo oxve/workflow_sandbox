@@ -513,37 +513,26 @@ jobs:
       TEST_ARTIFACTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_artifacts
       TEST_RESULTS_KEY: ${{ matrix.platform }}_${{ matrix.name }}_test_results-${{ matrix.shard }}
     steps:
-        run: |
-          test_targets_json=$(cat ${GITHUB_WORKSPACE}/.github/config/${{ matrix.platform }}.json | jq -cr ".targets")
-          echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
-        run: |
-          test_targets_json=$(cat ${GITHUB_WORKSPACE}/cobalt/build/testing/targets/${{ matrix.platform }}/test_targets.json | jq -cr ".test_targets")
-          if [ "${{ github.run_attempt }}" -gt "1" ]; then
-             echo "Filtering targets..."
-             # Extract previous results
-             mkdir -p previous_results_extracted
-             for zip in previous_results/*.zip; do
-               unzip -o "$zip" -d previous_results_extracted
-             done
-
-             filtered_targets=$(python3 cobalt/tools/filter_test_targets.py                --targets "${test_targets_json}"                --results-dir previous_results_extracted                --mode device)
-             echo "Filtered Targets: $filtered_targets"
-             test_targets_json=$filtered_targets
-          fi
-
-          echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
-          echo "test_targets_count=$(echo "${test_targets_json}" | jq -cr "length")" >> $GITHUB_OUTPUT
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Restore CI Essentials
+        uses: actions/download-artifact@v4
         with:
           name: ci-essentials-${{ inputs.platform }}
+
       - name: Parse Test Target JSON (Mock)
         id: test-target-json
-        run: echo 'test_targets_json=["cobalt:gn_all"]' >> $GITHUB_OUTPUT && echo "test_targets_count=1" >> $GITHUB_OUTPUT
+        run: |
+          test_targets_json=$(cat ${GITHUB_WORKSPACE}/cobalt/build/testing/targets/${{ matrix.platform }}/test_targets.json | jq -cr ".test_targets")
+          echo "test_targets_json=${test_targets_json}" >> $GITHUB_OUTPUT
+          echo "test_targets_count=$(echo "${test_targets_json}" | jq -cr "length")" >> $GITHUB_OUTPUT
+
       - name: Run On-Host Tests (Mock)
         run: exit 1
     outputs:
       test_targets_json: ${{ steps.test-target-json.outputs.test_targets_json }}
 
-  web-tests:
+web-tests:
     needs: [initialize, docker-webtest-image, build]
     if: needs.initialize.outputs.web_tests == 'true'
     permissions: {}
