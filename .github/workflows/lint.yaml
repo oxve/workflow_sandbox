@@ -1,11 +1,11 @@
 name: lint
 
 on:
-  pull_request:
-    types: [opened, edited, reopened, synchronize]
-    branches:
-      - main
-      - feature/*
+  # pull_request:
+  #   types: [opened, edited, reopened, synchronize]
+  #   branches:
+  #     - main
+  #     - feature/*
   push:
     branches:
       - main

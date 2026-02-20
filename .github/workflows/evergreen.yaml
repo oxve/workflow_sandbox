@@ -2,17 +2,17 @@ name: evergreen
 permissions: read-all
 
 on:
-  pull_request:
-    types: [opened, reopened, synchronize, labeled]
-    branches:
-      - main
-      - experimental/*
-      - feature/*
-  push:
-    branches:
-      - main
-      - experimental/*
-      - feature/*
+  # pull_request:
+  #   types: [opened, reopened, synchronize, labeled]
+  #   branches:
+  #     - main
+  #     - experimental/*
+  #     - feature/*
+  # push:
+  #   branches:
+  #     - main
+  #     - experimental/*
+  #     - feature/*
   workflow_dispatch:
     inputs:
       nightly:
