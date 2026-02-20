@@ -1,0 +1,3 @@
+'cp-27.lts.1+':
+  - changed-files:
+    - any-glob-to-any-file: '**'
