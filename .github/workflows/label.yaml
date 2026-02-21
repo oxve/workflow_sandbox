@@ -97,23 +97,14 @@ jobs:
 
             # Check if all conflicts are resolved
             if [ -z "$(git diff --name-only --diff-filter=U)" ]; then
+              git add .
               git cherry-pick --continue --no-edit
               RES=0
             else
-              # Still have conflicts, add them and continue as before (draft PR)
+              # Still have conflicts, add them and commit with conflicts (for draft PR)
               git add .
-<<<<<<< Updated upstream
-              git cherry-pick --continue --no-edit
-=======
               git commit -m "Cherry pick PR #${PR_NUMBER} with conflicts" --no-verify
-              python3 .github/scripts/gemini_resolve_conflicts.py $CONFLICTS
-              git add .
-              if [ -z "$(git diff --name-only --diff-filter=U)" ]; then
-                git commit -m "Resolve cherry-pick conflicts for PR #${PR_NUMBER} using Gemini"
-              else
-                git commit -m "Partially resolved conflicts for PR #${PR_NUMBER} using Gemini" --no-verify
-              fi
->>>>>>> Stashed changes
+              RES=1
             fi
           fi
           exit ${RES}
