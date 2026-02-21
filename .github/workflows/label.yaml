@@ -48,6 +48,8 @@ jobs:
   cherry_pick:
     runs-on: ubuntu-latest
     permissions:
+      contents: write
+      pull-requests: write
       issues: write
     needs: prepare_branch_list
     if: needs.prepare_branch_list.outputs.target_branch != '[]'
@@ -55,7 +57,7 @@ jobs:
       matrix:
         target_branch: ${{ fromJson(needs.prepare_branch_list.outputs.target_branch) }}
     env:
-      ACCESS_TOKEN: ${{ secrets.CHERRY_PICK_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       REPOSITORY: ${{ github.repository }}
       GITHUB_REF: ${{ github.ref }}
       MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
@@ -66,8 +68,15 @@ jobs:
         timeout-minutes: 30
         with:
           ref: ${{ matrix.target_branch }}
-          fetch-depth: 1
-          persist-credentials: false
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Checkout scripts from main
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+          path: scripts_main
+          ref: main
           filter: blob:none
 
       - name: Setup Git
@@ -81,9 +90,11 @@ jobs:
         env:
           TARGET_BRANCH: ${{ matrix.target_branch }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -x
           git fetch origin ${TARGET_BRANCH}
+          git checkout -b ${CHERRY_PICK_BRANCH} origin/${TARGET_BRANCH}
 
           set +e
           # Select the first parent as the mainline tree. This is necessary if
@@ -93,12 +104,13 @@ jobs:
           set -e
           if [ ${RES} -ne 0 ]; then
             # If the cherry pick failed due to a merge conflict we can try to resolve it using Gemini.
-            python3 .github/scripts/gemini_resolve_conflicts.py
+            # Use the script from main that we checked out
+            python3 scripts_main/.github/scripts/gemini_resolve_conflicts.py
 
             # Check if all conflicts are resolved
             if [ -z "$(git diff --name-only --diff-filter=U)" ]; then
               git add .
-              git cherry-pick --continue --no-edit
+              git commit -m "Resolve cherry-pick conflicts for PR #${PR_NUMBER} using Gemini"
               RES=0
             else
               # Still have conflicts, add them and commit with conflicts (for draft PR)
