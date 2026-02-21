@@ -32,7 +32,7 @@ jobs:
         fi
 
         # This list must contain all cherry-pick destinations as file is used for all branches.
-        branches=("main" "26.eap" "26.android" "25.lts.1+" "24.lts.1+" "23.lts.1+" "22.lts.1+" "21.lts.1+" "20.lts.1+" "19.lts.1+" "rc_11" "COBALT_9")
+        branches=("main" "26.eap" "26.android" "25.lts.1+" "24.lts.1+" "23.lts.1+" "22.lts.1+" "21.lts.1+" "20.lts.1+" "19.lts.1+" "rc_11" "COBALT_9" "test-branch")
         filtered_branches=()
         for branch in "${branches[@]}"; do
           if [[ $branch == $BASE_REF ]]; then
@@ -102,7 +102,18 @@ jobs:
             else
               # Still have conflicts, add them and continue as before (draft PR)
               git add .
+<<<<<<< Updated upstream
               git cherry-pick --continue --no-edit
+=======
+              git commit -m "Cherry pick PR #${PR_NUMBER} with conflicts" --no-verify
+              python3 .github/scripts/gemini_resolve_conflicts.py $CONFLICTS
+              git add .
+              if [ -z "$(git diff --name-only --diff-filter=U)" ]; then
+                git commit -m "Resolve cherry-pick conflicts for PR #${PR_NUMBER} using Gemini"
+              else
+                git commit -m "Partially resolved conflicts for PR #${PR_NUMBER} using Gemini" --no-verify
+              fi
+>>>>>>> Stashed changes
             fi
           fi
           exit ${RES}

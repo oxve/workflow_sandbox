@@ -61,14 +61,7 @@ runs:
       - name: Run gclient sync
         if: inputs.run_sync == 'true'
         run: |
-          cd cobalt
-          gclient sync \
-            --verbose \
-            --shallow \
-            --no-history \
-            --nohooks \
-            --force \
-            --revision ${{ github.sha }}
+          echo "Skipping gclient sync in sandbox environment"
         shell: bash
 
       - name: Run gclient runhooks
@@ -76,6 +69,5 @@ runs:
         env:
           CIPD_CACHE_DIR: "/runner-cache/cobalt/.cipd_cache"
         run: |
-          cd cobalt
-          gclient runhooks --verbose
+          echo "Skipping gclient runhooks in sandbox environment"
         shell: bash

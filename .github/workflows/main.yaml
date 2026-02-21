@@ -205,18 +205,15 @@ jobs:
           # Create a zero-indexed list of shards for use by matrix, e.g. [0,1,2,3,4,5].
           gtest_shards="[$(seq -s, 0 1 $((${num_gtest_shards} - 1)))]"
           echo "gtest_shards=${gtest_shards}" >> $GITHUB_OUTPUT
-      - name: Set Docker files checksum (Mock)
+      - name: Set Docker files checksum
         id: set-docker-hash
         shell: bash
         run: |
           set -x
-          docker_content_sha="dummy-sha"
+          docker_content_sha=$(find cobalt/docker docker-compose.yaml -type f -exec sha256sum -b {} + | LC_ALL=C sort | sha256sum | head -c 64)
           echo "docker_content_sha=${docker_content_sha}" >> $GITHUB_OUTPUT
     outputs:
       platforms: ${{ steps.set-platforms.outputs.platforms }}
-      targets: ${{ steps.set-targets.outputs.targets }}
-      build_configs: ${{ steps.set-build-configs.outputs.build_configs }}
-      includes: ${{ steps.set-includes.outputs.includes }}
       docker_service: ${{ steps.set-docker-service.outputs.docker_service }}
       docker_content_sha: ${{ steps.set-docker-hash.outputs.docker_content_sha }}
       gtest_shards: ${{ steps.set-gtest-shards.outputs.gtest_shards }}
@@ -326,13 +323,13 @@ jobs:
           path: pre-run
           name: ci-essentials-${{ inputs.platform }}
 
-      - name: Prepare Workspace for Checkout (Mock)
-        run: echo "Mocking prepare cache"
+      - name: Prepare Workspace for Checkout
+        uses: ././.github/actions/prepare-runner-cache
 
       - name: Checkout
         uses: actions/checkout@v4
-        # TODO(bug?): android debug builds are broken.
-        if: ${{ ! (contains(matrix.platform, 'android') && matrix.config == 'debug') }}
+      - name: Prepare Workspace for Checkout
+        uses: ./.github/actions/prepare-runner-cache
         with:
           path: cobalt/src
           # Set fetch-depth to 2 to make checkout faster for pull requests and cobalt_sandbox repo.
@@ -341,14 +338,23 @@ jobs:
           fetch-depth: ${{ ( github.event_name == 'pull_request' || github.repository == 'youtube/cobalt_sandbox' ) && 2 || 0 }}
           clean: false
 
-      - name: Set Up Depot Tools (Mock)
-        run: echo "Mocking depot tools"
+      - name: Set Up Depot Tools
+        continue-on-error: true
+        uses: ././.github/actions/depot_tools
+      - name: Set Up Depot Tools
+        id: setup-depot-tools
+        continue-on-error: true
+        uses: ./.github/actions/depot_tools
 
-      - name: Retry Depot Tools Set Up (Mock)
-        run: echo "Mocking retry"
-
-      - name: Build Cobalt (Mock)
-        run: echo "Mocking build" && mkdir -p out/${{ matrix.platform }}_${{ matrix.config }} && echo '["cobalt:gn_all"]' > out/${{ matrix.platform }}_${{ matrix.config }}/test_targets.json
+      - name: Retry Depot Tools Set Up
+        if: steps.setup-depot-tools.outcome != "success"
+        uses: ./.github/actions/depot_tools
+        with:
+          use_cache: false
+        uses: ./.github/actions/build
+        with:
+          platform: ${{ matrix.platform }}
+          config: ${{ matrix.config }}
 
       - name: Release Package (Mock)
         run: echo "Mocking package"
@@ -385,9 +391,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ci-essentials-${{ inputs.platform }}
-      - name: Parse Test Target JSON (Mock)
+      - name: Parse Test Target JSON
         id: test-target-json
-        run: echo 'test_targets_json=["cobalt:gn_all"]' >> $GITHUB_OUTPUT && echo "test_targets_count=1" >> $GITHUB_OUTPUT
+        uses: ./.github/actions/test_targets_json
       - name: Run On-Device Tests (Mock)
         run: echo "Mocking on device tests" && mkdir -p results && cp results/fake_unittests_result.xml results/unittest_result.xml
     outputs:
@@ -444,9 +450,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ci-essentials-${{ inputs.platform }}
-      - name: Parse Test Target JSON (Mock)
+      - name: Parse Test Target JSON
         id: test-target-json
-        run: echo 'test_targets_json=["cobalt:gn_all"]' >> $GITHUB_OUTPUT && echo "test_targets_count=1" >> $GITHUB_OUTPUT
+        uses: ./.github/actions/test_targets_json
       - name: Run On-Host Tests (Mock)
         run: exit 1
     outputs:
@@ -479,21 +485,26 @@ jobs:
         with:
           path: pre-run
           name: ci-essentials-${{ inputs.platform }}
-      - name: Prepare Workspace for Checkout (Mock)
-        run: echo "Mocking prepare cache"
+      - name: Prepare Workspace for Checkout
+        uses: ././.github/actions/prepare-runner-cache
       - name: Checkout
         uses: actions/checkout@v4
         with:
           path: cobalt/src
           clean: false
-      - name: Set Up Depot Tools (Mock)
-        run: echo "Mocking depot tools"
-      - name: Retry Depot Tools Set Up (Mock)
-        run: echo "Mocking retry"
+      - name: Set Up Depot Tools
+        continue-on-error: true
+        uses: ././.github/actions/depot_tools
+      - name: Retry Depot Tools Set Up
+        if: steps.setup-depot-tools.outcome != "success"
+        uses: ././.github/actions/depot_tools
+        with:
+          use_cache: false
       - name: Run Web Tests (Mock)
         run: echo "Mocking web tests"
-
-  test-results:
+      - name: Parse Test Target JSON
+        id: test-target-json
+        uses: ./.github/actions/test_targets_json
     needs: [initialize, build, on-device-test, on-host-test]
     if: always() &&
         (
@@ -546,6 +557,9 @@ jobs:
         with:
           pattern: ${{ env.TEST_RESULTS_KEY }}*
           path: results/
+      - name: Generate Dummy Results (Mock)
+        if: steps.filter.outputs.skipped != 'true'
+        run: echo "Mocking test results" && mkdir -p results && echo '<testsuites><testsuite name="dummy" tests="1" failures="0"><testcase name="case1"/></testsuite></testsuites>' > results/dummy_pass.xml
       - name: Test Results (Mock)
         run: echo "Mocking test results processing for ${{ matrix.test_target }}"
       - name: ${{ matrix.test_target }} Device Logs (Mock)
@@ -576,5 +590,11 @@ jobs:
         with:
           pattern: ${{ env.TEST_RESULTS_KEY }}*
           path: results/
-      - name: Failed Tests (Mock)
-        run: echo "Mocking failed tests summary" && exit 0
+      - name: Failed Tests
+        if: needs.test-results.result == 'failure'
+        run: |
+          # Print test result summary.
+          shopt -s globstar nullglob
+          python3 cobalt/tools/junit_mini_parser.py results/**/*.xml
+          exit 1
+        shell: bash

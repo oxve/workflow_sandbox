@@ -54,9 +54,8 @@ Incoming changes:
 
         cmd = [
             'curl', '-s', '-X', 'POST',
-            f'https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent',
+            f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_api_key}',
             '-H', 'Content-Type: application/json',
-            '-H', 'x-goog-api-key: ${GEMINI_API_KEY}'
             '-d', json.dumps(payload)
         ]
 
@@ -82,9 +81,9 @@ Incoming changes:
         f.write(new_content)
 
 def main():
-    gemini_api_key = os.environ.get('GEMINI_SECRET')
+    gemini_api_key = os.environ.get('GEMINI_API_KEY')
     if not gemini_api_key:
-        print("GEMINI_SECRET environment variable not set.")
+        print("GEMINI_API_KEY environment variable not set.")
         sys.exit(1)
 
     # Get conflicting files
