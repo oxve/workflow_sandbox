@@ -54,12 +54,6 @@ jobs:
     strategy:
       matrix:
         target_branch: ${{ fromJson(needs.prepare_branch_list.outputs.target_branch) }}
-    env:
-      ACCESS_TOKEN: ${{ secrets.CHERRY_PICK_TOKEN }}
-      REPOSITORY: ${{ github.repository }}
-      GITHUB_REF: ${{ github.ref }}
-      MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
-      CHERRY_PICK_BRANCH: cherry-pick-${{ matrix.target_branch }}-${{ github.event.pull_request.number }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -79,12 +73,13 @@ jobs:
         id: cherry-pick
         continue-on-error: true
         env:
-          TARGET_BRANCH: ${{ matrix.target_branch }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_ACTIONS_API_KEY }}
+          MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          TARGET_BRANCH: ${{ matrix.target_branch }}
         run: |
           set -x
           git fetch origin ${TARGET_BRANCH}
-
           set +e
           # Select the first parent as the mainline tree. This is necessary if
           # the commit has multiple parents as the cherry-pick will fail otherwise.
@@ -92,17 +87,17 @@ jobs:
           RES=$?
           set -e
           if [ ${RES} -ne 0 ]; then
-            # If the cherry pick failed due to a merge conflict we can try to resolve it using Gemini.
-            python3 .github/scripts/gemini_resolve_conflicts.py
-
-            # Check if all conflicts are resolved
-            if [ -z "$(git diff --name-only --diff-filter=U)" ]; then
-              git cherry-pick --continue --no-edit
-              RES=0
-            else
-              # Still have conflicts, add them and continue as before (draft PR)
+            CONFLICTS=$(git diff --name-only --diff-filter=U)
+            if [ -n "$CONFLICTS" ]; then
               git add .
-              git cherry-pick --continue --no-edit
+              git commit -m "Cherry pick PR #${PR_NUMBER} with conflicts" --no-verify
+              python3 .github/scripts/gemini_conflict_resolver.py $CONFLICTS
+              git add .
+              if [ -z "$(git diff --name-only --diff-filter=U)" ]; then
+                git commit -m "Resolve cherry-pick conflicts for PR #${PR_NUMBER} using Gemini"
+              else
+                git commit -m "Partially resolved conflicts for PR #${PR_NUMBER} using Gemini" --no-verify
+              fi
             fi
           fi
           exit ${RES}
@@ -115,7 +110,7 @@ jobs:
           token: ${{ secrets.CHERRY_PICK_TOKEN }}
           draft: ${{ steps.cherry-pick.outcome == 'failure' }}
           base: ${{ matrix.target_branch }}
-          branch: ${{ env.CHERRY_PICK_BRANCH }}
+          branch: cherry-pick-${{ matrix.target_branch }}-${{ github.event.pull_request.number }}
           committer: GitHub Release Automation <github@google.com>
           reviewers: |
             ${{ github.event.pull_request.user.login }}
@@ -128,23 +123,31 @@ jobs:
 
       - name: Comment on failure
         uses: actions/github-script@v8
+        env:
+          REPOSITORY: ${{ github.repository }}
+          NEW_PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
+          CHERRY_PICK_OUTCOME: ${{ steps.cherry-pick.outcome }}
         with:
           github-token: ${{ secrets.CHERRY_PICK_TOKEN }}
           script: |
-            if ('${{ steps.create-pr.outputs.pull-request-number }}' == '') {
+            const { NEW_PR_NUMBER, CHERRY_PICK_OUTCOME, REPOSITORY, CHERRY_PICK_BRANCH } = process.env;
+            if (NEW_PR_NUMBER == '') {
               // Comment on the originating PR if creating a cherry pick PR failed.
               github.rest.issues.createComment({
                 issue_number: context.payload.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: '> [!CAUTION]\n> Creating the cherry pick PR failed! Check the log at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} for details.'
+                body: `> [!CAUTION]\n> Creating the cherry pick PR failed! Check the log at ${context.serverUrl}/${REPOSITORY}/actions/runs/${context.runId} for details.`
               });
-            } else if ('${{ steps.cherry-pick.outcome }}' == 'failure') {
+            } else if (CHERRY_PICK_OUTCOME == 'failure') {
               // Comment on the new PR if the cherry pick failed.
+              const cautionHeader = '[!CAUTION]\n> There were merge conflicts while cherry picking! Gemini has attempted to fix the conflicts so please review carefully before merging.';
+              const checkoutInstructions = 'To checkout the branch, run:\n```\ngit fetch origin ${CHERRY_PICK_BRANCH}; git checkout FETCH_HEAD\n```';
+              const logFooter = 'Check the log at ${context.serverUrl}/${REPOSITORY}/actions/runs/${context.runId} for details.';
               github.rest.issues.createComment({
-                issue_number: '${{ steps.create-pr.outputs.pull-request-number }}',
+                issue_number: parseInt(NEW_PR_NUMBER),
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: '![MERGE CONFLICT CAT](https://services.google.com/fh/files/misc/merge_conflict_cat.png)\n> [!CAUTION]\n> There were merge conflicts while cherry picking! Check out [${{ env.CHERRY_PICK_BRANCH }}](${{ github.repository }}/tree/${{ env.CHERRY_PICK_BRANCH }}) and fix the conflicts before proceeding. Check the log at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} for details.'
+                body: `![MERGE CONFLICT CAT](https://services.google.com/fh/files/misc/merge_conflict_cat.png)\n> ${cautionHeader}n\${checkoutInstructions}\n\n{logFooter}`
               });
             }
