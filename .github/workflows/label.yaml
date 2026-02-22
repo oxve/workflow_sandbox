@@ -6,6 +6,9 @@ on:
       - labeled
       - closed
 
+permissions:
+  contents: read
+
 jobs:
   prepare_branch_list:
     runs-on: ubuntu-latest
@@ -68,15 +71,8 @@ jobs:
         timeout-minutes: 30
         with:
           ref: ${{ matrix.target_branch }}
-          fetch-depth: 0
-          persist-credentials: true
-
-      - name: Checkout scripts from main
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: .github/scripts
-          path: scripts_main
-          ref: main
+          fetch-depth: 1
+          persist-credentials: false
           filter: blob:none
 
       - name: Setup Git
@@ -90,7 +86,6 @@ jobs:
         env:
           TARGET_BRANCH: ${{ matrix.target_branch }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -x
           git fetch origin ${TARGET_BRANCH}

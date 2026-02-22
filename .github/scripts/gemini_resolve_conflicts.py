@@ -64,6 +64,7 @@ Incoming changes:
             response = json.loads(result.stdout)
             if 'candidates' not in response or not response['candidates']:
                 print(f"Warning: No candidates in Gemini response for {file_path}")
+                print(f"Full response: {json.dumps(response, indent=2)}")
                 return match.group(0)
 
             resolved_text = response['candidates'][0]['content']['parts'][0]['text'].strip()
