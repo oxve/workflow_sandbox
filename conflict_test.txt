@@ -1,2 +1,1 @@
-Base content on main
-New content from feature branch
+Baseline content for conflict testing
