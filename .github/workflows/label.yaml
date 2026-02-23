@@ -78,7 +78,7 @@ jobs:
         id: cherry-pick
         continue-on-error: true
         env:
-          GEMINI_ACTIONS_API_KEY: ${{ secrets.GEMINI_ACTIONS_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_ACTIONS_API_KEY }}
           MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           TARGET_BRANCH: ${{ matrix.target_branch }}
