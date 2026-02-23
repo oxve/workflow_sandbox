@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Target Version: 26.android
+=======
+PR Version: Trigger Conflict
+>>>>>>> cf89e13 (Merge pull request #7 from oxve/feature/conflict-trigger)
