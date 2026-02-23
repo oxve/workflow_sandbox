@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Content modified on 26.android branch
+=======
+Content modified on feature branch to trigger conflict
+>>>>>>> 11eaafb (Merge pull request #5 from oxve/feature/trigger-conflict)
