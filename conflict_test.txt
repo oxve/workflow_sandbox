@@ -1,1 +1,1 @@
-Baseline content for conflict testing
+Content modified on feature branch to trigger conflict
