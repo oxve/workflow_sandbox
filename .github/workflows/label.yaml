@@ -132,6 +132,7 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           NEW_PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
           CHERRY_PICK_OUTCOME: ${{ steps.cherry-pick.outcome }}
+          CHERRY_PICK_BRANCH: cherry-pick-${{ matrix.target_branch }}-${{ github.event.pull_request.number }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -153,6 +154,6 @@ jobs:
                 issue_number: parseInt(NEW_PR_NUMBER),
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                body: `![MERGE CONFLICT CAT](https://services.google.com/fh/files/misc/merge_conflict_cat.png)\n> ${cautionHeader}n\${checkoutInstructions}\n\n{logFooter}`
+                body: `![MERGE CONFLICT CAT](https://services.google.com/fh/files/misc/merge_conflict_cat.png)\n> ${cautionHeader}\n\n${checkoutInstructions}\n\n${logFooter}`
               });
             }
