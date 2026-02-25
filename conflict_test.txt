@@ -1,5 +1,2 @@
-<<<<<<< HEAD
 Target Version: 26.android
-=======
 PR Version: Conflict Test Gemini
->>>>>>> da06341 (Merge pull request #9 from oxve/feature/gemini-conflict-test)
