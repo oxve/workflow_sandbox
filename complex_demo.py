@@ -1,18 +1,21 @@
-def process_data(data):
+def process_data(data, enable_tracing=True, scale_factor=2):
     """
-    Base function to process incoming data.
-    These lines will be modified on both branches.
+    Modern version of process data for the main branch.
+    Supports comprehensive tracing and dynamic scaling.
     """
-    print("Starting process data")
+    if enable_tracing:
+        print("TRACE: Starting process data on main branch")
 
     results = []
 
-    # Block 1
-    for item in data:
-        if isinstance(item, int):
-            results.append(item * 2)
+    # Block 1 - Refactored type-safe processing
+    results = [
+        item * scale_factor for item in data
+        if isinstance(item, int) and item % 2 == 0 # Only process even integers
+    ]
 
-    print("Middle of process data")
+    if enable_tracing:
+        print(f"TRACE: Middle of process data, found {len(results)} valid items")
 
     # Block 2
     for item in results:
