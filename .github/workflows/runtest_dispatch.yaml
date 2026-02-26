@@ -1,0 +1,32 @@
+name: Rerun checks if 'runtest' Label is present
+on:
+  pull_request_run:
+    types: [labeled]
+
+permissions: read-all
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      pull-requests: write
+    steps:
+      - name: Handle 'runtest' label
+        # Use array contains to check if runtest is on PR since it's removed at the end.
+        if: 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -ex
+          RUN_IDS=$(gh run list --pr "${PR_NUMBER}" --json databaseId -q '.[].databaseId')
+          for RUN_ID in $RUN_IDS; do
+            # Cancel current running jobs.
+            if [[ "$(gh run view "${RUN_ID}" --json status -q '.status')" == "in_progress" ]]; then
+              gh run cancel "${RUN_ID}" || echo "Failed to cancel ${RUN_ID}."
+            fi
+            # Rerun jobs.
+            gh run rerun "${RUN_ID}" || echo "Failed to rerun ${RUN_ID}."
+          done
+          gh pr edit "${PR_NUMBER}" --remove-label "runtest" --remove-label "rerun" || true
