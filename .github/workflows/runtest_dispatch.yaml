@@ -28,8 +28,8 @@ jobs:
 
           # Iterate over run IDs and their paths to determine which ones use main.yaml
           gh api "/repos/${GH_REPO}/actions/runs?head_sha=${PR_SHA}" -q '.workflow_runs[] | "\(.id) \(.path)"' | while read RUN_ID RUN_PATH; do
-            # Ensure the referenced workflow uses main.yaml dynamically
-            if [[ -f "$RUN_PATH" ]] && grep -qE 'uses:[[:space:]]+(\./)?\.github/workflows/main\.yaml' "$RUN_PATH"; then
+            # Ensure the referenced workflow uses main.yaml dynamically.
+            if [[ -f "${RUN_PATH}" ]] && grep -qE 'uses:[[:space:]]+(\./)?\.github/workflows/main\.yaml' "${RUN_PATH}"; then
               # Cancel current running jobs.
               if [[ "$(gh run view "${RUN_ID}" --json status -q '.status')" == "in_progress" ]]; then
                 gh run cancel "${RUN_ID}" || echo "Failed to cancel ${RUN_ID}."
@@ -39,4 +39,4 @@ jobs:
             fi
           done
 
-          gh pr edit "${PR_NUMBER}" --remove-label "runtest" --remove-label "rerun" || true
+          gh pr edit "${PR_NUMBER}" --remove-label "runtest" || true
