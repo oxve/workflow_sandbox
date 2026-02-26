@@ -1,18 +1,24 @@
-def process_data(data):
+def process_data(data, enable_advanced_filter=False):
     """
-    Base function to process incoming data.
-    These lines will be modified on both branches.
+    Modified Android version of process data.
+    Added a flag for advanced filtering in older versions.
     """
-    print("Starting process data")
+    import logging
+    logging.info("Starting process data on Android 26 branch")
 
     results = []
 
-    # Block 1
+    # Block 1 - Legacy string conversion before int check
     for item in data:
-        if isinstance(item, int):
-            results.append(item * 2)
+        if type(item) is str and item.isdigit():
+            item = int(item)
 
-    print("Middle of process data")
+        if isinstance(item, int):
+            if enable_advanced_filter and item < 0:
+                 continue
+            results.append(item * 3) # Note: Android multiplier is 3
+
+    logging.debug("Middle of process data - filtering complete")
 
     # Block 2
     for item in results:
