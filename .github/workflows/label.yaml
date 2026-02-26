@@ -96,7 +96,7 @@ jobs:
             if [ -n "$CONFLICTS" ]; then
               # Stage changes before Gemini touches them but include the conflics.
               git add .
-              python3 .gemini/scripts/gemini_conflict_resolver.py $CONFLICTS
+              python3 .github/scripts/gemini_conflict_resolver.py $CONFLICTS
               # Re-use commit message from original commit.
               git commit -C ${MERGE_COMMIT_SHA} --no-verify
               git add .
