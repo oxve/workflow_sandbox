@@ -1,0 +1,526 @@
+prepare_branch_list	Set up job	﻿2026-02-21T01:03:58.5961622Z Current runner version: '2.331.0'
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5986306Z ##[group]Runner Image Provisioner
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5987126Z Hosted Compute Agent
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5987627Z Version: 20260123.484
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5988325Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5989007Z Build Date: 2026-01-23T19:41:17Z
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5989660Z Worker ID: {2001db1a-27ed-40c5-8a1d-3c7d29e7d86f}
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5990364Z Azure Region: westus
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5991216Z ##[endgroup]
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5992732Z ##[group]Operating System
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5993433Z Ubuntu
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5993895Z 24.04.3
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5994340Z LTS
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5994837Z ##[endgroup]
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5995287Z ##[group]Runner Image
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5995825Z Image: ubuntu-24.04
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5996322Z Version: 20260201.15.1
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5997367Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5999010Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+prepare_branch_list	Set up job	2026-02-21T01:03:58.5999883Z ##[endgroup]
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6001037Z ##[group]GITHUB_TOKEN Permissions
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6002950Z Contents: read
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6003518Z Metadata: read
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6003967Z Packages: read
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6004558Z ##[endgroup]
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6006582Z Secret source: Actions
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6007266Z Prepare workflow directory
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6336175Z Prepare all required actions
+prepare_branch_list	Set up job	2026-02-21T01:03:58.6437980Z Complete job name: prepare_branch_list
+prepare_branch_list	Set Branches	﻿2026-02-21T01:03:58.7251537Z ##[group]Run if [[ $EVENT_ACTION == 'closed' ]]; then
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7253144Z [36;1mif [[ $EVENT_ACTION == 'closed' ]]; then[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7254422Z [36;1m  # Get a list of the labels from the PR.[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7255781Z [36;1m  labels=$(echo "$PR_LABELS" | jq -r '.[].name')[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7257115Z [36;1melse[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7258226Z [36;1m  # Or get the label that was added on the merged PR.[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7259513Z [36;1m  labels=$LABEL_NAME[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7260351Z [36;1mfi[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7261312Z [36;1m[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7262672Z [36;1m# This list must contain all cherry-pick destinations as file is used for all branches.[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7265248Z [36;1mbranches=("main" "26.eap" "26.android" "25.lts.1+" "24.lts.1+" "23.lts.1+" "22.lts.1+" "21.lts.1+" "20.lts.1+" "19.lts.1+" "rc_11" "COBALT_9" "test-branch")[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7267271Z [36;1mfiltered_branches=()[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7268518Z [36;1mfor branch in "${branches[@]}"; do[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7269909Z [36;1m  if [[ $branch == $BASE_REF ]]; then[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7271619Z [36;1m    continue[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7272549Z [36;1m  fi[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7273415Z [36;1m  if [[ ${labels[@]} =~ "cp-$branch" ]]; then[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7274607Z [36;1m    filtered_branches+=("$branch")[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7275726Z [36;1m  fi[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7276512Z [36;1mdone[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7277193Z [36;1m[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7278610Z [36;1mecho "target_branch=$(echo -n "${filtered_branches[@]}" | jq -cRs 'split(" ")')" >> $GITHUB_OUTPUT[0m
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7743838Z shell: /usr/bin/bash -e {0}
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7745383Z env:
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7748498Z   PR_LABELS: [
+prepare_branch_list	Set Branches	  {
+prepare_branch_list	Set Branches	    "color": "FBCA04",
+prepare_branch_list	Set Branches	    "default": false,
+prepare_branch_list	Set Branches	    "description": "Cherry-pick to test-branch",
+prepare_branch_list	Set Branches	    "id": 10255476527,
+prepare_branch_list	Set Branches	    "name": "cp-test-branch",
+prepare_branch_list	Set Branches	    "node_id": "LA_kwDOJW7wAc8AAAACY0YnLw",
+prepare_branch_list	Set Branches	    "url": "https://api.github.com/repos/oxve/workflow_sandbox/labels/cp-test-branch"
+prepare_branch_list	Set Branches	  }
+prepare_branch_list	Set Branches	]
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7752125Z   EVENT_ACTION: labeled
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7753008Z   LABEL_NAME: cp-test-branch
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7754059Z   BASE_REF: main
+prepare_branch_list	Set Branches	2026-02-21T01:03:58.7754869Z ##[endgroup]
+prepare_branch_list	Complete job	﻿2026-02-21T01:03:58.8248830Z Evaluate and set job outputs
+prepare_branch_list	Complete job	2026-02-21T01:03:58.8259303Z Set output 'target_branch'
+prepare_branch_list	Complete job	2026-02-21T01:03:58.8385031Z Cleaning up orphan processes
+cherry_pick (test-branch)	Set up job	﻿2026-02-21T01:04:04.3291949Z Current runner version: '2.331.0'
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3318330Z ##[group]Runner Image Provisioner
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3319155Z Hosted Compute Agent
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3319775Z Version: 20260123.484
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3320397Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3321110Z Build Date: 2026-01-23T19:41:17Z
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3321764Z Worker ID: {66d8f9a0-398a-441c-b526-50d22974f585}
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3322511Z Azure Region: northcentralus
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3323087Z ##[endgroup]
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3324917Z ##[group]Operating System
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3325548Z Ubuntu
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3325972Z 24.04.3
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3326504Z LTS
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3327021Z ##[endgroup]
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3327484Z ##[group]Runner Image
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3328077Z Image: ubuntu-24.04
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3328606Z Version: 20260201.15.1
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3329572Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3331306Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3332193Z ##[endgroup]
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3333420Z ##[group]GITHUB_TOKEN Permissions
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3335445Z Contents: write
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3336131Z Issues: write
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3336596Z Metadata: read
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3337098Z PullRequests: write
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3337619Z ##[endgroup]
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3339703Z Secret source: Actions
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3340383Z Prepare workflow directory
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3910616Z Prepare all required actions
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.3948976Z Getting action download info
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.7168562Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:04.8361577Z Download action repository 'peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04' (SHA:2b011faafdcbc9ceb11414d64d0573f37c774b04)
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:05.3346395Z Download action repository 'actions/github-script@v8' (SHA:ed597411d8f924073f98dfc5c65a23a2325f34cd)
+cherry_pick (test-branch)	Set up job	2026-02-21T01:04:05.7431562Z Complete job name: cherry_pick (test-branch)
+cherry_pick (test-branch)	Checkout repository	﻿2026-02-21T01:04:05.8135011Z ##[group]Run actions/checkout@v4
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8136000Z with:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8136399Z   ref: test-branch
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8136806Z   fetch-depth: 0
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8137226Z   persist-credentials: true
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8137975Z   repository: oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8138772Z   token: ***
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8139178Z   ssh-strict: true
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8139577Z   ssh-user: git
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8139958Z   clean: true
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8140357Z   sparse-checkout-cone-mode: true
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8140853Z   fetch-tags: false
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8141274Z   show-progress: true
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8141697Z   lfs: false
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8142081Z   submodules: false
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8142495Z   set-safe-directory: true
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8143271Z env:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8143842Z   GITHUB_TOKEN: ***
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8144673Z   REPOSITORY: oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8145212Z   GITHUB_REF: refs/heads/main
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8145901Z   MERGE_COMMIT_SHA: 7929ad17ea4386921b5c723e2f3d6ca252c42fc7
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8146628Z   CHERRY_PICK_BRANCH: cherry-pick-test-branch-4
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.8147181Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9274254Z Syncing repository: oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9276426Z ##[group]Getting Git version info
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9277359Z Working directory is '/home/runner/work/workflow_sandbox/workflow_sandbox'
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9278505Z [command]/usr/bin/git version
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9361931Z git version 2.52.0
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9388807Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9404199Z Temporarily overriding HOME='/home/runner/work/_temp/d3ebfe1e-982a-4344-90b5-b9f400e66a84' before making global git config changes
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9409896Z Adding repository directory to the temporary git global config as a safe directory
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9411500Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/workflow_sandbox/workflow_sandbox
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9451093Z Deleting the contents of '/home/runner/work/workflow_sandbox/workflow_sandbox'
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9454962Z ##[group]Initializing the repository
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9459087Z [command]/usr/bin/git init /home/runner/work/workflow_sandbox/workflow_sandbox
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9569107Z hint: Using 'master' as the name for the initial branch. This default branch name
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9570496Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9571609Z hint: to use in all of your new repositories, which will suppress this warning,
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9572374Z hint: call:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9573128Z hint:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9574277Z hint: 	git config --global init.defaultBranch <name>
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9575120Z hint:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9575794Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9576834Z hint: 'development'. The just-created branch can be renamed via this command:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9577638Z hint:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9578093Z hint: 	git branch -m <name>
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9578659Z hint:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9579860Z hint: Disable this message with "git config set advice.defaultBranchName false"
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9581796Z Initialized empty Git repository in /home/runner/work/workflow_sandbox/workflow_sandbox/.git/
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9586045Z [command]/usr/bin/git remote add origin https://github.com/oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9622547Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9623410Z ##[group]Disabling automatic garbage collection
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9626566Z [command]/usr/bin/git config --local gc.auto 0
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9655834Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9656776Z ##[group]Setting up auth
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9662557Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:05.9693145Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0063338Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0097081Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0325458Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0357667Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0594478Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0629087Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0630126Z ##[group]Fetching the repository
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.0638352Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4588329Z From https://github.com/oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4590424Z  * [new branch]      cleanup-test-labels     -> origin/cleanup-test-labels
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4592107Z  * [new branch]      feature/conflict-test   -> origin/feature/conflict-test
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4593995Z  * [new branch]      feature/retry-filtering -> origin/feature/retry-filtering
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4596533Z  * [new branch]      feature/retry-filtering-refactor -> origin/feature/retry-filtering-refactor
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4598541Z  * [new branch]      feature/test-filtering  -> origin/feature/test-filtering
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4600145Z  * [new branch]      main                    -> origin/main
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4601539Z  * [new branch]      test-branch             -> origin/test-branch
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4635776Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4637511Z ##[group]Determining the checkout info
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4641973Z [command]/usr/bin/git branch --list --remote origin/test-branch
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4667697Z   origin/test-branch
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4675180Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4679213Z [command]/usr/bin/git sparse-checkout disable
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4723082Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4753863Z ##[group]Checking out the ref
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4758013Z [command]/usr/bin/git checkout --progress --force -B test-branch refs/remotes/origin/test-branch
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4853697Z Switched to a new branch 'test-branch'
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4857979Z branch 'test-branch' set up to track 'origin/test-branch'.
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4868240Z ##[endgroup]
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4910764Z [command]/usr/bin/git log -1 --format=%H
+cherry_pick (test-branch)	Checkout repository	2026-02-21T01:04:06.4936192Z db38c76115cbe0cdc966aa01728af2c5452216fe
+cherry_pick (test-branch)	Checkout scripts from main	﻿2026-02-21T01:04:06.5363299Z ##[group]Run actions/checkout@v4
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5364679Z with:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5365499Z   sparse-checkout: .github/scripts
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5366582Z   path: scripts_main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5367434Z   ref: main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5368227Z   filter: blob:none
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5369097Z   repository: oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5370442Z   token: ***
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5371233Z   ssh-strict: true
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5372055Z   ssh-user: git
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5372903Z   persist-credentials: true
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5373849Z   clean: true
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5374870Z   sparse-checkout-cone-mode: true
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5375913Z   fetch-depth: 1
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5376710Z   fetch-tags: false
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5377554Z   show-progress: true
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5378399Z   lfs: false
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5379163Z   submodules: false
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5380022Z   set-safe-directory: true
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5380918Z env:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5381948Z   GITHUB_TOKEN: ***
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5382877Z   REPOSITORY: oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5383958Z   GITHUB_REF: refs/heads/main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5385430Z   MERGE_COMMIT_SHA: 7929ad17ea4386921b5c723e2f3d6ca252c42fc7
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5386915Z   CHERRY_PICK_BRANCH: cherry-pick-test-branch-4
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.5388106Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6355598Z Syncing repository: oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6363408Z ##[group]Getting Git version info
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6366677Z Working directory is '/home/runner/work/workflow_sandbox/workflow_sandbox/scripts_main'
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6410054Z [command]/usr/bin/git version
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6454836Z git version 2.52.0
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6482376Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6498249Z Temporarily overriding HOME='/home/runner/work/_temp/d67fede8-8bbb-45f7-a457-ccd3d89aa0ac' before making global git config changes
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6503579Z Adding repository directory to the temporary git global config as a safe directory
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6508632Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/workflow_sandbox/workflow_sandbox/scripts_main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6537356Z ##[group]Initializing the repository
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6544031Z [command]/usr/bin/git init /home/runner/work/workflow_sandbox/workflow_sandbox/scripts_main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6582411Z hint: Using 'master' as the name for the initial branch. This default branch name
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6586166Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6589717Z hint: to use in all of your new repositories, which will suppress this warning,
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6592435Z hint: call:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6593725Z hint:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6595572Z hint: 	git config --global init.defaultBranch <name>
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6597737Z hint:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6599639Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6602656Z hint: 'development'. The just-created branch can be renamed via this command:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6604989Z hint:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6605791Z hint: 	git branch -m <name>
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6606722Z hint:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6608627Z hint: Disable this message with "git config set advice.defaultBranchName false"
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6612799Z Initialized empty Git repository in /home/runner/work/workflow_sandbox/workflow_sandbox/scripts_main/.git/
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6616936Z [command]/usr/bin/git remote add origin https://github.com/oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6630095Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6632523Z ##[group]Disabling automatic garbage collection
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6635054Z [command]/usr/bin/git config --local gc.auto 0
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6664604Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6666007Z ##[group]Setting up auth
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6670396Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6700711Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6927927Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.6959890Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.7215602Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.7251617Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.7510577Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.7551207Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.7553583Z ##[group]Fetching the repository
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.7563919Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +refs/heads/main*:refs/remotes/origin/main* +refs/tags/main*:refs/tags/main*
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9888300Z From https://github.com/oxve/workflow_sandbox
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9890477Z  * [new branch]      main       -> origin/main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9919888Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9921284Z ##[group]Determining the checkout info
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9926297Z [command]/usr/bin/git branch --list --remote origin/main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9950539Z   origin/main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9956749Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9958138Z ##[group]Setting up sparse checkout
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9960290Z [command]/usr/bin/git sparse-checkout set .github/scripts
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9994506Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9996686Z ##[group]Checking out the ref
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:06.9999277Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:07.1832526Z Switched to a new branch 'main'
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:07.1835708Z branch 'main' set up to track 'origin/main'.
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:07.1844776Z ##[endgroup]
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:07.1892046Z [command]/usr/bin/git log -1 --format=%H
+cherry_pick (test-branch)	Checkout scripts from main	2026-02-21T01:04:07.1919711Z 1b4f178da9e7ecafc5cc4bcaa62460dfd15f5b8e
+cherry_pick (test-branch)	Setup Git	﻿2026-02-21T01:04:07.2116518Z ##[group]Run git config --global user.name "GitHub Release Automation"
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2118382Z [36;1mgit config --global user.name "GitHub Release Automation"[0m
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2119994Z [36;1mgit config --global user.email "github@google.com"[0m
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2158604Z shell: /usr/bin/bash -e {0}
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2159543Z env:
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2160725Z   GITHUB_TOKEN: ***
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2161579Z   REPOSITORY: oxve/workflow_sandbox
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2162601Z   GITHUB_REF: refs/heads/main
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2163754Z   MERGE_COMMIT_SHA: 7929ad17ea4386921b5c723e2f3d6ca252c42fc7
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2165554Z   CHERRY_PICK_BRANCH: cherry-pick-test-branch-4
+cherry_pick (test-branch)	Setup Git	2026-02-21T01:04:07.2166682Z ##[endgroup]
+cherry_pick (test-branch)	Cherry pick merge commit	﻿2026-02-21T01:04:07.2357842Z ##[group]Run set -x
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2358785Z [36;1mset -x[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2359623Z [36;1mgit fetch origin ${TARGET_BRANCH}[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2361059Z [36;1mgit checkout -b ${CHERRY_PICK_BRANCH} origin/${TARGET_BRANCH}[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2362414Z [36;1m[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2363121Z [36;1mset +e[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2364570Z [36;1m# Select the first parent as the mainline tree. This is necessary if[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2366526Z [36;1m# the commit has multiple parents as the cherry-pick will fail otherwise.[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2368307Z [36;1mgit cherry-pick -x --mainline=1 ${MERGE_COMMIT_SHA}[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2369555Z [36;1mRES=$?[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2370302Z [36;1mset -e[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2371074Z [36;1mif [ ${RES} -ne 0 ]; then[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2372705Z [36;1m  # If the cherry pick failed due to a merge conflict we can try to resolve it using Gemini.[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2374813Z [36;1m  # Use the script from main that we checked out[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2376492Z [36;1m  python3 scripts_main/.github/scripts/gemini_resolve_conflicts.py[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2377955Z [36;1m[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2378779Z [36;1m  # Check if all conflicts are resolved[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2380132Z [36;1m  if [ -z "$(git diff --name-only --diff-filter=U)" ]; then[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2381389Z [36;1m    git add .[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2382811Z [36;1m    git commit -m "Resolve cherry-pick conflicts for PR #${PR_NUMBER} using Gemini"[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2384797Z [36;1m    RES=0[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2385594Z [36;1m  else[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2386826Z [36;1m    # Still have conflicts, add them and commit with conflicts (for draft PR)[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2388343Z [36;1m    git add .[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2389631Z [36;1m    git commit -m "Cherry pick PR #${PR_NUMBER} with conflicts" --no-verify[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2391093Z [36;1m    RES=1[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2391859Z [36;1m  fi[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2392594Z [36;1mfi[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2393332Z [36;1mexit ${RES}[0m
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2428355Z shell: /usr/bin/bash -e {0}
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2429249Z env:
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2430348Z   GITHUB_TOKEN: ***
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2431185Z   REPOSITORY: oxve/workflow_sandbox
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2432197Z   GITHUB_REF: refs/heads/main
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2433325Z   MERGE_COMMIT_SHA: 7929ad17ea4386921b5c723e2f3d6ca252c42fc7
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2434930Z   CHERRY_PICK_BRANCH: cherry-pick-test-branch-4
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2436079Z   TARGET_BRANCH: test-branch
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2437252Z   GEMINI_API_KEY: ***
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2438052Z   PR_NUMBER: 4
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2438784Z ##[endgroup]
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.2503824Z + git fetch origin test-branch
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4439801Z From https://github.com/oxve/workflow_sandbox
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4441820Z  * branch            test-branch -> FETCH_HEAD
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4491182Z + git checkout -b cherry-pick-test-branch-4 origin/test-branch
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4539556Z Switched to a new branch 'cherry-pick-test-branch-4'
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4542098Z branch 'cherry-pick-test-branch-4' set up to track 'origin/test-branch'.
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4544405Z + set +e
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4545773Z + git cherry-pick -x --mainline=1 7929ad17ea4386921b5c723e2f3d6ca252c42fc7
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4571470Z Auto-merging conflict_test.txt
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4572796Z CONFLICT (content): Merge conflict in conflict_test.txt
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4575250Z error: could not apply 7929ad1... Merge pull request #4 from oxve/feature/conflict-test
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4578047Z hint: After resolving the conflicts, mark them with
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4579941Z hint: "git add/rm <pathspec>", then run
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4581602Z hint: "git cherry-pick --continue".
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4583288Z hint: You can instead skip this commit with "git cherry-pick --skip".
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4585153Z hint: To abort and get back to the state before "git cherry-pick",
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4586738Z hint: run "git cherry-pick --abort".
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4588332Z hint: Disable this message with "git config set advice.mergeConflict false"
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4589751Z + RES=1
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4590416Z + set -e
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4591119Z + '[' 1 -ne 0 ']'
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.4592186Z + python3 scripts_main/.github/scripts/gemini_resolve_conflicts.py
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5853885Z Resolving conflicts in conflict_test.txt...
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5856207Z Warning: No candidates in Gemini response for conflict_test.txt
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5858324Z Failed to resolve all conflicts in conflict_test.txt
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5903754Z ++ git diff --name-only --diff-filter=U
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5924791Z + '[' -z conflict_test.txt ']'
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5926294Z + git add .
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5948189Z warning: adding embedded git repository: scripts_main
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5950157Z hint: You've added another git repository inside your current repository.
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5952516Z hint: Clones of the outer repository will not contain the contents of
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5955033Z hint: the embedded repository and will not know how to obtain it.
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5956404Z hint: If you meant to add a submodule, use:
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5957390Z hint:
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5958140Z hint: 	git submodule add <url> scripts_main
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5959135Z hint:
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5960114Z hint: If you added this path by mistake, you can remove it from the
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5961399Z hint: index with:
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5962134Z hint:
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5962857Z hint: 	git rm --cached scripts_main
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5963768Z hint:
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5964902Z hint: See "git help submodule" for more information.
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5966492Z hint: Disable this message with "git config set advice.addEmbeddedRepo false"
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.5968209Z + git commit -m 'Cherry pick PR #4 with conflicts' --no-verify
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6005914Z [cherry-pick-test-branch-4 1ff556c] Cherry pick PR #4 with conflicts
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6008285Z  Author: Oscar Vestlie <oxv@google.com>
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6009561Z  Date: Fri Feb 20 16:53:13 2026 -0800
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6010832Z  2 files changed, 6 insertions(+)
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6012364Z  create mode 160000 scripts_main
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6013625Z + RES=1
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6014541Z + exit 1
+cherry_pick (test-branch)	Cherry pick merge commit	2026-02-21T01:04:07.6026491Z ##[error]Process completed with exit code 1.
+cherry_pick (test-branch)	Create Pull Request	﻿2026-02-21T01:04:07.6230068Z ##[group]Run peter-evans/create-pull-request@2b011faafdcbc9ceb11414d64d0573f37c774b04
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6231656Z with:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6232647Z   token: ***
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6233341Z   draft: true
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6234220Z   base: test-branch
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6235039Z   branch: cherry-pick-test-branch-4
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6236215Z   committer: GitHub Release Automation <github@google.com>
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6237387Z   reviewers: oxve
+cherry_pick (test-branch)	Create Pull Request	oxve
+cherry_pick (test-branch)	Create Pull Request	
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6238267Z   title: Cherry pick PR #4: Test Conflict
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6239971Z   body: Refer to the original PR: https://github.com/oxve/workflow_sandbox/pull/4
+cherry_pick (test-branch)	Create Pull Request	
+cherry_pick (test-branch)	Create Pull Request	Testing label workflow
+cherry_pick (test-branch)	Create Pull Request	
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6241921Z   commit-message: [create-pull-request] automated change
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6243185Z   author: oxve <oxve@users.noreply.github.com>
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6244312Z   signoff: false
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6245061Z   delete-branch: false
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6245815Z env:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6246721Z   GITHUB_TOKEN: ***
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6247538Z   REPOSITORY: oxve/workflow_sandbox
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6248500Z   GITHUB_REF: refs/heads/main
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6249586Z   MERGE_COMMIT_SHA: 7929ad17ea4386921b5c723e2f3d6ca252c42fc7
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6250865Z   CHERRY_PICK_BRANCH: cherry-pick-test-branch-4
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.6251902Z ##[endgroup]
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7666524Z (node:2378) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7669802Z (Use `node --trace-deprecation ...` to show where the warning was created)
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7695625Z ##[group]Save persisted git credentials
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7713127Z [command]/usr/bin/git config --local --name-only --get-regexp http.https://github.com/.extraheader ^AUTHORIZATION:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7752099Z http.https://github.com/.extraheader
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7779906Z [command]/usr/bin/git config --local --get-regexp http.https://github.com/.extraheader ^AUTHORIZATION:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7804744Z http.https://github.com/.extraheader AUTHORIZATION: basic ***
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7812330Z [command]/usr/bin/git config --local --unset http.https://github.com/.extraheader ^AUTHORIZATION:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7840219Z Unset config key 'http.https://github.com/.extraheader'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7842933Z ##[endgroup]
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7897426Z ##[group]Determining the base and head repositories
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7903101Z [command]/usr/bin/git config --local --get remote.origin.url
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7944857Z https://github.com/oxve/workflow_sandbox
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7954224Z ##[endgroup]
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7956445Z Pull request branch target repository set to oxve/workflow_sandbox
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7959994Z ##[group]Configuring credential for HTTPS authentication
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.7965063Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.8009523Z ##[endgroup]
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.8010933Z ##[group]Checking the base repository state
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.8014787Z [command]/usr/bin/git symbolic-ref HEAD --short
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.8040387Z cherry-pick-test-branch-4
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.8044947Z Working base is branch 'cherry-pick-test-branch-4'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.8048978Z [command]/usr/bin/git remote prune origin
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9747285Z ##[endgroup]
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9749454Z Pull request branch to create or update set to 'cherry-pick-test-branch-4'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9752802Z ##[group]Configuring the committer and author
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9755476Z Configured git committer as 'GitHub Release Automation <github@google.com>'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9758374Z Configured git author as 'oxve <oxve@users.noreply.github.com>'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9761420Z ##[endgroup]
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9763555Z ##[group]Create or update the pull request branch
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9765522Z [command]/usr/bin/git symbolic-ref HEAD --short
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9788881Z cherry-pick-test-branch-4
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9793670Z Working base is branch 'cherry-pick-test-branch-4'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9804431Z [command]/usr/bin/git checkout --progress -B 48029633-c3a6-4f9c-972a-fadd0af29dae HEAD --
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9878399Z Switched to a new branch '48029633-c3a6-4f9c-972a-fadd0af29dae'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9889783Z [command]/usr/bin/git status --porcelain -unormal --
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:07.9960022Z [command]/usr/bin/git diff --quiet --
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0020540Z [command]/usr/bin/git diff --quiet --staged --
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0050659Z [command]/usr/bin/git reset --hard
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0087027Z HEAD is now at 1ff556c Cherry pick PR #4 with conflicts
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0094722Z [command]/usr/bin/git clean -f -d
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0123475Z Resetting working base branch 'cherry-pick-test-branch-4'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0127673Z [command]/usr/bin/git checkout --progress cherry-pick-test-branch-4 --
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0183906Z Switched to branch 'cherry-pick-test-branch-4'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0189261Z Your branch is ahead of 'origin/test-branch' by 1 commit.
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0191044Z   (use "git push" to publish your local commits)
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0196961Z [command]/usr/bin/git reset --hard origin/cherry-pick-test-branch-4
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0219300Z fatal: ambiguous argument 'origin/cherry-pick-test-branch-4': unknown revision or path not in the working tree.
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0221407Z Use '--' to separate paths from revisions, like this:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0222644Z 'git <command> [<revision>...] -- [<file>...]'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0236388Z ##[error]The process '/usr/bin/git' failed with exit code 128
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0239902Z ##[group]Restore persisted git credentials
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0241840Z [command]/usr/bin/git config --local --name-only --get-regexp http.https://github.com/.extraheader ^AUTHORIZATION:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0251489Z http.https://github.com/.extraheader
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0260818Z [command]/usr/bin/git config --local --get-regexp http.https://github.com/.extraheader ^AUTHORIZATION:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0284269Z http.https://github.com/.extraheader AUTHORIZATION: basic ***
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0290392Z [command]/usr/bin/git config --local --unset http.https://github.com/.extraheader ^AUTHORIZATION:
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0315085Z Unset config key 'http.https://github.com/.extraheader'
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0320379Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0351264Z Persisted git credentials restored
+cherry_pick (test-branch)	Create Pull Request	2026-02-21T01:04:08.0353605Z ##[endgroup]
+cherry_pick (test-branch)	Comment on failure	﻿2026-02-21T01:04:08.0568957Z ##[group]Run actions/github-script@v8
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0569957Z with:
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0571020Z   github-token: ***
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0582429Z   script: if ('' == '') {
+cherry_pick (test-branch)	Comment on failure	  // Comment on the originating PR if creating a cherry pick PR failed.
+cherry_pick (test-branch)	Comment on failure	  github.rest.issues.createComment({
+cherry_pick (test-branch)	Comment on failure	    issue_number: context.payload.number,
+cherry_pick (test-branch)	Comment on failure	    owner: context.repo.owner,
+cherry_pick (test-branch)	Comment on failure	    repo: context.repo.repo,
+cherry_pick (test-branch)	Comment on failure	    body: '> [!CAUTION]\n> Creating the cherry pick PR failed! Check the log at https://github.com/oxve/workflow_sandbox/actions/runs/22247218037 for details.'
+cherry_pick (test-branch)	Comment on failure	  });
+cherry_pick (test-branch)	Comment on failure	} else if ('failure' == 'failure') {
+cherry_pick (test-branch)	Comment on failure	  // Comment on the new PR if the cherry pick failed.
+cherry_pick (test-branch)	Comment on failure	  github.rest.issues.createComment({
+cherry_pick (test-branch)	Comment on failure	    issue_number: '',
+cherry_pick (test-branch)	Comment on failure	    owner: context.repo.owner,
+cherry_pick (test-branch)	Comment on failure	    repo: context.repo.repo,
+cherry_pick (test-branch)	Comment on failure	    body: '![MERGE CONFLICT CAT](https://services.google.com/fh/files/misc/merge_conflict_cat.png)\n> [!CAUTION]\n> There were merge conflicts while cherry picking! Check out [cherry-pick-test-branch-4](oxve/workflow_sandbox/tree/cherry-pick-test-branch-4) and fix the conflicts before proceeding. Check the log at https://github.com/oxve/workflow_sandbox/actions/runs/22247218037 for details.'
+cherry_pick (test-branch)	Comment on failure	  });
+cherry_pick (test-branch)	Comment on failure	}
+cherry_pick (test-branch)	Comment on failure	
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0593990Z   debug: false
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0594915Z   user-agent: actions/github-script
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0595840Z   result-encoding: json
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0596628Z   retries: 0
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0597432Z   retry-exempt-status-codes: 400,401,403,404,422
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0598442Z env:
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0599430Z   GITHUB_TOKEN: ***
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0600215Z   REPOSITORY: oxve/workflow_sandbox
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0601159Z   GITHUB_REF: refs/heads/main
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0602214Z   MERGE_COMMIT_SHA: 7929ad17ea4386921b5c723e2f3d6ca252c42fc7
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0603470Z   CHERRY_PICK_BRANCH: cherry-pick-test-branch-4
+cherry_pick (test-branch)	Comment on failure	2026-02-21T01:04:08.0604680Z ##[endgroup]
+cherry_pick (test-branch)	Post Checkout scripts from main	﻿2026-02-21T01:04:08.6927500Z Post job cleanup.
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.7873240Z [command]/usr/bin/git version
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.7913326Z git version 2.52.0
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.7953031Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/4cf105d8-e882-468d-852b-2c75cab7fd9a/.gitconfig'
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.7971624Z Temporarily overriding HOME='/home/runner/work/_temp/4cf105d8-e882-468d-852b-2c75cab7fd9a' before making global git config changes
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.7973130Z Adding repository directory to the temporary git global config as a safe directory
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.7978516Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/workflow_sandbox/workflow_sandbox/scripts_main
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8013459Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8045205Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8280978Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8303944Z http.https://github.com/.extraheader
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8322519Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8359528Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8614671Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+cherry_pick (test-branch)	Post Checkout scripts from main	2026-02-21T01:04:08.8653391Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+cherry_pick (test-branch)	Post Checkout repository	﻿2026-02-21T01:04:08.9024885Z Post job cleanup.
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:08.9979786Z [command]/usr/bin/git version
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0017347Z git version 2.52.0
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0062324Z Copying '/home/runner/.gitconfig' to '/home/runner/work/_temp/4978986a-443b-4b43-b2f1-41385fb07b2c/.gitconfig'
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0072082Z Temporarily overriding HOME='/home/runner/work/_temp/4978986a-443b-4b43-b2f1-41385fb07b2c' before making global git config changes
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0073610Z Adding repository directory to the temporary git global config as a safe directory
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0078801Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/workflow_sandbox/workflow_sandbox
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0113307Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0146116Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0356999Z fatal: No url found for submodule path 'scripts_main' in .gitmodules
+cherry_pick (test-branch)	Post Checkout repository	2026-02-21T01:04:09.0388004Z ##[warning]The process '/usr/bin/git' failed with exit code 128
+cherry_pick (test-branch)	Complete job	﻿2026-02-21T01:04:09.0480532Z Cleaning up orphan processes
