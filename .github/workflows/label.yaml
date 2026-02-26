@@ -151,7 +151,7 @@ jobs:
               });
             } else if (CHERRY_PICK_OUTCOME == 'failure') {
               // Comment on the new PR if the cherry pick failed.
-              const cautionHeader = '[!CAUTION]\n> There were merge conflicts while cherry picking!';
+              const cautionHeader = '> [!CAUTION]\n> There were merge conflicts while cherry picking!';
               let geminiNotice;
               if (GEMINI_COMMIT_SHA) {
                 geminiNotice = `\n\nGemini has attempted to fix the conflicts in [this commit](${context.serverUrl}/${REPOSITORY}/pull/${NEW_PR_NUMBER}/commits/${GEMINI_COMMIT_SHA}). Please review carefully before merging.`;
