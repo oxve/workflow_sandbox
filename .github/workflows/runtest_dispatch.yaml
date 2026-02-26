@@ -12,6 +12,9 @@ jobs:
       actions: write
       pull-requests: write
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Handle 'runtest' label
         # Use array contains to check if runtest is on PR since it's removed at the end.
         if: contains(github.event.pull_request.labels.*.name, 'runtest')
@@ -22,13 +25,18 @@ jobs:
         run: |
           set -ex
           PR_SHA=$(gh pr view "${PR_NUMBER}" --json headRefOid -q .headRefOid)
-          RUN_IDS=$(gh api "/repos/${GH_REPO}/actions/runs?head_sha=${PR_SHA}" -q '.workflow_runs[].id')
-          for RUN_ID in $RUN_IDS; do
-            # Cancel current running jobs.
-            if [[ "$(gh run view "${RUN_ID}" --json status -q '.status')" == "in_progress" ]]; then
-              gh run cancel "${RUN_ID}" || echo "Failed to cancel ${RUN_ID}."
+
+          # Iterate over run IDs and their paths to determine which ones use main.yaml
+          gh api "/repos/${GH_REPO}/actions/runs?head_sha=${PR_SHA}" -q '.workflow_runs[] | "\(.id) \(.path)"' | while read RUN_ID RUN_PATH; do
+            # Ensure the referenced workflow uses main.yaml dynamically
+            if [[ -f "$RUN_PATH" ]] && grep -qE 'uses:[[:space:]]+(\./)?\.github/workflows/main\.yaml' "$RUN_PATH"; then
+              # Cancel current running jobs.
+              if [[ "$(gh run view "${RUN_ID}" --json status -q '.status')" == "in_progress" ]]; then
+                gh run cancel "${RUN_ID}" || echo "Failed to cancel ${RUN_ID}."
+              fi
+              # Rerun jobs.
+              gh run rerun "${RUN_ID}" || echo "Failed to rerun ${RUN_ID}."
             fi
-            # Rerun jobs.
-            gh run rerun "${RUN_ID}" || echo "Failed to rerun ${RUN_ID}."
           done
+
           gh pr edit "${PR_NUMBER}" --remove-label "runtest" --remove-label "rerun" || true
