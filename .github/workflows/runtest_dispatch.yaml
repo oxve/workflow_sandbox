@@ -17,11 +17,12 @@ jobs:
         if: contains(github.event.pull_request.labels.*.name, 'runtest')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -ex
           PR_SHA=$(gh pr view "${PR_NUMBER}" --json headRefOid -q .headRefOid)
-          RUN_IDS=$(gh api "/repos/{owner}/{repo}/actions/runs?head_sha=${PR_SHA}" -q '.workflow_runs[].id')
+          RUN_IDS=$(gh api "/repos/${GH_REPO}/actions/runs?head_sha=${PR_SHA}" -q '.workflow_runs[].id')
           for RUN_ID in $RUN_IDS; do
             # Cancel current running jobs.
             if [[ "$(gh run view "${RUN_ID}" --json status -q '.status')" == "in_progress" ]]; then
