@@ -1,8 +1,10 @@
 def calculate_alpha(data):
-    # Initial implementation
+    # Enhanced implementation for mainline
     result = []
     for num in data:
-        result.append(num * 2)
+        # Complex calculation
+        val = num * 4
+        result.append(val + 1)
     return result
 
 def format_alpha(result):
