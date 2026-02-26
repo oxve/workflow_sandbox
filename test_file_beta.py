@@ -4,10 +4,10 @@ class BetaProcessor:
         self.processed = []
 
     def run_stage_one(self):
-        # Stage one for android
-        for i in self.items:
-            # Different base
-            self.processed.append(i + 50)
+        # Stage one advanced for android
+        for val in self.items:
+            # Different logic base
+            self.processed.append(val + 50)
 
     def run_stage_two(self):
         # Stage two

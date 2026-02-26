@@ -1,9 +1,10 @@
 def calculate_alpha(data):
-    # Updated 26.android implementation
+    # Updated 26.android implementation with mainline complex calculation
     result = []
     for num in data:
-        # Scaling adjustment
-        result.append(num * 2.5)
+        # Complex calculation with scaling adjustment
+        val = num * 2.5
+        result.append(val + 1)
     return result
 
 def format_alpha(result):
