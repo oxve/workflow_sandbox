@@ -21,7 +21,7 @@ jobs:
         run: |
           set -ex
           PR_SHA=$(gh pr view "${PR_NUMBER}" --json headRefOid -q .headRefOid)
-          RUN_IDS=$(gh run list --commit "${PR_SHA}" --json databaseId -q '.[].databaseId')
+          RUN_IDS=$(gh api "/repos/{owner}/{repo}/actions/runs?head_sha=${PR_SHA}" -q '.workflow_runs[].id')
           for RUN_ID in $RUN_IDS; do
             # Cancel current running jobs.
             if [[ "$(gh run view "${RUN_ID}" --json status -q '.status')" == "in_progress" ]]; then
