@@ -97,7 +97,10 @@ jobs:
               git commit -C ${MERGE_COMMIT_SHA} --no-verify
             fi
           fi
-          echo "conflicts=${conflicts}" >> $GITHUB_OUTPUT
+          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "conflicts<<$EOF" >> $GITHUB_OUTPUT
+          echo "$conflicts" >> $GITHUB_OUTPUT
+          echo "$EOF" >> $GITHUB_OUTPUT
           exit ${RES}
 
       - name: Resolve Merge Conflicts with Gemini CLI
