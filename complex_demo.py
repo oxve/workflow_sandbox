@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def process_data(data, enable_advanced_filter=False):
     """
     Modified Android version of process data.
@@ -19,6 +20,26 @@ def process_data(data, enable_advanced_filter=False):
             results.append(item * 3) # Note: Android multiplier is 3
 
     logging.debug("Middle of process data - filtering complete")
+=======
+def process_data(data, enable_tracing=True, scale_factor=2):
+    """
+    Modern version of process data for the main branch.
+    Supports comprehensive tracing and dynamic scaling.
+    """
+    if enable_tracing:
+        print("TRACE: Starting process data on main branch")
+
+    results = []
+
+    # Block 1 - Refactored type-safe processing
+    results = [
+        item * scale_factor for item in data
+        if isinstance(item, int) and item % 2 == 0 # Only process even integers
+    ]
+
+    if enable_tracing:
+        print(f"TRACE: Middle of process data, found {len(results)} valid items")
+>>>>>>> 2b2510d (Merge pull request #19 from oxve/feature/gemini-complex-conflict-6)
 
     # Block 2
     for item in results:
