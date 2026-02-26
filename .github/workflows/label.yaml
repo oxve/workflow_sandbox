@@ -80,31 +80,53 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_ACTIONS_API_KEY }}
           MERGE_COMMIT_SHA: ${{ github.event.pull_request.merge_commit_sha }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          TARGET_BRANCH: ${{ matrix.target_branch }}
         run: |
           set -x
-          git fetch origin ${TARGET_BRANCH}
           set +e
           # Select the first parent as the mainline tree. This is necessary if
           # the commit has multiple parents as the cherry-pick will fail otherwise.
           git cherry-pick -x --mainline=1 ${MERGE_COMMIT_SHA}
           RES=$?
           set -e
+          conflicts=""
           if [ ${RES} -ne 0 ]; then
-            CONFLICTS=$(git diff --name-only --diff-filter=U)
-            if [ -n "$CONFLICTS" ]; then
-              # Stage changes before Gemini touches them but include the conflics.
+            conflicts=$(git diff --name-only --diff-filter=U)
+            if [ -n "${conflicts}" ]; then
+              # Stage and commit the changes (with conflicts) before Gemini touches them.
               git add .
-              python3 .github/scripts/gemini_conflict_resolver.py $CONFLICTS
-              # Re-use commit message from original commit.
               git commit -C ${MERGE_COMMIT_SHA} --no-verify
-              git add .
-              git commit -m "Conflicts resolved by Gemini"
-              # Only output commit sha if commit succeeded.
-              if [[ $? == 0 ]]; then
-                echo "gemini_commit_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
-              fi
+            fi
+          fi
+          echo "conflicts=${conflicts}" >> $GITHUB_OUTPUT
+          exit ${RES}
+
+      - name: Resolve Merge Conflicts with Gemini CLI
+        if: steps.cherry-pick.outputs.conflicts != ''
+        uses: google-github-actions/run-gemini-cli@v1
+        with:
+          gemini_api_key: ${{ secrets.GEMINI_ACTIONS_API_KEY }}
+          prompt: |
+            You are an expert software engineer dealing with a failed cherry pick.
+            The most recent commit has the conflicts committed.
+            Once the conflicts are resolved you must leave the files unstaged.
+            Analyze what it's trying to achieve and fix the conflicts.
+            Leave the files with the fixed conflicts unstaged.
+            Files with conflicts:
+            ${{ steps.cherry-pick.outputs.conflicts }}
+
+      - name:
+        id: conflict-resolution
+        continue-on-error: true
+        env:
+          CONFLICTS: ${{ steps.cherry-pick.outputs.conflicts }}
+        run: |
+          set -x
+          if [ -n "${CONFLICTS}" ]; then
+            git add .
+            git commit -m "Conflicts resolved by Gemini"
+            # Only output commit sha if commit succeeded.
+            if [[ $? == 0 ]]; then
+              echo "gemini_commit_sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
             fi
           fi
           exit ${RES}
@@ -134,7 +156,7 @@ jobs:
           REPOSITORY: ${{ github.repository }}
           NEW_PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
           CHERRY_PICK_OUTCOME: ${{ steps.cherry-pick.outcome }}
-          GEMINI_COMMIT_SHA: ${{ steps.cherry-pick.outputs.gemini_commit_sha }}
+          GEMINI_COMMIT_SHA: ${{ steps.conflict-resolution.outputs.gemini_commit_sha }}
           CHERRY_PICK_BRANCH: cherry-pick-${{ matrix.target_branch }}-${{ github.event.pull_request.number }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
