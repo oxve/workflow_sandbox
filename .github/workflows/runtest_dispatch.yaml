@@ -20,7 +20,8 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -ex
-          RUN_IDS=$(gh run list --pr "${PR_NUMBER}" --json databaseId -q '.[].databaseId')
+          PR_SHA=$(gh pr view "${PR_NUMBER}" --json headRefOid -q .headRefOid)
+          RUN_IDS=$(gh run list --commit "${PR_SHA}" --json databaseId -q '.[].databaseId')
           for RUN_ID in $RUN_IDS; do
             # Cancel current running jobs.
             if [[ "$(gh run view "${RUN_ID}" --json status -q '.status')" == "in_progress" ]]; then
