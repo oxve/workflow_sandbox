@@ -1,0 +1,125 @@
+name: Autoroll LTS
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Daily at midnight UTC
+  workflow_dispatch:
+    inputs:
+      start_commit:
+        description: 'The commit to start rolling from'
+        required: true
+        default: '7e6524981fdd6ab3c87bc55785343d40116a05e5'
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  autoroll:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        env:
+          GH_REPO: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          git clone --shallow-since="5 days ago" --filter=blob:none "${GH_REPO}" .
+
+      - name: Setup Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run Autoroll
+        id: autoroll
+        env:
+          TARGET_BRANCH: 27.lts
+          # First commit
+          START_COMMIT: ${{ inputs.start_commit }}
+          REPO: ${{ github.repository }}
+        run: |
+          git fetch origin "${TARGET_BRANCH}:refs/remotes/origin/${TARGET_BRANCH}"
+          git fetch origin "${START_COMMIT}" --depth=2
+
+          git checkout -B "autoroll-to-${TARGET_BRANCH}" "origin/${TARGET_BRANCH}" --no-track
+
+          PR_LINKS=""
+
+          # Use git rev-list to find missing commits natively on the main branch
+          COMMIT_LIST=$(mktemp)
+          git rev-list --no-merges --oneline --reverse "origin/main" "^origin/${TARGET_BRANCH}" "${START_COMMIT}^..origin/main" > "$COMMIT_LIST" || {
+            echo "::error::Failed to resolve commit range: ${START_COMMIT}^..origin/main"
+            exit 1
+          }
+
+          CHERRY_PICK_COUNT=0
+          while read -r line; do
+            COMMIT=$(echo "$line" | awk '{print $1}')
+            COMMIT_SUBJECT=$(echo "$line" | cut -d' ' -f2-)
+
+            if [[ "$COMMIT_SUBJECT" =~ ^(.*)\ \(#([0-9]+)\)$ ]]; then
+              PR_TITLE="${BASH_REMATCH[1]}"
+              PR_NUMBER="${BASH_REMATCH[2]}"
+
+              if [[ -z "$(git log -1 --grep="^Cherry pick PR #${PR_NUMBER}:" "origin/${TARGET_BRANCH}")" ]]; then
+                mainline_arg=""
+                if [[ $(git show -s --format=%P "${COMMIT}" | wc -w) -gt 1 ]]; then
+                  mainline_arg="--mainline=1"
+                fi
+                git cherry-pick --no-commit ${mainline_arg} "${COMMIT}" || {
+                  echo "::error::Failed to cherry pick ${COMMIT}"
+                  exit 1
+                }
+
+                AUTHOR_NAME="$(git log -1 --format=%an "${COMMIT}")"
+                AUTHOR_EMAIL="$(git log -1 --format=%ae "${COMMIT}")"
+                AUTHOR_DATE="$(git log -1 --format=%ad "${COMMIT}")"
+
+                COMMIT_MSG_FILE=$(mktemp)
+                echo "Cherry pick PR #${PR_NUMBER}: ${PR_TITLE}" > "$COMMIT_MSG_FILE"
+                echo "" >> "$COMMIT_MSG_FILE"
+                echo "Refer to the original PR: https://github.com/${REPO}/pull/${PR_NUMBER}" >> "$COMMIT_MSG_FILE"
+                echo "" >> "$COMMIT_MSG_FILE"
+                git log -1 --format=%b "${COMMIT}" >> "$COMMIT_MSG_FILE"
+
+                git commit --no-verify --author="${AUTHOR_NAME} <${AUTHOR_EMAIL}>" --date="${AUTHOR_DATE}" -F "$COMMIT_MSG_FILE"
+                rm "$COMMIT_MSG_FILE"
+
+                PR_LINKS="${PR_LINKS}- https://github.com/${REPO}/pull/${PR_NUMBER}"$'\n'
+                CHERRY_PICK_COUNT=$((CHERRY_PICK_COUNT + 1))
+              fi
+            fi
+          done < "$COMMIT_LIST"
+          rm "$COMMIT_LIST"
+
+          if [[ $CHERRY_PICK_COUNT -gt 0 ]]; then
+            PR_BODY_FILE=$(mktemp)
+            echo "Automated cherry-pick roll to ${TARGET_BRANCH}." > "$PR_BODY_FILE"
+            echo "" >> "$PR_BODY_FILE"
+            echo "Original pull requests:" >> "$PR_BODY_FILE"
+            echo "${PR_LINKS}" >> "$PR_BODY_FILE"
+
+            echo "cherry_picked=true" >> "$GITHUB_OUTPUT"
+            echo "pr_body_path=$PR_BODY_FILE" >> "$GITHUB_OUTPUT"
+          else
+            echo "cherry_picked=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push and Create PR
+        if: steps.autoroll.outputs.cherry_picked == 'true'
+        env:
+          TARGET_BRANCH: 27.lts
+          REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_BODY_PATH: ${{ steps.autoroll.outputs.pr_body_path }}
+        run: |
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
+          git push origin "autoroll-to-${TARGET_BRANCH}" --force
+
+          PR_TITLE="Autoroll from main to ${TARGET_BRANCH}"
+
+          if gh pr view "autoroll-to-${TARGET_BRANCH}" --json number >/dev/null 2>&1; then
+            gh pr edit "autoroll-to-${TARGET_BRANCH}" --title "$PR_TITLE" --body-file "$PR_BODY_PATH"
+          else
+            gh pr create --base "${TARGET_BRANCH}" --head "autoroll-to-${TARGET_BRANCH}" --title "$PR_TITLE" --body-file "$PR_BODY_PATH"
+          fi
