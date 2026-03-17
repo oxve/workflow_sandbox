@@ -38,7 +38,7 @@ jobs:
           START_COMMIT: ${{ inputs.start_commit }}
           REPO: ${{ github.repository }}
         run: |
-          git fetch origin main "${TARGET_BRANCH}"
+          git fetch origin "main:refs/remotes/origin/main" "${TARGET_BRANCH}:refs/remotes/origin/${TARGET_BRANCH}"
           git checkout -B "autoroll-to-${TARGET_BRANCH}" "origin/${TARGET_BRANCH}"
 
           PR_LINKS=""
