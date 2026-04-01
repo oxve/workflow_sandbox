@@ -1,0 +1,64 @@
+name: Verify Filter Action
+on:
+  push:
+    branches: [feature/retry-filtering]
+  workflow_dispatch:
+
+jobs:
+  verify_filter_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Mock Results (Attempt 1)
+        if: github.run_attempt == 1
+        run: |
+          mkdir -p results/platform/subdir
+          # Target A: Failure
+          cat <<EOF > results/platform/subdir/target_A_testoutput.xml
+          <testsuites failures="1" errors="0">
+            <testsuite failures="1">
+              <testcase name="test1">
+                <failure message="failed"/>
+              </testcase>
+            </testsuite>
+          </testsuites>
+          EOF
+          # Target B: Success
+          cat <<EOF > results/platform/subdir/target_B_testoutput.xml
+          <testsuites failures="0" errors="0">
+            <testsuite failures="0">
+              <testcase name="test1"/>
+            </testsuite>
+          </testsuites>
+          EOF
+      - name: Upload Artifact (Attempt 1)
+        if: github.run_attempt == 1
+        uses: actions/upload-artifact@v4
+        with:
+          name: mock-results
+          path: results/*
+      - name: Fail (Attempt 1)
+        if: github.run_attempt == 1
+        run: exit 1
+
+      - name: Verify Filtering (Attempt > 1)
+        if: github.run_attempt > 1
+        uses: ./.github/actions/filter_test_targets
+        id: filter
+        with:
+          test_targets: '["path/to:target_A", "path/to:target_B"]'
+          test_results_key: mock-results
+          mode: device
+
+      - name: Assert Output (Attempt > 1)
+        if: github.run_attempt > 1
+        run: |
+          filtered='${{ steps.filter.outputs.filtered_test_targets }}'
+          echo "Filtered: $filtered"
+          if [[ "$filtered" == *"target_A"* ]] && [[ "$filtered" != *"target_B"* ]]; then
+             echo "Verification Passed!"
+             exit 0
+          else
+             echo "Verification Failed!"
+             exit 1
+          fi
